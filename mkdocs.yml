@@ -1,5 +1,5 @@
 site_name: Introduction to actinia at GeoSTAT 2019
-site_url:  https://pages.gitlab.io/actinia-introduction-2019
+site_url:  https://pages.gitlab.io/actinia-introduction
 #site_url: https://namespace.gitlab.io
 docs_dir:  docs
 theme:     readthedocs
