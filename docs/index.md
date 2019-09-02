@@ -166,20 +166,21 @@ As an example, we check the repos of a GitHub user, in sorted form:
 
 (source: [2])
 
-* Request Methods:
-    * In REST APIs, every request has an HTTP method type associated with it.
-    * The most common HTTP methods include:
-    * GET | A GET request asks to receive a copy of a resource
-    * POST | A POST request sends data to a server in order to create a new resource
-    * PUT | A PUT request sends data to a server in order to modify an existing resource
-    * DELETE | A DELETE request is sent to delete a resource
-* Response Codes:
-    * HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
-    * Selected status codes (see also [https://httpstatuses.com)](https://httpstatuses.com)):
-        * 200 - OK | All fine
-        * 404 - Not Found | The requested resource was not found
-        * 401 - Unauthorized | The request is not authorized to be completed
-        * 500 - Internal Server Error | Something went wrong while the server was processing your request
+Request **methods**:
+* In REST APIs, every request has an HTTP method type associated with it.
+* The most common HTTP methods include:
+* `GET` - a GET request asks to receive a copy of a resource
+* `POST` - a POST request sends data to a server in order to create a new resource
+* `PUT` - a PUT request sends data to a server in order to modify an existing resource
+* `DELETE` - a DELETE request is sent to delete a resource
+
+Response **codes**:
+* HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
+* Selected status codes (see also [https://httpstatuses.com)](https://httpstatuses.com)):
+    * 200 - OK | All fine
+    * 404 - Not Found | The requested resource was not found
+    * 401 - Unauthorized | The request is not authorized to be completed
+    * 500 - Internal Server Error | Something went wrong while the server was processing your request
 
 **JSON format**
 
@@ -246,28 +247,87 @@ Check out the various sections.
 
 Here we use the command line and the `curl` software:
 
+**Preparation:**
+
 ```bash
 # set credentials and REST server URL
-export ACTINIA_USER='demouser'
-export ACTINIA_PASSWORD='gu3st!pa55w0rd'
 export actinia="https://actinia.mundialis.de"
+export AUTH='-u demouser:gu3st!pa55w0rd'
+```
 
-# show locations
-curl -u "$ACTINIA_USER:$ACTINIA_PASSWORD" -X GET ${actinia}/api/v1/locations
+**List locations:**
 
-# show (raster) map details
-curl -u "$ACTINIA_USER:$ACTINIA_PASSWORD" -X GET ${actinia}/api/v1/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m
+```bash
+# show available locations (locations are like projects)
+curl ${AUTH} -X GET ${actinia}/api/v1/locations
+```
+
+**List mapsets in locations:**
+
+```bash
+# show available mapsets of a specific location
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets"
+```
+
+**List map layers and their metadata:**
+
+```bash
+# show available vector maps in a specific location/mapset
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers"
+
+# show metadata of a specific vector map
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/geology"
+
+# show available raster maps in a specific location/mapset
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/raster_layers"
+
+# show metadata of a specific raster map
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40"
+
+# show available STRDS in a specific location/mapset
+# STRDS = space time raster data set
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds"
+
+# show specific STRDS in a specific location/mapset
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m"
 
 # Get a list or raster layers from a STRDS
-curl "$ACTINIA_USER:$ACTINIA_PASSWORD"  -X GETi "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2013-05-01"
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers"
 
-# query point value, including JSON in request
-curl -u "$ACTINIA_USER:$ACTINIA_PASSWORD" -X POST -H "content-type: application/json" 'https://actinia.mundialis.de/latest/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m/sampling_sync_geojson' -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[7,50]}}]}'
-
-# store query in JSON file, then send it to server:
-echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[7,50]}}]}' > /tmp/pc_query_point_.json
-curl -u "$ACTINIA_USER:$ACTINIA_PASSWORD" -X POST -H "content-type: application/json" 'https://actinia.mundialis.de/latest/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m/sampling_sync_geojson'    -d @/tmp/pc_query_point_.json
+# Get a list or raster layers from a STRDS, with date filter
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
 ```
+
+**Map layer queries:**
+
+```bash
+# query point value in a STRDS, sending the JSON code directly in request
+curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[7,50]}}]}'
+```
+
+**Sending JSON payload as a file:**
+
+It is often much more convenient to store the JSON payload in a file and send it to server:
+
+```bash
+# store query in a JSON file "pc_query_point_.json" (or use a text editor for this)
+echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[7,50]}}]}' > pc_query_point_.json
+
+# send JSON file as payload to query the STRDS
+curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json
+```
+
+**Validation of a process chain:**
+
+actinia can also be used to validate a process chain. Download the process chain [process_chain_long.json](process_chain_long.json) and validate it:
+
+```bash
+# validation of a process chain (using sync call)
+curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
+```
+
 
 ### Further command line exercise suggestions
 

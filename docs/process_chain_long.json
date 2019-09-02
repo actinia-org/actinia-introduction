@@ -1,0 +1,92 @@
+{
+  "version": "1",
+  "list": [
+    {
+      "module": "g.region",
+      "id": "g.region_1804289383",
+      "flags": "p",
+      "inputs": [
+        {
+          "param": "raster",
+          "value": "elevation@PERMANENT"
+        },
+        {
+          "param": "res",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "module": "r.slope.aspect",
+      "id": "r.slope.aspect_1804289383",
+      "flags": "a",
+      "inputs": [
+        {
+          "param": "elevation",
+          "value": "elevation@PERMANENT"
+        },
+        {
+          "param": "format",
+          "value": "degrees"
+        },
+        {
+          "param": "precision",
+          "value": "FCELL"
+        },
+        {
+          "param": "zscale",
+          "value": "1.0"
+        },
+        {
+          "param": "min_slope",
+          "value": "0.0"
+        }
+      ],
+      "outputs": [
+        {
+          "param": "slope",
+          "value": "my_slope"
+        },
+        {
+          "param": "aspect",
+          "value": "my_aspect"
+        }
+      ]
+    },
+    {
+      "module": "r.watershed",
+      "id": "r.watershed_1804289383",
+      "inputs": [
+        {
+          "param": "elevation",
+          "value": "elevation@PERMANENT"
+        },
+        {
+          "param": "convergence",
+          "value": "5"
+        },
+        {
+          "param": "memory",
+          "value": "300"
+        }
+      ],
+      "outputs": [
+        {
+          "param": "accumulation",
+          "value": "my_accumulation"
+        }
+      ]
+    },
+    {
+      "module": "r.info",
+      "id": "r.info_1804289383",
+      "flags": "gr",
+      "inputs": [
+        {
+          "param": "map",
+          "value": "my_aspect"
+        }
+      ]
+    }
+  ]
+}
