@@ -1,0 +1,7 @@
+site_name: Introduction to actinia at GeoSTAT 2019
+site_url:  https://pages.gitlab.io/actinia-introduction-2019
+#site_url: https://namespace.gitlab.io
+docs_dir:  docs
+theme:     readthedocs
+# https://github.com/mkdocs/mkdocs/issues/991
+use_directory_urls: true
