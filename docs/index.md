@@ -219,13 +219,22 @@ Hint: When writing JSON files, some linting (validation) might come handy, e.g. 
 
 ### Step by step...
 
-* Step 1: get your credentials (for authentication) from the trainer (or use the "demouser" with "gu3st!pa55w0rd")
-* Step 2: launch cURL or RESTman or ...
-    * choose your REST client:
-        * a) cURL on command line: [https://curl.haxx.se/docs/manpage.html](https://curl.haxx.se/docs/manpage.html)
-        * b) RESTman in Browser
-    * Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
-* Step 3: Explore the existing actinia data
+Step 1:
+
+* get your credentials (for authentication) from the trainer (or use the "demouser" with "gu3st!pa55w0rd")
+
+Step 2:
+
+* choose and launch your REST client: cURL or RESTman or ...
+    * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
+    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) in Browser
+* Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+
+
+
+Step 3:
+
+* Explore the existing data on the actinia server:
     * i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets
     * Check the [list of data](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md#available-data) currently available on the actinia server 
     * e.g.
@@ -234,7 +243,10 @@ Hint: When writing JSON files, some linting (validation) might come handy, e.g. 
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
     * process_results are ordered alphabetically, not thematically
-* Step 4: Submit a compute job and check its status
+
+Step 4:
+
+* Submit a compute job and check its status
     * Examples incl. Spatio-Temporal sampling: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
 
 ### Exploring the API
@@ -356,7 +368,7 @@ Controlling actinia from a running GRASS GIS session:
 
 (40 min)
 
-EXERCISE: "Property risks from trees" _<<-- needs finetuning_
+**EXERCISE: "Property risks from trees"** _<<-- needs finetuning_
 
 * define region of interest
 * needed geodata:
@@ -375,10 +387,12 @@ EXERCISE: "Property risks from trees" _<<-- needs finetuning_
     * compute property risk statistics using buffers and tree count map and upload to buffered building map (v.rast.stats, method=maximum)
     * export of results through REST resources
 
-EXERCISE: "Population at risk near coastal areas"
+**EXERCISE: "Population at risk near coastal areas"**
+
 * used geodata:
-    * SRTM 30m (already in actinia - find out location yourself)
-    * Global Population 2015 (already in actinia - find out location yourself)
+    * SRTM 30m (already available in actinia - find out the location yourself)
+    * Global Population 2015 (already available in actinia - find out the location yourself)
+    * vector shorelines (get from [naturalearthdata](http://www.naturalearthdata.com/downloads/))
 * fetch metadata with actinia interface
 * what's important about projections?
 * proposed workflow:
