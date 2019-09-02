@@ -10,8 +10,7 @@ TODO:
 
 * set up n geostat users properly
 * check geo data
-* Definition of deployment
-* endpoints
+
 
 ## Abstract
 
@@ -28,11 +27,17 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 
 Planned tutorial time: 2:30 hs = 150 min
 
+## Warming up
+
+A graphical intro to actinia - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html)
+
+(requires Chrome/ium browser)
+
 ## Introduction
 
 (10 min)
 
-For this tutorial we assume working knowledge concerning geospatial and Earth observation. The tutorial includes, however, a brief introduction to REST (Representational State Transfer) API and cloud processing related basics.
+For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation.** The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API and cloud processing related basics.
 
 <!--
 ### Geo and EO basics
@@ -84,14 +89,15 @@ The actinia server has access to compute nodes (**actinia nodes**; separate phys
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 1: Architecture of an actinia deployment
+Fig. 1: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
 </center>
 
 **Deployment**
 
 In a nutshell, deployment means to launch software, usually in an automated way on a computer node. A series of technologies exist for that but importantly virtualization plays an important role which helps towards a higher level of abstraction instead of a high dependency on hardware and software specifics.
 
-An aim is to operate **Infrastructure as Code** (IaC), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "simply" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware. **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack. 
+An aim is to operate **Infrastructure as Code** ([IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code)), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "simply" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware.
+**CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack. 
 
 In terms of actinia, **various ways of deployment** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
 
@@ -114,7 +120,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
-Fig. 2: Architecture of an actinia deployment
+Fig. 2: Architecture of an actinia deployment (source: Carmen Tawalika)
 </center>
 
 ## REST API and geoprocessing basics
@@ -230,7 +236,11 @@ Step 2:
     * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) in Browser
 * Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
 
-
+<center>
+<a href="img/actinia_restman01.png"><img src="img/actinia_restman01.png" width="60%"></a><br>
+<a href="img/actinia_restman02.png"><img src="img/actinia_restman02.png" width="60%"></a><br>
+Fig. 3: Using RESTman
+</center>
 
 Step 3:
 
@@ -246,8 +256,7 @@ Step 3:
 
 Step 4:
 
-* Submit a compute job and check its status
-    * Examples incl. Spatio-Temporal sampling: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
+* Submit a compute job and check its status (in case of asynchronous jobs by polling).
 
 ### Exploring the API
 
@@ -345,17 +354,19 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 
 - draft -
 
-* compute NDVI from a Landsat scene
+* compute NDVI from a Landsat scene (using `i.vi`)
 * computations using data in the nc_spm_08 location:
-    * slope and aspect from a DEM (there are several)
-    * flow accumulation with r.watershed from a DEM
-    * buffer around hospitals
-    * advanced: network allocation with hospitals and streets_wake
-* Dealing with workflows
-    * Prepare a workflow (processing chain)
-    * async versus sync REST API CALLS with processing chains
+    * slope and aspect from a DEM (there are several;  using `r.slope.aspect`)
+    * flow accumulation with `r.watershed` from a DEM
+    * buffer around hospitals  (using `v.buffer`)
+    * advanced: network allocation with hospitals and streets_wake (using `v.net.alloc`)
+    * generalizing vector polygons with GRASS GIS' topology engine (using `v.generalize`)
+* Dealing with workflows (processing chains)
+    * Preparing a workflow
+    * async versus sync REST API calls
         * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
     * Submit a workflow (processing chain)
+* Further examples incl. Spatio-Temporal sampling: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
 
 ### Controlling actinia from a running GRASS GIS session
 
@@ -363,42 +374,43 @@ Controlling actinia from a running GRASS GIS session:
 
 "ace" - actinia command execution from a GRASS GIS terminal: [https://github.com/mundialis/actinia_core/tree/master/scripts](https://github.com/mundialis/actinia_core/tree/master/scripts)
 
+The "ace" approach simplifies the writing of processing chains a lot!
 
 ## Own exercises in actinia
 
 (40 min)
 
-**EXERCISE: "Property risks from trees"** _<<-- needs finetuning_
-
-* define region of interest
-* needed geodata:
-    * building footprints
-    * download from OSM (via [http://overpass-turbo.eu/](http://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
-    * these data are now on your machine and not on the actinia server
-    * use "ace importer" or cURL to upload
-    * select Sentinel-2 scene
-* proposed workflow:
-    * actinia "ace" importer for building footprint upload
-    * v.buffer of 10m and 30m around footprints
-    * select S2 scene, compute NDVI with i.vi
-    * filter NDVI threshold > 0.6 (map algebra) to get the tree pixels - more exiting would be a ML approach (with previously prepared training data ;-)) (r.learn.ml offer RF and SVM)
-    * on binary tree map (which corresponds to risk exposure)
-    * count number of tree pixels in 5x5 moving window (r.neighbors with method "count")
-    * compute property risk statistics using buffers and tree count map and upload to buffered building map (v.rast.stats, method=maximum)
-    * export of results through REST resources
-
 **EXERCISE: "Population at risk near coastal areas"**
 
-* used geodata:
+* needed geodata:
     * SRTM 30m (already available in actinia - find out the location yourself)
     * Global Population 2015 (already available in actinia - find out the location yourself)
     * vector shorelines (get from [naturalearthdata](http://www.naturalearthdata.com/downloads/))
 * fetch metadata with actinia interface
-* what's important about projections?
+* before doing any computations: what's important about projections?
 * proposed workflow:
-    * set computational region to a small subregion and contrain pixel amount through defined user settings
+    * set computational region to a small subregion and constrain the pixel number through defined user settings
     * buffer SRTM land areas by 5000 m inwards
-    * zonal statistics with pop map
+    * zonal statistics with population map
+
+**EXERCISE: "Property risks from trees"** _<<-- needs finetuning_
+
+* define your region of interest
+* needed geodata:
+    * building footprints
+        * download from OSM (via [http://overpass-turbo.eu/](http://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
+        * these data are now on your machine and not on the actinia server
+        * use "ace importer" or cURL to upload
+    * select Sentinel-2 scene
+* proposed workflow:
+    * actinia "ace" importer for building footprint upload
+    * `v.buffer` of 10m and 30m around footprints
+    * select S2 scene, compute NDVI with `i.vi`
+    * filter NDVI threshold > 0.6 (map algebra) to get the tree pixels - more exiting would be a ML approach (with previously prepared training data ;-)) (`r.learn.ml` offers RF and SVM)
+    * on binary tree map (which corresponds to risk exposure)
+    * count number of tree pixels in 5x5 moving window (`r.neighbors` with method "count")
+    * compute property risk statistics using buffers and tree count map and upload to buffered building map (`v.rast.stats`, method=maximum)
+    * export of results through REST resources
 
 ## Conclusions and future
 
@@ -410,10 +422,11 @@ Controlling actinia from a running GRASS GIS session:
     * https://github.com/mundialis/actinia_core/
 
 ## See also: openEO resources
+
 * OpenEO Web Editor: [https://open-eo.github.io/openeo-web-editor/demo/](https://open-eo.github.io/openeo-web-editor/demo/)
     * Server: [https://openeo.mundialis.de](https://openeo.mundialis.de)
-    * user: <actinia user>
-    * pw: <actinia pw>
+    * user: 'actinia_user'
+    * pw: 'actinia_pw'
 
 ## References
 
