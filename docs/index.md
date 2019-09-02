@@ -4,7 +4,7 @@
 
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
-Last update: 2 Sep 2019
+*Last update: 2 Sep 2019*
 
 TODO:
 
@@ -19,12 +19,12 @@ Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an 
 
 ## Required software for this tutorial
 
-*   Chrome/Chromium browser
-*   RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
+* Chrome/Chromium browser
+* RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
 
-*Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.*
+Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
-# Geostat tutorial
+# Geostat 2019 tutorial
 
 Planned tutorial time: 2:30 hs = 150 min
 
@@ -73,9 +73,14 @@ While at time actinia is mainly a REST interface to GRASS GIS it offers through 
 
 **Persistent and ephemeral databases**
 
-With **persistent storage** we consider data which are stored on disk without a scheduled deletion time while ephemeral storage keeps data only for a limited time (e.g., for 24 hs). In the Geo/EO context, persistent storage is used to provide for example the base cartography, i.e. elevation models, street networks, building footprints, etc. The **ephemeral storage** is moreover used for on demand computed results including user generated data and temporary data as occurring in processing chains. 
+With **persistent storage** we consider a data storage which keeps data also in case of shutoff as well as keeping them without a scheduled deletion time. In the Geo/EO context, persistent storage is used to provide, e.g. the base cartography, i.e. elevation models, street networks, building footprints, etc.
+The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., for 24 hs).
 
-Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. The **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB). The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed.The actinia server acts as a load balancer, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 1).
+In the cloud computing context this is relevant as cost incurs when storing data.
+
+Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. In particular, the **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB).
+
+The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed.The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 1).
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
@@ -86,7 +91,7 @@ Fig. 1: Architecture of an actinia deployment
 
 In a nutshell, deployment means to launch software, usually in an automated way on a computer node. A series of technologies exist for that but importantly virtualization plays an important role which helps towards a higher level of abstraction instead of a high dependency on hardware and software specifics.
 
-An aim is to operate **Infrastructure as Code** (IaC), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched  from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "just" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware. **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack. 
+An aim is to operate **Infrastructure as Code** (IaC), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "simply" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware. **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack. 
 
 In terms of actinia, **various ways of deployment** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
 
@@ -97,13 +102,13 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 * analytics: this are the workers of GRASS GIS or wrapped other software,
 * external data sources: import providers for various external data sources,
 * interface layer:
-    * most importantly the REST API,
-    * openEO driver,
-    * ace - actinia command execution (to be run from a GRASS GIS session),
-* metadata management: interface to GNOS, managed through actinia-GDI
+    * most importantly the **REST API**,
+    * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
+    * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session),
+* metadata management: interface to GNOS, managed through [actinia-GDI](https://github.com/mundialis/actinia-gdi/)
 * database system:
     * job management in a Redis database
-    * GRASS GIS database
+    * the GRASS GIS database (here are the geo/EO data!)
 * connection to OGC Web services for output
    * Geoserver integration
 
@@ -135,10 +140,10 @@ Looking in further detail into REST calls, we see that an API request consists o
 
 A **request** consists of four parts (see also [1]):
 
-* the endpoint
-* the headers
-* the method
+* the endpoints
+* the header
 * the data (or body)
+* the methods
 
 **Endpoint:**
 
@@ -151,13 +156,13 @@ As an example, we check the repos of a GitHub user, in sorted form:
 
 [https://api.github.com/users/neteler/repos?sort=pushed](https://api.github.com/users/neteler/repos?sort=pushed)
 
-**Headers & Bodies**
+**Header & Body:**
 
-*   Both requests and responses have two parts: a header, and optionally a body
-*   Response headers contain information about the response.
-*   In both requests & responses, the body contains the actual data being transmitted (e.g., population data)
+* Both requests and responses have two parts: a header, and optionally a body
+* Response headers contain information about the response.
+* In both requests & responses, the body contains the actual data being transmitted (e.g., population data)
 
-**Request Methods and Response Codes**
+**Methods and Response Codes**
 
 (source: [2])
 
@@ -169,22 +174,23 @@ As an example, we check the repos of a GitHub user, in sorted form:
     * PUT | A PUT request sends data to a server in order to modify an existing resource
     * DELETE | A DELETE request is sent to delete a resource
 * Response Codes:
-     *   HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
-    *   Selected status codes (see also [https://httpstatuses.com)](https://httpstatuses.com)):
-        *   200 - OK | All fine
-        *   404 - Not Found | The requested resource was not found
-        *   401 - Unauthorized | The request is not authorized to be completed
-        *   500 - Internal Server Error | Something went wrong while the server was processing your request
+    * HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
+    * Selected status codes (see also [https://httpstatuses.com)](https://httpstatuses.com)):
+        * 200 - OK | All fine
+        * 404 - Not Found | The requested resource was not found
+        * 401 - Unauthorized | The request is not authorized to be completed
+        * 500 - Internal Server Error | Something went wrong while the server was processing your request
 
 **JSON format**
 
-The JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, for many people).
+JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people).
 
 ```bash
+# this command line...
 GRASS 7.9.dev (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
-looks like:
+looks like this in JSON:
 
 ```json
 {
@@ -204,7 +210,7 @@ looks like:
 }
 ```
 
-When writing own JSON files, some linting (validation) might come handy, e.g. using [https://jsonlint.com/](https://jsonlint.com/).
+Hint: When writing JSON files, some linting (validation) might come handy, e.g. using [https://jsonlint.com/](https://jsonlint.com/).
 
 ## First Hand-on: working with REST API requests
 
@@ -212,29 +218,29 @@ When writing own JSON files, some linting (validation) might come handy, e.g. us
 
 ### Step by step...
 
-* Step 1: get your credentials (for authentication)
+* Step 1: get your credentials (for authentication) from the trainer (or use the "demouser" with "gu3st!pa55w0rd")
 * Step 2: launch cURL or RESTman or ...
-    * a) cURL on command line: [https://curl.haxx.se/docs/manpage.html](https://curl.haxx.se/docs/manpage.html)
-    * b) RESTman in Browser
-    *   demouser | gue...XXX
-    *   [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
-* Step 3: Explore the actinia data
+    * choose your REST client:
+        * a) cURL on command line: [https://curl.haxx.se/docs/manpage.html](https://curl.haxx.se/docs/manpage.html)
+        * b) RESTman in Browser
+    * Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+* Step 3: Explore the existing actinia data
     * i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets
-   * Data available on the actinia server 
+    * Check the [list of data](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md#available-data) currently available on the actinia server 
     * e.g.
         * [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
     * process_results are ordered alphabetically, not thematically
-    * Data available through the actinia server
-    * Google Cloud for Sentinel-2, only demo
-* Step 4: Submit an compute job and check its status
+* Step 4: Submit a compute job and check its status
     * Examples incl. Spatio-Temporal sampling: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
 
 ### Exploring the API
 
-* actinia REST API: [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json)
+The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
+
+Check out the various sections.
 
 ### Further Examples
 
@@ -263,58 +269,62 @@ echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn
 curl -u "$ACTINIA_USER:$ACTINIA_PASSWORD" -X POST -H "content-type: application/json" 'https://actinia.mundialis.de/latest/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m/sampling_sync_geojson'    -d @/tmp/pc_query_point_.json
 ```
 
-### Further exercise suggestions
+### Further command line exercise suggestions
 
-* NDVI from landsat
-* slope and aspect from a DEM in nc_spm_08
-* flow accumulation with r.watershed from a DEM in nc_spm_08
-* buffer around hospitals in nc_spm_08
-* advanced: network allocation with hospitals and streets_wake
+- draft -
+
+* compute NDVI from a Landsat scene
+* computations using data in the nc_spm_08 location:
+    * slope and aspect from a DEM (there are several)
+    * flow accumulation with r.watershed from a DEM
+    * buffer around hospitals
+    * advanced: network allocation with hospitals and streets_wake
 * Dealing with workflows
     * Prepare a workflow (processing chain)
-    * ASYNC REST API CALLS with processing chains
-    * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
+    * async versus sync REST API CALLS with processing chains
+        * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
     * Submit a workflow (processing chain)
 
+### Controlling actinia from a running GRASS GIS session
 
 Controlling actinia from a running GRASS GIS session:
-*  "ace" - actinia command execution from a GRASS GIS terminal: [https://github.com/mundialis/actinia_core/tree/master/scripts](https://github.com/mundialis/actinia_core/tree/master/scripts) (demo only)
+
+"ace" - actinia command execution from a GRASS GIS terminal: [https://github.com/mundialis/actinia_core/tree/master/scripts](https://github.com/mundialis/actinia_core/tree/master/scripts)
 
 
 ## Own exercises in actinia
 
 (40 min)
 
-* EXERCISE: "Property risks from trees" _<<-- needs finetuning_
-	* define region of interest
-	* needed geodata:
-	* building footprints
-	* download from OSM (via [http://overpass-turbo.eu/](http://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
-* these data are now on your machine and not on the actinia server
-* use "ace importer" or cURL to upload
-* Sentinel-2 scene
+EXERCISE: "Property risks from trees" _<<-- needs finetuning_
+
+* define region of interest
+* needed geodata:
+    * building footprints
+    * download from OSM (via [http://overpass-turbo.eu/](http://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
+    * these data are now on your machine and not on the actinia server
+    * use "ace importer" or cURL to upload
+    * select Sentinel-2 scene
 * proposed workflow:
-* actinia "ace" importer for building footprint upload
-* v.buffer of 10m and 30m around footprints
-* select S2 scene, compute NDVI with i.vi
-* filter NDVI threshold > 0.6 (map algebra) to get the tree pixels - more exiting would be a ML approach (with previously prepared training data ;-)) (r.learn.ml offer RF and SVM)
-* on binary tree map (which corresponds to risk exposure)
-* count number of tree pixels in 5x5 moving window (r.neighbors with method "count")
-* compute property risk statistics using buffers and tree count map and upload to buffered building map (v.rast.stats, method=maximum)
-* <s>check</s> show attribute table (v.db.select)
-* a check is not possible within an actinia process chain, only as a separate actinia process on already existing data
-* export 
-* for this workflow you need a UDB where intermediate results are stored: no ephemeral processing - well, when an "ace" script, then intermediate results are kept but surely then it is no longer interactive
-* EXERCISE: "Population at risk near coastal areas"
-    * used geodata:
-        * SRTM 30m (already in actinia - find out location yourself))
-        * Global Population 2015 (already in actinia - find out location yourself)
-    * fetch metadata with actinia interface
-    * what's important about projections?
-    * proposed workflow:
-        * set computational region to a small subregion and contrain pixel amount through defined user settings
-        * buffer SRTM land areas by 5000 m inwards
-        * zonal statistics with pop map
+    * actinia "ace" importer for building footprint upload
+    * v.buffer of 10m and 30m around footprints
+    * select S2 scene, compute NDVI with i.vi
+    * filter NDVI threshold > 0.6 (map algebra) to get the tree pixels - more exiting would be a ML approach (with previously prepared training data ;-)) (r.learn.ml offer RF and SVM)
+    * on binary tree map (which corresponds to risk exposure)
+    * count number of tree pixels in 5x5 moving window (r.neighbors with method "count")
+    * compute property risk statistics using buffers and tree count map and upload to buffered building map (v.rast.stats, method=maximum)
+    * export of results through REST resources
+
+EXERCISE: "Population at risk near coastal areas"
+* used geodata:
+    * SRTM 30m (already in actinia - find out location yourself)
+    * Global Population 2015 (already in actinia - find out location yourself)
+* fetch metadata with actinia interface
+* what's important about projections?
+* proposed workflow:
+    * set computational region to a small subregion and contrain pixel amount through defined user settings
+    * buffer SRTM land areas by 5000 m inwards
+    * zonal statistics with pop map
 
 ## Conclusions and future
 
@@ -340,8 +350,6 @@ Controlling actinia from a running GRASS GIS session:
 Markus Neteler is partner and general manager at [mundialis](https://www.mundialis.de) GmbH & Co. KG, Bonn, Germany. From 2001-2015 he worked as a researcher in Italy. Markus is co-founder of OSGeo and since 1998, coordinator of the GRASS GIS development (for details, see his private [homepage](https://grassbook.org/neteler/)).
 
 ------------------------------------------------------------------------
-
-*Last changed: 2 Sep 2019*
 
 - Repository of this material on [gitlab](https://gitlab.com/neteler/actinia-intro/tree/master)
 
