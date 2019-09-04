@@ -25,6 +25,26 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 
 # Geostat 2019 tutorial
 
+**Content**
+
+* Warming up
+* Introduction
+    * Why cloud computing ?
+    * Overview actinia
+* REST API and geoprocessing basics
+    * What is REST: intro
+* First Hand-on: working with REST API requests
+    * Step by step...
+    * Exploring the API
+    * Further Examples
+    * Controlling actinia from a running GRASS GIS session
+    * Further command line exercise suggestions
+* Own exercises in actinia
+* Conclusions and future
+* See also: openEO resources
+* References
+* About the trainer
+
 Planned tutorial time: 2:30 hs = 150 min
 
 ## Warming up
@@ -400,7 +420,7 @@ g.extension url=https://github.com/mundialis/importer extension=importer
 # exporter installation
 g.extension url=https://github.com/mundialis/exporter extension=exporter 
 
-# ACE tool
+# ace tool
 https://raw.githubusercontent.com/mundialis/actinia_core/master/scripts/ace
 
 # ace installation (maybe with sudo), remove the .txt extension
