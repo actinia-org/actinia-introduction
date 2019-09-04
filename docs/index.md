@@ -1,10 +1,10 @@
-*Main page of this document: See [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)*
-
 # actinia tutorial at Geostat 2019
 
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
-*Last update: 3 Sep 2019*
+URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
+
+*Last update: 4 Sep 2019*
 
 ## Abstract
 
@@ -261,7 +261,7 @@ Step 2:
 
 * choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
-    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) in Browser
+    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)) in Browser
 * Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
 
 <center>
@@ -290,7 +290,24 @@ Step 4:
 
 The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
 
-Check out the various sections.
+Check out the various sections:
+
+* Authentication Management
+* API Log
+* Cache Management
+* Satellite Image Algorithms
+* Location Management
+* Mapset Management
+* Processing
+* Raster Management
+* Raster Statistics
+* STRDS Management
+* STRDS Sampling
+* STRDS Statistics
+* Vector Management
+* Resource Management
+
+To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
 
 ### Further Examples
 
