@@ -4,13 +4,7 @@
 
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
-*Last update: 2 Sep 2019*
-
-TODO:
-
-* set up n geostat users properly
-* check geo data
-
+*Last update: 3 Sep 2019*
 
 ## Abstract
 
@@ -20,6 +14,9 @@ Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an 
 
 * Chrome/Chromium browser
 * RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
+* For the "ace - actinia command execution" section:
+    * Linux: `pip3 install requests simplejson click`
+    * Windows users may find them in OSGeo4W, Advanced installation, search window (3 Python packages: requests, simplejson, click)
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -29,13 +26,13 @@ Planned tutorial time: 2:30 hs = 150 min
 
 ## Warming up
 
-A graphical intro to actinia - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html)
-
-(requires Chrome/ium browser)
+A graphical intro to actinia - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: requires Chrome/ium browser)
 
 ## Introduction
 
+<!--
 (10 min)
+-->
 
 For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation.** The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API and cloud processing related basics.
 
@@ -85,7 +82,7 @@ In the cloud computing context this is relevant as cost incurs when storing data
 
 Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. In particular, the **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB).
 
-The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed.The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 1).
+The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed. The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 1).
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
@@ -125,7 +122,9 @@ Fig. 2: Architecture of an actinia deployment (source: Carmen Tawalika)
 
 ## REST API and geoprocessing basics
 
+<!--
 (20 min)
+-->
 
 ### What is REST: intro
 
@@ -158,7 +157,7 @@ The final part of an endpoint is query parameters. Using query parameters you ca
 
 `?query1=value1&query2=value2`
 
-As an example, we check the repos of a GitHub user, in sorted form:
+As an example, we check the repositories of a GitHub user, in sorted form:
 
 [https://api.github.com/users/neteler/repos?sort=pushed](https://api.github.com/users/neteler/repos?sort=pushed)
 
@@ -194,10 +193,10 @@ JSON is a structured, machine readable format (while also human readable at the 
 
 ```bash
 # this command line...
-GRASS 7.9.dev (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
+GRASS 7.8.dev (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
-looks like this in JSON:
+looks like the following in JSON:
 
 ```json
 {
@@ -221,7 +220,9 @@ Hint: When writing JSON files, some linting (validation) might come handy, e.g. 
 
 ## First Hand-on: working with REST API requests
 
-(50min)
+<!--
+(50 min)
+-->
 
 ### Step by step...
 
@@ -349,36 +350,69 @@ actinia can also be used to validate a process chain. Download the process chain
 curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
 ```
 
+**Dealing with workflows (processing chains)**
 
-### Further command line exercise suggestions
-
-- draft -
-
-* compute NDVI from a Landsat scene (using `i.vi`)
-* computations using data in the nc_spm_08 location:
-    * slope and aspect from a DEM (there are several;  using `r.slope.aspect`)
-    * flow accumulation with `r.watershed` from a DEM
-    * buffer around hospitals  (using `v.buffer`)
-    * advanced: network allocation with hospitals and streets_wake (using `v.net.alloc`)
-    * generalizing vector polygons with GRASS GIS' topology engine (using `v.generalize`)
-* Dealing with workflows (processing chains)
-    * Preparing a workflow
-    * async versus sync REST API calls
-        * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
-    * Submit a workflow (processing chain)
-* Further examples incl. Spatio-Temporal sampling: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
+* Prepare a processing chain
+* async versus sync REST API calls
+    * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
+* Submit the processing chain
 
 ### Controlling actinia from a running GRASS GIS session
 
-Controlling actinia from a running GRASS GIS session:
+Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/).
 
-"ace" - actinia command execution from a GRASS GIS terminal: [https://github.com/mundialis/actinia_core/tree/master/scripts](https://github.com/mundialis/actinia_core/tree/master/scripts)
+The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
 
-The "ace" approach simplifies the writing of processing chains a lot!
+To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 4) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
+
+<center>
+<a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
+Fig. 4: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+</center>
+
+Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.
+
+<p style="border:lightgreen solid 5px;padding:5px; width:50%">
+Note: Since we want to do cloud computing, the full location would not be needed but it is useful to have for an initial exercise in order to compare local and remote computations.
+</p>
+
+**Needed Python libraries**
+
+In case not yet present on the system, the following Python libraries are needed:
+
+```bash
+pip3 install requests simplejson click
+```
+
+
+Now follow the instructions in
+
+ [https://github.com/mundialis/actinia_core/blob/master/scripts/README.md](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md)
+
+
+### Further command line exercise suggestions
+
+For this you can either use "ace" or write with an editor the JSON process chains and send them to actinia.
+
+**Computations using data in the `nc_spm_08` location:**
+
+* compute NDVI from a Landsat scene (using `i.vi`)
+* slope and aspect from a DEM (there are several;  using `r.slope.aspect`)
+* flow accumulation with `r.watershed` from a DEM
+* buffer around hospitals  (using `v.buffer`)
+* advanced: network allocation with hospitals and streets_wake (using `v.net.alloc`)
+* generalizing vector polygons with GRASS GIS' topology engine (using `v.generalize`)
+
+**Further examples incl. Spatio-Temporal sampling:**
+
+See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
+
 
 ## Own exercises in actinia
 
+<!--
 (40 min)
+-->
 
 **EXERCISE: "Population at risk near coastal areas"**
 
@@ -393,7 +427,9 @@ The "ace" approach simplifies the writing of processing chains a lot!
     * buffer SRTM land areas by 5000 m inwards
     * zonal statistics with population map
 
-**EXERCISE: "Property risks from trees"** _<<-- needs finetuning_
+**EXERCISE: "Property risks from trees"**
+
+(draft idea only, submit your suggestion to trainer how to solve this task)
 
 * define your region of interest
 * needed geodata:
@@ -414,7 +450,9 @@ The "ace" approach simplifies the writing of processing chains a lot!
 
 ## Conclusions and future
 
+<!--
 (15 min incl discussions)
+-->
 
 * integration in own scientific or business processes
 * openEO actinia driver
