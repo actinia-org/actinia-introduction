@@ -385,6 +385,23 @@ In case not yet present on the system, the following Python libraries are needed
 * Windows users (OSGeo4W, Advanced installation, search window):
     * three Python packages: python3-click, python3-requests, python3-simplejson
 
+**Installation of ace tools**
+
+```bash
+# importer installation
+g.extension url=https://github.com/mundialis/importer extension=importer
+
+# exporter installation
+g.extension url=https://github.com/mundialis/exporter extension=exporter 
+
+# ACE tool
+https://raw.githubusercontent.com/mundialis/actinia_core/master/scripts/ace
+
+# ace installation (maybe with sudo), remove the .txt extension
+# you need to be in the GRASS GIS session
+cp ace $GISBASE/scripts/
+chmod a+x $GISBASE/scripts/ace
+```
 
 Now follow the instructions in
 
