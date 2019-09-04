@@ -10,6 +10,8 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. In this course we will briefly introduce some Geo and EO data basics and give a short introduction to REST API and cloud processing concepts. This is followed by an introduction to actinia processing along with hands-on to get more familiar with the topic by exercises.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
+
 ## Required software for this tutorial
 
 * Chrome/Chromium browser
@@ -77,6 +79,7 @@ While at time actinia is mainly a REST interface to GRASS GIS it offers through 
 **Persistent and ephemeral databases**
 
 With **persistent storage** we consider a data storage which keeps data also in case of shutoff as well as keeping them without a scheduled deletion time. In the Geo/EO context, persistent storage is used to provide, e.g. the base cartography, i.e. elevation models, street networks, building footprints, etc.
+
 The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., for 24 hs).
 
 In the cloud computing context this is relevant as cost incurs when storing data.
@@ -95,6 +98,7 @@ Fig. 1: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019
 In a nutshell, deployment means to launch software, usually in an automated way on a computer node. A series of technologies exist for that but importantly virtualization plays an important role which helps towards a higher level of abstraction instead of a high dependency on hardware and software specifics.
 
 An aim is to operate **Infrastructure as Code** ([IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code)), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "simply" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware.
+
 **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack. 
 
 In terms of actinia, **various ways of deployment** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
@@ -173,6 +177,7 @@ As an example, we check the repositories of a GitHub user, in sorted form:
 (source: [2])
 
 Request **methods**:
+
 * In REST APIs, every request has an HTTP method type associated with it.
 * The most common HTTP methods include:
 * `GET` - a GET request asks to receive a copy of a resource
@@ -181,6 +186,7 @@ Request **methods**:
 * `DELETE` - a DELETE request is sent to delete a resource
 
 Response **codes**:
+
 * HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
 * Selected status codes (see also [https://httpstatuses.com)](https://httpstatuses.com)):
     * 200 - OK | All fine
@@ -190,7 +196,7 @@ Response **codes**:
 
 **JSON format**
 
-JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people).
+JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://en.wikipedia.org/wiki/JSON) stands for Javascript Object Notation.
 
 ```bash
 # this command line...
@@ -489,6 +495,8 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 [1] Zell Liew, 2018: Understanding And Using REST APIs, [https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/](https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/)
 
 [2] Planet 2019: Developer resource center, [https://developers.planet.com/planetschool/rest-apis/](https://developers.planet.com/planetschool/rest-apis/)
+
+[3] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
 ## About the trainer
 
