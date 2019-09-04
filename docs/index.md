@@ -153,7 +153,7 @@ Fig. 2: Architecture of an actinia deployment (source: Carmen Tawalika)
 
 ### What is REST: intro
 
-An **API** (Application Programming Interface) defines a way of communicating between different software applications. There have been developed many different ways to implement APIs. A RESTful API (Representational State Transfer - REST, for details see [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)) is a web API for creating web services that communicate with web resources.
+An **API** (Application Programming Interface) defines a way of communicating between different software applications. A **RESTful** API (Representational State Transfer - REST, for details see [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)) is a web API for creating web services that communicate with web resources.
 
 In detail, a REST API uses URL arguments to specify what information shall be returned through the API. This is not much different from requesting a Web page in a browser but through the REST API we can **execute commands remotely and retrieve the results**.
 
@@ -400,6 +400,11 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 * async versus sync REST API calls
     * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
 * Submit the processing chain
+
+### Data exchange: import and export
+
+Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources.
+Note that the download of Web resources provided by actinia requires authentication.
 
 ### Controlling actinia from a running GRASS GIS session
 
