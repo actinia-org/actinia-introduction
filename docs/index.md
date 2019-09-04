@@ -35,7 +35,7 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
     * What is REST: intro
 * First Hand-on: working with REST API requests
     * Step by step...
-    * Exploring the API
+    * Exploring the API: finding available actinia endpoints
     * Further Examples
     * Controlling actinia from a running GRASS GIS session
     * Further command line exercise suggestions
@@ -286,7 +286,7 @@ Step 4:
 
 * Submit a compute job and check its status (in case of asynchronous jobs by polling).
 
-### Exploring the API
+### Exploring the API: finding available actinia endpoints
 
 The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
 
@@ -516,7 +516,10 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 [2] Planet 2019: Developer resource center, [https://developers.planet.com/planetschool/rest-apis/](https://developers.planet.com/planetschool/rest-apis/)
 
-[3] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
+[3] [actinia API reference](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) documentation
+
+[4] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)]
+
 
 ## About the trainer
 
