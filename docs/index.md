@@ -15,8 +15,9 @@ Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an 
 * Chrome/Chromium browser
 * RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
 * For the "ace - actinia command execution" section:
-    * Linux: `pip3 install requests simplejson click`
-    * Windows users may find them in OSGeo4W, Advanced installation, search window (3 Python packages: requests, simplejson, click)
+    * Linux: `pip3 install click requests simplejson`
+    * Windows users (OSGeo4W, Advanced installation, search window):
+        * three Python packages: python3-click, python3-requests, python3-simplejson
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -380,9 +381,9 @@ Note: Since we want to do cloud computing, the full location would not be needed
 
 In case not yet present on the system, the following Python libraries are needed:
 
-```bash
-pip3 install requests simplejson click
-```
+* Linux: `pip3 install click requests simplejson`
+* Windows users (OSGeo4W, Advanced installation, search window):
+    * three Python packages: python3-click, python3-requests, python3-simplejson
 
 
 Now follow the instructions in
