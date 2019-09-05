@@ -4,22 +4,31 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 5 Sep 2019*
+*Last update: 6 Sep 2019*
 
 ## Abstract
 
-Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. In this course we will briefly introduce some Geo and EO data basics and give a short introduction to REST API and cloud processing concepts. This is followed by an introduction to actinia processing along with hands-on to get more familiar with the topic by exercises.
+
+<img src="img/actinia_logo.png" width="30%" align="right"></a>
+
+Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019.
+
+In this course we will briefly give a short introduction to REST API and cloud processing concepts. This is followed by an introduction to actinia processing along with hands-on to get more familiar with the topic by exercises.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
 ## Required software for this tutorial
 
-* Chrome/Chromium browser
-* RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
+* REST client:
+    * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
+    * optionally: Chrome/Chromium browser:
+        * with RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
 * For the "ace - actinia command execution" section:
-    * Linux: `pip3 install click requests simplejson`
-    * Windows users (OSGeo4W, Advanced installation, search window):
-        * three Python packages: python3-click, python3-requests, python3-simplejson
+    * GRASS GIS 7.8+
+    * three Python packages:
+        * Linux: `pip3 install click requests simplejson`
+        * Windows users (OSGeo4W, Advanced installation, search window):
+            * python3-click, python3-requests, python3-simplejson
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -35,9 +44,9 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
     * What is REST: intro
 * First Hand-on: working with REST API requests
     * Step by step...
-    * Exploring the API: finding available actinia endpoints
-    * Further Examples
-    * Controlling actinia from a running GRASS GIS session
+* Exploring the API: finding available actinia endpoints
+    * REST actinia examples with curl
+* Controlling actinia from a running GRASS GIS session
     * Further command line exercise suggestions
 * Own exercises in actinia
 * Conclusions and future
@@ -100,7 +109,7 @@ While at time actinia is mainly a REST interface to GRASS GIS it offers through 
 
 With **persistent storage** we consider a data storage which keeps data also in case of shutoff as well as keeping them without a scheduled deletion time. In the Geo/EO context, persistent storage is used to provide, e.g. the base cartography, i.e. elevation models, street networks, building footprints, etc.
 
-The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., for 24 hs).
+The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., in actinia, for 24 hs by default).
 
 In the cloud computing context this is relevant as cost incurs when storing data.
 
@@ -270,6 +279,8 @@ Step 2:
 Fig. 3: Using RESTman
 </center>
 
+For a `curl` example, see below ("REST actinia examples with curl").
+
 Step 3:
 
 * Explore the existing data on the actinia server:
@@ -309,7 +320,7 @@ Check out the various sections:
 
 To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
 
-### Further Examples
+### REST actinia examples with curl
 
 Here we use the command line and the `curl` software:
 
@@ -367,6 +378,8 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 ```
 
 **Map layer queries:**
+
+We query in North Carolina, at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00):
 
 ```bash
 # query point value in a STRDS, sending the JSON code directly in request
