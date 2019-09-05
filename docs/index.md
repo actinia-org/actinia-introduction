@@ -1,10 +1,10 @@
-# actinia tutorial at Geostat 2019
+# actinia tutorial at OpenGeoHub Summer School 2019
 
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 4 Sep 2019*
+*Last update: 5 Sep 2019*
 
 ## Abstract
 
@@ -23,7 +23,7 @@ Actinia ([https://actinia.mundialis.de/)](https://actinia.mundialis.de/)) is an 
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
-# Geostat 2019 tutorial
+# OpenGeoHub Summer School 2019 tutorial
 
 **Content**
 
