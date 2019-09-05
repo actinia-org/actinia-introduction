@@ -286,7 +286,7 @@ Step 4:
 
 * Submit a compute job and check its status (in case of asynchronous jobs by polling).
 
-### Exploring the API: finding available actinia endpoints
+## Exploring the API: finding available actinia endpoints
 
 The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
 
@@ -407,7 +407,7 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources.
 Note that the download of Web resources provided by actinia requires authentication.
 
-### Controlling actinia from a running GRASS GIS session
+## Controlling actinia from a running GRASS GIS session
 
 Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/).
 
