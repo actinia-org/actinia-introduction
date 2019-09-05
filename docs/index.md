@@ -550,7 +550,7 @@ Markus Neteler is partner and general manager at [mundialis](https://www.mundial
 
 ------------------------------------------------------------------------
 
-- Repository of this material on [gitlab](https://gitlab.com/neteler/actinia-intro/tree/master)
+- Repository of this material on [gitlab](https://gitlab.com/neteler/actinia-introduction/edit/master/docs/)
 
 
 *[About](about.md) | [Privacy](https://about.gitlab.com/privacy/)*
