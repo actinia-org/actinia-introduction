@@ -99,7 +99,7 @@ Still, some critical **issues** have to be addressed:
 
 ### Overview actinia
 
-Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and used Flask, Redis, and other components.
+Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
 
 **Functionality beyond GRASS GIS**
 
@@ -208,11 +208,11 @@ As an example, we check the repositories of a GitHub user, in sorted form:
 Request **methods**:
 
 * In REST APIs, every request has an HTTP method type associated with it.
-* The most common HTTP methods include:
+* The most common HTTP methods (or verbs) include:
 * `GET` - a GET request asks to receive a copy of a resource
-* `POST` - a POST request sends data to a server in order to create a new resource
-* `PUT` - a PUT request sends data to a server in order to modify an existing resource
-* `DELETE` - a DELETE request is sent to delete a resource
+* `POST` - a POST request sends data to a server in order to change or update resources
+* `PUT` - a PUT request sends data to a server in order to replace existing or create new resources
+* `DELETE` - a DELETE request is sent to remove or destroy a resource
 
 Response **codes**:
 
@@ -220,12 +220,12 @@ Response **codes**:
 * Selected status codes (see also [https://httpstatuses.com](https://httpstatuses.com)):
     * 200 - OK | All fine
     * 404 - Not Found | The requested resource was not found
-    * 401 - Unauthorized | The request is not authorized to be completed
+    * 401 - Unauthorized | The request was rejected, as the sender is not (or wrongly) authorized to be completed
     * 500 - Internal Server Error | Something went wrong while the server was processing your request
 
 **JSON format**
 
-JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://en.wikipedia.org/wiki/JSON) stands for Javascript Object Notation.
+JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation.
 
 ```bash
 # this command line...
