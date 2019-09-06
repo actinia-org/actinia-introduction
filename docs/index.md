@@ -220,7 +220,7 @@ Response **codes**:
 * Selected status codes (see also [https://httpstatuses.com](https://httpstatuses.com)):
     * 200 - OK | All fine
     * 404 - Not Found | The requested resource was not found
-    * 401 - Unauthorized | The request was rejected, as the sender is not (or wrongly) authorized to be completed
+    * 401 - Unauthorized | The request was rejected, as the sender is not (or wrongly) authorized
     * 500 - Internal Server Error | Something went wrong while the server was processing your request
 
 **JSON format**
