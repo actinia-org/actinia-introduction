@@ -4,7 +4,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 6 Sep 2019*
+*Last update: 24 Sep 2019*
 
 ## Abstract
 
@@ -319,6 +319,12 @@ Check out the various sections:
 * Resource Management
 
 To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
+To get the available endpoints on command line, run
+
+```bash
+# sudo npm install -g json
+curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json -ka
+```
 
 ### REST actinia examples with curl
 
