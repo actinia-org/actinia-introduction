@@ -4,7 +4,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 24 Sep 2019*
+*Last update: 24 Oct 2019*
 
 ## Abstract
 
@@ -543,8 +543,8 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 * integration in own scientific or business processes
 * openEO actinia driver
-* where is the code and how to contribute: GitHub
-    * https://github.com/mundialis/actinia_core/
+* where is the code and how to contribute: find it on GitHub
+    * [https://github.com/mundialis/actinia_core/](https://github.com/mundialis/actinia_core/)
 
 ## See also: openEO resources
 
