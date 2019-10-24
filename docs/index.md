@@ -345,6 +345,14 @@ export AUTH='-u demouser:gu3st!pa55w0rd'
 curl ${AUTH} -X GET ${actinia}/api/v1/locations
 ```
 
+**Show capabilities of user:**
+
+```bash
+# NOTE: endpoint not available to the demouser but only to the admin user
+# show accessible_datasets, accessible_modules, raster cell_limit, process_num_limit, process_time_limit
+curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
+```
+
 **List mapsets in locations:**
 
 ```bash
