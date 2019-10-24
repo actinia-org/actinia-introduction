@@ -407,11 +407,28 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/loca
 
 **Validation of a process chain:**
 
-actinia can also be used to validate a process chain. Download the process chain [process_chain_long.json](process_chain_long.json) and validate it:
+actinia can also be used to validate a process chain. Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and validate it:
 
 ```bash
 # validation of a process chain (using sync call)
 curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
+```
+
+**Converting a process chain back into commands:**
+
+To turn a process chain back into a command style notation, the validator can be used for this as well and the relevant code extracted from the resulting JSON response.
+Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the underlying commands by parsing the response with `json`:
+
+```bash
+# command extraction from a process chain (using sync call) by parsing the 'process_results' response:
+curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | json process_results
+[
+  "grass g.region ['raster=elevation@PERMANENT', 'res=4', '-p']",
+  "grass r.slope.aspect ['elevation=elevation@PERMANENT', 'format=degrees', 'precision=FCELL', 'zscale=1.0', 'min_slope=0.0', 'slope=my_slope', 'aspect=my_aspect', '-a']",
+  "grass r.watershed ['elevation=elevation@PERMANENT', 'convergence=5', 'memory=300', 'accumulation=my_accumulation']",
+  "grass r.info ['map=my_aspect', '-gr']"
+]
+
 ```
 
 **Dealing with workflows (processing chains)**
@@ -566,7 +583,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 ## About the trainer
 
-Markus Neteler is partner and general manager at [mundialis](https://www.mundialis.de) GmbH & Co. KG, Bonn, Germany. From 2001-2015 he worked as a researcher in Italy. Markus is co-founder of OSGeo and since 1998, coordinator of the GRASS GIS development (for details, see his private [homepage](https://grassbook.org/neteler/)).
+Markus Neteler is founder of [mundialis](https://www.mundialis.de) GmbH & Co. KG, Bonn, Germany. From 2001-2015 he worked as a researcher in Italy. Markus is co-founder of OSGeo and since 1998, coordinator of the GRASS GIS development (for details, see his private [homepage](https://grassbook.org/neteler/)).
 
 ------------------------------------------------------------------------
 
