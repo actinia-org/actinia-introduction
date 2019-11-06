@@ -595,7 +595,7 @@ Markus Neteler is founder of [mundialis](https://www.mundialis.de) GmbH & Co. KG
 
 ------------------------------------------------------------------------
 
-- Repository of this material on [gitlab](https://gitlab.com/neteler/actinia-introduction/edit/master/docs/)
+- Repository of this material on [gitlab](https://gitlab.com/neteler/actinia-introduction/)
 
 
 *[About](about.md) | [Privacy](https://about.gitlab.com/privacy/)*
