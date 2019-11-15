@@ -3,7 +3,7 @@
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 <!-- **** Begin Fork-Me-On-Gitlab-Ribbon-HTML. See MIT License at https://gitlab.com/seanwasere/fork-me-on-gitlab **** -->
-<a href="[https://gitlab.com/neteler/actinia-introduction/]">
+<a href="https://gitlab.com/neteler/actinia-introduction/">
     <span style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); background-color:green; color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitLab</span>
 </a>
 <!-- **** End Fork-Me-On-Gitlab-Ribbon-HTML **** -->
