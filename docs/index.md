@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 24 Oct 2019*
+*Last update: 1 Dec 2019*
 
 ## Abstract
 
@@ -101,7 +101,7 @@ Still, some critical **issues** have to be addressed:
 
 * lack of Analysis-Ready-data (ARD) available for consumption in the cloud
 * lack of compatibility between different data systems
-     * we are on it: openEO H2020 project[openEO H2020 project](https://openeo.org)
+     * we are on it: the [openEO H2020 project](https://openeo.org)
  * lack of cloud abstraction, for easier move between vendors and providers
 
 ### Overview actinia
