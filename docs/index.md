@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 1 Dec 2019*
+*Last update: 3 Feb 2020*
 
 ## Abstract
 
@@ -455,17 +455,55 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 
 ```
 
-**Dealing with workflows (processing chains)**
-
-* Prepare a processing chain
-* async versus sync REST API calls
-    * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
-* Submit the processing chain
-
 ### Data exchange: import and export
 
 Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources.
 Note that the download of Web resources provided by actinia requires authentication.
+
+### Dealing with workflows (processing chains)
+
+General procedure:
+
+* prepare a processing chain,
+* compare async versus sync REST API calls, decide which one to use,
+    * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
+* submit the processing chain to an actinia endpoint,
+* retrieve the result(s).
+
+To turn this into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
+
+```bash
+curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json 
+```
+
+Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a Web resource is shown. Use this URI for retrieving the process status. Once completed, three Web resources (here: GeoTIFF) are displayed:
+
+```bash
+# update the URI to that of your job, be sure to use https:
+curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | json
+
+...
+  "status": "finished",
+  "time_delta": 3.7403182983398438,
+  "timestamp": 1580767679.525925,
+  "urls": {
+    "resources": [
+      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_slope.tiff",
+      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_aspect.tiff",
+      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_accumulation.tiff"
+    ],
+    "status": "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0"
+  },
+  "user_id": "demouser"
+}
+```
+
+The resulting files can now be downloaded (they'll remain for 24 hs on the server).
+
+<center>
+<a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
+Fig. 4: actinia output shown in QGIS (aspect map)
+</center>
 
 ## Controlling actinia from a running GRASS GIS session
 
@@ -477,7 +515,7 @@ To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample locati
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
-Fig. 4: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+Fig. 5: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
 </center>
 
 Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.

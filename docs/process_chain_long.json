@@ -2,8 +2,9 @@
   "version": "1",
   "list": [
     {
+      "id": "g.region_1",
       "module": "g.region",
-      "id": "g.region_1804289383",
+      "comment": "Set bbox and raster resolution of computational region to elevation map",
       "flags": "p",
       "inputs": [
         {
@@ -12,13 +13,14 @@
         },
         {
           "param": "res",
-          "value": "4"
+          "value": "10"
         }
       ]
     },
     {
+      "id": "r.slope.aspect_1",
       "module": "r.slope.aspect",
-      "id": "r.slope.aspect_1804289383",
+      "comment": "Compute slope and aspect from elevation map",
       "flags": "a",
       "inputs": [
         {
@@ -54,8 +56,9 @@
       ]
     },
     {
+      "id": "r.watershed_1",
       "module": "r.watershed",
-      "id": "r.watershed_1804289383",
+      "comment": "Compute flow accumulation from elevation map",
       "inputs": [
         {
           "param": "elevation",
@@ -67,7 +70,7 @@
         },
         {
           "param": "memory",
-          "value": "300"
+          "value": "500"
         }
       ],
       "outputs": [
@@ -78,13 +81,45 @@
       ]
     },
     {
+      "id": "r.info_1",
       "module": "r.info",
-      "id": "r.info_1804289383",
+      "comment": "Show metadata of previously computed aspect map",
       "flags": "gr",
       "inputs": [
         {
           "param": "map",
           "value": "my_aspect"
+        }
+      ]
+    },
+    {
+      "id": "exporter_1",
+      "module": "exporter",
+      "comment": "Export the slope, aspect and flow accumulation maps (note: exporter is only used when using ephemeral processing endpoint)",
+      "outputs": [
+        {
+          "export": {
+            "type": "raster",
+            "format": "GTiff"
+          },
+          "param": "map",
+          "value": "my_slope"
+        },
+        {
+          "export": {
+            "type": "raster",
+            "format": "GTiff"
+          },
+          "param": "map",
+          "value": "my_aspect"
+        },
+        {
+          "export": {
+            "type": "raster",
+            "format": "GTiff"
+          },
+          "param": "map",
+          "value": "my_accumulation"
         }
       ]
     }
