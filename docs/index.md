@@ -193,12 +193,13 @@ A **request** consists of four parts (see also [1]):
 
 **Endpoint:**
 
-An endpoint is the URL you request for. It follows this structure: https://api.some.server
+In general, an endpoint is an entry point to a service, a process, or a queue or topic destination in service-oriented architecture. In the case of actinia, it may be a data query function, the computation of a vegetation index, the deletion of a dataset, and more.
+Effectively, an endpoint is the URL you request for. It follows this structure: https://api.some.server/endpoint
 The final part of an endpoint is query parameters. Using query parameters you can modify your request with key-value pairs, beginning with a question mark (`?`). With an ampersand (`&`) each parameter pair is separated, e.g.:
 
 `?query1=value1&query2=value2`
 
-As an example, we check the repositories of a GitHub user, in sorted form:
+As an example, we check the repositories of a GitHub user, in sorted form, using the `repos` endpoint + query:
 
 [https://api.github.com/users/neteler/repos?sort=pushed](https://api.github.com/users/neteler/repos?sort=pushed)
 
@@ -400,7 +401,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 
 **Map layer queries:**
 
-We query in North Carolina, at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00):
+We query the LST values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
 
 ```bash
 # query point value in a STRDS, sending the JSON code directly in request
@@ -422,7 +423,10 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/loca
 
 **Validation of a process chain:**
 
-actinia can also be used to validate a process chain. Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and validate it:
+Why validation? It may happen that your JSON file to be sent to the endpoint contains a typo or other invalid content. For the identification of problems prior to executing the commands contained in the JSON file (which may last for hours), it is recommended to validate this file.
+For this, actinia can be used as it provides a validation endpoint.
+
+Example: Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and validate it:
 
 ```bash
 # validation of a process chain (using sync call)
