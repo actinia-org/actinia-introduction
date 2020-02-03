@@ -325,8 +325,13 @@ Check out the various sections:
 * Vector Management
 * Resource Management
 
-To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
-To get the available endpoints on command line, run
+List of endpoints shown in the web browser:
+
+* To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
+
+List of endpoints shown on command line:
+
+* To get the available endpoints on command line, run
 
 ```bash
 # sudo npm install -g json
