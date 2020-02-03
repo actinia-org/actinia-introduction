@@ -1,6 +1,6 @@
 # actinia-introduction
 
-Introduction to actinia cloud geoprocessing (https://actinia.mundialis.de/)
+Introduction to actinia cloud geoprocessing (https://actinia.mundialis.de/) - see tutorial at https://neteler.gitlab.io/actinia-introduction/
 
 ## How to build locally
 
