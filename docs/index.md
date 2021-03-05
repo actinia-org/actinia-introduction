@@ -39,7 +39,7 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
-# actinia tutorial overview
+## actinia tutorial overview
 
 **Content**
 
@@ -329,6 +329,7 @@ Check out the various sections:
 List of endpoints shown in the web browser:
 
 * To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
+* List of supported processes (> 500): see https://actinia-dev.mundialis.de/api/v1/modules (process chain templates are at bottom, category "actinia-module")
 
 List of endpoints shown on command line:
 
