@@ -1,4 +1,4 @@
-# actinia tutorial at OpenGeoHub Summer School 2019
+# A gentle introduction to actinia
 
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 3 Feb 2020*
+*Last update: 5 Feb 2021*
 
 ## Abstract
 
@@ -39,13 +39,13 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
-# OpenGeoHub Summer School 2019 tutorial
+# actinia tutorial overview
 
 **Content**
 
 * Warming up
 * Introduction
-    * Why cloud computing ?
+    * Why cloud computing?
     * Overview actinia
 * REST API and geoprocessing basics
     * What is REST: intro
@@ -60,8 +60,6 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 * See also: openEO resources
 * References
 * About the trainer
-
-Planned tutorial time: 2:30 hs = 150 min
 
 ## Warming up
 
