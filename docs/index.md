@@ -173,6 +173,8 @@ In detail, a REST API uses URL arguments to specify what information shall be re
 
 Each URL is called a **request** while the data sent back to the user is called a **response**, after some **processing** was performed.
 
+There are two types of request: **synchronous** and **asynchronous**. In the case of a synchronous request, the client sends it to the server and waits for a response. In geospatial computing, processing can take some time, which would block the client because it is only waiting. To avoid this, there is also the asynchronous request type. Here the client does not wait directly for a response, but checks from time to time whether the job has been completed (by "polling").
+
 <!--
 ###  Concepts of service URL, resources, request, response...
 
