@@ -26,16 +26,19 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 ## Required software for this tutorial
 
-* REST client:
+We will use a browser plugin to try out some REST commands. Then we'll also use GRASS GIS and a special command to control actinia from remote. This requires some software to be installed:
+
+* REST client (browser plugin):
     * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
     * optionally: Chrome/Chromium browser:
         * with RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
 * For the "ace - actinia command execution" section:
-    * GRASS GIS 7.8+
-    * three Python packages:
+    * GRASS GIS 7.8+ ([download](https://grass.osgeo.org/download/))
+    * three additional Python packages:
         * Linux: `pip3 install click requests simplejson`
-        * Windows users (OSGeo4W, Advanced installation, search window):
+        * Windows users (Installer: [OSGeo4W](https://trac.osgeo.org/osgeo4w/) > Advanced installation > Search window):
             * python3-click, python3-requests, python3-simplejson
+    * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session; installation shown below)
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -407,7 +410,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 
 **Map layer queries:**
 
-We query the LST values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
+We query the Land Surface Temperature (LST) values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
 
 ```bash
 # query point value in a STRDS, sending the JSON code directly in request
@@ -530,7 +533,7 @@ Note: Since we want to do cloud computing, the full location would not be needed
 In case not yet present on the system, the following Python libraries are needed:
 
 * Linux: `pip3 install click requests simplejson`
-* Windows users (OSGeo4W, Advanced installation, search window):
+* Windows users (Installer: [https://trac.osgeo.org/osgeo4w/](OSGeo4W) > Advanced installation > Search window):
     * three Python packages: python3-click, python3-requests, python3-simplejson
 
 **Installation of ace tools**
