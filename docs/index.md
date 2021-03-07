@@ -15,8 +15,7 @@ URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://n
 
 ## Abstract
 
-
-<img src="img/actinia_logo.png" width="30%" align="right"></a>
+<img src="img/actinia_logo.png" width="30%" align="right">
 
 Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019.
 
@@ -39,6 +38,11 @@ We will use a browser plugin to try out some REST commands. Then we'll also use 
         * Windows users (Installer: [OSGeo4W](https://trac.osgeo.org/osgeo4w/) > Advanced installation > Search window):
             * python3-click, python3-requests, python3-simplejson
     * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session; installation shown below)
+
+<center>
+<a href="img/osgeo4w_python_libs.png"><img src="img/osgeo4w_python_libs.png" width="30%"></a> &nbsp; &nbsp;
+<a href="img/osgeo4w_grass78.png"><img src="img/osgeo4w_grass78.png" width="30%"></a>
+</center>
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -646,10 +650,6 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 [4] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)]
 
-
-## About the trainer
-
-Markus Neteler is founder of [mundialis](https://www.mundialis.de) GmbH & Co. KG, Bonn, Germany. From 2001-2015 he worked as a researcher in Italy. Markus is co-founder of OSGeo and since 1998, coordinator of the GRASS GIS development (for details, see his private [homepage](https://grassbook.org/neteler/)).
 
 ------------------------------------------------------------------------
 
