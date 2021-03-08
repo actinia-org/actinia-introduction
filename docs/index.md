@@ -546,17 +546,14 @@ You need to be in a running GRASS GIS session:
 
 
 ```bash
-# importer installation
-g.extension url=https://github.com/mundialis/importer extension=importer
+# actinia importer installation
+g.extension extension=importer url=https://github.com/mundialis/importer
 
-# exporter installation
-g.extension url=https://github.com/mundialis/exporter extension=exporter
+# actinia exporter installation
+g.extension extension=exporter url=https://github.com/mundialis/exporter
 
-# ace tool (installation via g.extension forthcoming)
-mkdir -p $HOME/bin/
-cd $HOME/bin/
-wget https://raw.githubusercontent.com/mundialis/actinia_core/master/scripts/ace
-chmod a+x ace
+# ace (actinia command execution) tool
+g.extension extension=ace url=https://github.com/mundialis/ace
 ```
 
 To explore the `ace` tool, follow the usage examples at:
