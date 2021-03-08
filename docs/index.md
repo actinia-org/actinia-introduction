@@ -38,6 +38,7 @@ We will use a browser plugin to try out some REST commands. Then we'll also use 
         * Windows users (Installer: [OSGeo4W](https://trac.osgeo.org/osgeo4w/) > Advanced installation > Search window):
             * python3-click, python3-requests, python3-simplejson
     * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session; installation shown below)
+    * [jq, a lightweight and flexible command-line JSON processor](https://stedolan.github.io/jq/download/)
 
 <center>
 <a href="img/osgeo4w_python_libs.png"><img src="img/osgeo4w_python_libs.png" width="30%"></a> &nbsp; &nbsp;
@@ -153,15 +154,15 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 * interface layer:
     * most importantly, the **REST API**,
     * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
-    * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session)
-* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi)
-* metadata management: interface to GNOS via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin)
-* module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin)
+    * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session),
+* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi),
+* metadata management: interface to GNOS via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin),
+* module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin),
 * database system:
-    * job management in a Redis database
-    * the GRASS GIS database (here are the geo/EO data stored!)
-* connection to OGC Web services for output
-   * Geoserver integration (forthcoming)
+    * job management in a Redis database,
+    * the GRASS GIS database (here are the geo/EO data stored!),
+* connection to OGC Web services for output:
+   * Geoserver integration (forthcoming).
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
@@ -214,22 +215,20 @@ As an example, we check the repositories of a GitHub user, in sorted form, using
 
 **Header & Body:**
 
-* Both requests and responses have two parts: a header, and optionally a body
+* Both requests and responses have two parts: a header, and optionally a body.
 * Response headers contain information about the response.
-* In both requests & responses, the body contains the actual data being transmitted (e.g., population data)
+* In both requests & responses, the body contains the actual data being transmitted (e.g., population data).
 
-**Methods and Response Codes**
+**Methods and Response Codes:**
 
-(source: [2])
-
-Request **methods**:
+Request **methods** (source: [2]):
 
 * In REST APIs, every request has an HTTP method type associated with it.
 * The most common HTTP methods (or verbs) include:
-* `GET` - a GET request asks to receive a copy of a resource
-* `POST` - a POST request sends data to a server in order to change or update resources
-* `PUT` - a PUT request sends data to a server in order to replace existing or create new resources
-* `DELETE` - a DELETE request is sent to remove or destroy a resource
+    * `GET` - a GET request asks to receive a copy of a resource
+    * `POST` - a POST request sends data to a server in order to change or update resources
+    * `PUT` - a PUT request sends data to a server in order to replace existing or create new resources
+    * `DELETE` - a DELETE request is sent to remove or destroy a resource
 
 Response **codes**:
 
@@ -245,11 +244,11 @@ Response **codes**:
 JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation.
 
 ```bash
-# this command line...
+# this command line call...
 GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
-looks like the following in JSON:
+... looks like the following in JSON:
 
 ```json
 {
@@ -287,7 +286,7 @@ Step 2:
 
 * choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
-    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)) in Browser
+    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
 * Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
 
 <center>
@@ -312,13 +311,13 @@ Step 3:
 
 Step 4:
 
-* Submit a compute job and check its status (in case of asynchronous jobs by polling).
+* Submit a compute job and check its status (in case of asynchronous jobs, by polling).
 
 ## Exploring the API: finding available actinia endpoints
 
 The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
 
-Check out the various sections:
+Check out the various sections in the actinia API docs:
 
 * Authentication Management
 * API Log
@@ -329,7 +328,7 @@ Check out the various sections:
 * Processing
 * Raster Management
 * Raster Statistics
-* STRDS Management
+* STRDS Management (STRDS = space-time raster data set)
 * STRDS Sampling
 * STRDS Statistics
 * Vector Management
@@ -338,7 +337,18 @@ Check out the various sections:
 List of endpoints shown in the web browser:
 
 * To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
-* List of supported processes (> 500): see https://actinia-dev.mundialis.de/api/v1/modules (process chain templates are at bottom, category "actinia-module")
+
+<center>
+<a href="img/actinia_swagger_paths.png"><img src="img/actinia_swagger_paths.png" width="60%"></a><br>
+Fig. 4: actinia list of endpoints (in "paths" section)
+</center>
+
+* List of supported processes (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
+
+<center>
+<a href="img/actinia_modules.png"><img src="img/actinia_modules.png" width="60%"></a><br>
+Fig. 5: actinia list of GRASS GIS processes (> 500)
+</center>
 
 List of endpoints shown on command line:
 
@@ -351,7 +361,10 @@ curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json
 
 ### REST actinia examples with curl
 
-Here we use the command line and the `curl` software:
+Here we use the command line and the `curl` software to communicate with the actinia server.
+Optionally, to beautify the output, we use the `jq` command-line JSON processor which helps to turn the output into something human readable ([download jq](https://stedolan.github.io/jq/download/)).
+
+Hint: If you have troubles to use `jq` on command line, you can also use it in a browser at [https://jqplay.org/](https://jqplay.org/): copy the JSON code into the "JSON" field, then a `.` into the "Filter" field and it with show the result.
 
 **Preparation:**
 
@@ -383,11 +396,21 @@ curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets"
 ```
 
+Note the output difference:
+
+```bash
+# show available mapsets of a specific location
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets | jq"
+```
+
 **List map layers and their metadata:**
 
 ```bash
 # show available vector maps in a specific location/mapset
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers"
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers" | jq
+
+# note: you can always add `| jq`
 
 # show metadata of a specific vector map
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/geology"
@@ -433,7 +456,7 @@ It is often much more convenient to store the JSON payload in a file and send it
 echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}' > pc_query_point_.json
 
 # send JSON file as payload to query the STRDS
-curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json
+curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json  | jq
 ```
 
 **Validation of a process chain:**
@@ -454,7 +477,7 @@ To turn a process chain back into a command style notation, the validator can be
 Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the underlying commands by parsing the response with `json`:
 
 ```bash
-# command extraction from a process chain (using sync call) by parsing the 'process_results' response:
+# command extraction from a process chain (using sync call) by parsing the 'process_results' response (here we use the `json` tool):
 curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | json process_results
 [
   "grass g.region ['raster=elevation@PERMANENT', 'res=4', '-p']",
@@ -489,7 +512,7 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a Web resource is shown. Use this URI for retrieving the process status. Once completed, three Web resources (here: GeoTIFF) are displayed:
 
 ```bash
-# update the URI to that of your job, be sure to use https:
+# update the URI to that of your job, and be sure to use https:
 curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | json
 
 ...
@@ -512,7 +535,7 @@ The resulting files can now be downloaded (they'll remain for 24 hs on the serve
 
 <center>
 <a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
-Fig. 4: actinia output shown in QGIS (aspect map)
+Fig. 6: actinia output shown in QGIS (aspect map)
 </center>
 
 ## Controlling actinia from a running GRASS GIS session
@@ -521,11 +544,11 @@ Controlling actinia from a running GRASS GIS session is a convenient way of writ
 
 The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
 
-To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 4) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
+To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 7) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
-Fig. 5: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+Fig. 7: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
 </center>
 
 Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.
