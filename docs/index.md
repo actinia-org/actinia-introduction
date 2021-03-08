@@ -115,15 +115,15 @@ Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an *
 
 **Functionality beyond GRASS GIS**
 
-While at time actinia is mainly a REST interface to GRASS GIS it offers through wrapping the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). Extensions are added by writing a GRASS GIS Addon Python script which then includes the respective function calls of the software to be integrated.
+Actinia is not only a REST interface to GRASS GIS, but it offers through wrapping the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). To integrate other than GRASS GIS software, a wrapper script is to be written (style: as a GRASS GIS Addon Python script) which then includes the respective function calls of the software to be integrated.
 
 **Persistent and ephemeral databases**
 
-With **persistent storage** we consider a data storage which keeps data also in case of shutoff as well as keeping them without a scheduled deletion time. In the Geo/EO context, persistent storage is used to provide, e.g. the base cartography, i.e. elevation models, street networks, building footprints, etc.
+**Persistent storage** refers to a data store that retains data even in the event of a power-off, as well as retaining it without a scheduled deletion time. In the geo/EO context, persistent storage is used to provide, for example, base cartography, i.e. elevation models, road networks, building footprints, etc.
 
 The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., in actinia, for 24 hs by default).
 
-In the cloud computing context this is relevant as cost incurs when storing data.
+In the cloud computing context these differences are relevant as cost incurs when storing data.
 
 Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. In particular, the **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB).
 
@@ -136,13 +136,13 @@ Fig. 1: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019
 
 **Deployment**
 
-In a nutshell, deployment means to launch software, usually in an automated way on a computer node. A series of technologies exist for that but importantly virtualization plays an important role which helps towards a higher level of abstraction instead of a high dependency on hardware and software specifics.
+In short, deployment means starting software, usually in an automated way on one or more computer nodes. There are a number of technologies for this. In particular, virtualisation plays an important role here, which avoids a high dependency on hardware and software characteristics through abstraction.
 
 An aim is to operate **Infrastructure as Code** ([IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code)), i.e. to have a set of scripts which order the needed computational resources in the cloud, setup the network and storage topology, connect to the nodes, install them with the needed software (usually docker based, i.e. so-called containers are launched from prepared images) and processing chains. Basically, the entire software part of a cloud computing infrastructure is launched "simply" through scripts with the advantage of restarting it easily as needed, maintain it and migrate to other hardware.
 
 **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack.
 
-In terms of actinia, **various ways of deployment** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
+With respect to actinia, **various ways of [deployment](https://github.com/mundialis/actinia_core/tree/master/docker)** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
 
 **Architecture of actinia**
 
@@ -151,15 +151,17 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 * analytics: this are the workers of GRASS GIS or wrapped other software,
 * external data sources: import providers for various external data sources,
 * interface layer:
-    * most importantly the **REST API**,
+    * most importantly, the **REST API**,
     * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
-    * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session),
-* metadata management: interface to GNOS, managed through [actinia-GDI](https://github.com/mundialis/actinia-gdi/)
+    * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session)
+* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi)
+* metadata management: interface to GNOS via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin)
+* module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin)
 * database system:
     * job management in a Redis database
-    * the GRASS GIS database (here are the geo/EO data!)
+    * the GRASS GIS database (here are the geo/EO data stored!)
 * connection to OGC Web services for output
-   * Geoserver integration
+   * Geoserver integration (forthcoming)
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
@@ -186,9 +188,9 @@ There are two types of request: **synchronous** and **asynchronous**. In the cas
 ###  Concepts of service URL, resources, request, response...
 
 Looking in further detail into REST calls, we see that an API request consists of three parts (source: [https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/)):
-*   Data **REQUEST**: through this you try to access an URL using your browser that specifies a particular subset of data.
+*   Data **request**: through this you try to access an URL using your browser that specifies a particular subset of data.
 *   Data **processing:** A web server somewhere uses that URL to query a specified dataset.
-*   Data **RESPONSE**: The web server then sends you back some content.
+*   Data **response**: The web server then sends back some content to you.
 -->
 
 A **request** consists of four parts (see also [1]):
@@ -244,7 +246,7 @@ JSON is a structured, machine readable format (while also human readable at the 
 
 ```bash
 # this command line...
-GRASS 7.8.dev (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
+GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
 looks like the following in JSON:
@@ -267,7 +269,7 @@ looks like the following in JSON:
 }
 ```
 
-Hint: When writing JSON files, some linting (validation) might come handy, e.g. using [https://jsonlint.com/](https://jsonlint.com/).
+Hint: When writing JSON files, some linting (syntax validation) might come handy, e.g. using [https://jsonlint.com/](https://jsonlint.com/).
 
 ## First Hand-on: working with REST API requests
 
@@ -279,7 +281,7 @@ Hint: When writing JSON files, some linting (validation) might come handy, e.g. 
 
 Step 1:
 
-* get your credentials (for authentication) from the trainer (or use the "demouser" with "gu3st!pa55w0rd")
+* get your credentials (for authentication) from the trainer (or simply use the "demouser" with "gu3st!pa55w0rd")
 
 Step 2:
 
@@ -556,9 +558,9 @@ g.extension extension=exporter url=https://github.com/mundialis/exporter
 g.extension extension=ace url=https://github.com/mundialis/ace
 ```
 
-To explore the `ace` tool, follow the usage examples at:
+To explore the `ace` tool, follow the usage examples found here:
 
- [https://github.com/mundialis/actinia_core/blob/master/scripts/README.md](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md)
+[https://github.com/mundialis/actinia_core/blob/master/scripts/README.md](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md)
 
 
 ### Further command line exercise suggestions
@@ -605,7 +607,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 * define your region of interest
 * needed geodata:
     * building footprints
-        * download from OSM (via [http://overpass-turbo.eu/](http://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
+        * download from OSM (via [https://overpass-turbo.eu/](https://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
         * these data are now on your machine and not on the actinia server
         * use "ace importer" or cURL to upload
     * select Sentinel-2 scene
