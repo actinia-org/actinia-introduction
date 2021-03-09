@@ -545,7 +545,7 @@ The resulting files can now be downloaded (they'll remain for 24 hs on the serve
 
 <center>
 <a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
-Fig. 6: actinia output shown in QGIS (aspect map)
+Fig. 7: actinia output shown in QGIS (aspect map)
 </center>
 
 ## Controlling actinia from a running GRASS GIS session
@@ -558,7 +558,7 @@ To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample locati
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
-Fig. 7: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+Fig. 8: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
 </center>
 
 Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.
