@@ -655,12 +655,24 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 * where is the code and how to contribute: find it on GitHub
     * [https://github.com/mundialis/actinia_core/](https://github.com/mundialis/actinia_core/)
 
-## See also: openEO resources
+## See also
+
+### openEO resources
 
 * OpenEO Web Editor: [https://open-eo.github.io/openeo-web-editor/demo/](https://open-eo.github.io/openeo-web-editor/demo/)
     * Server: [https://openeo.mundialis.de](https://openeo.mundialis.de)
     * user: 'actinia_user'
     * pw: 'actinia_pw'
+
+### REST introduction
+
+* What is REST - A Simple Explanation for Beginners, [Part 1: Introduction](https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-1-introduction-b4a072f8740f)
+* What is REST - A Simple Explanation for Beginners, [Part 2: REST Constraints](https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-2-rest-constraints-129a4b69a582)
+
+### Using command line on Windows
+
+* [Git for Windows](https://gitforwindows.org/) offers the "git bash" and common tools
+* [MSYS2](https://www.msys2.org/) offers a bash and many tools along with `pacman` to install further packages
 
 ## References
 
@@ -670,7 +682,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 [3] [actinia API reference](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) documentation
 
-[4] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)]
+[4] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
 
 ------------------------------------------------------------------------
