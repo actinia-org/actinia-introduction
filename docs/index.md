@@ -150,7 +150,7 @@ Fig. 1: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019
 
 Several **components** play a role in a cloud deployment of actinia (for an example, see Fig. 2):
 
-* analytics: this are the workers of GRASS GIS or wrapped other software,
+* analytics: here are the workers of GRASS GIS or wrapped other software (GDAL, ESA-SNAP, ...),
 * external data sources: import providers for various external data sources,
 * interface layer:
     * most importantly, the **REST API**,
@@ -205,14 +205,14 @@ Looking in further detail into REST calls, we see that an API request consists o
 *   Data **response**: The web server then sends back some content to you.
 -->
 
-A **request** consists of four parts (see also [1]):
+A **request** requires/consists of four parts (see also [1]):
 
-* the endpoints
+* the endpoint
 * the header
 * the data (or body)
 * the methods
 
-**Endpoint:**
+### Endpoint
 
 In general, an endpoint is an entry point to a service, a process, or a queue or topic destination in service-oriented architecture. In the case of actinia, it may be a data query function, the computation of a vegetation index, the deletion of a dataset, and more.
 Effectively, an endpoint is the URL you request for. It follows this structure: https://api.some.server/endpoint
@@ -224,13 +224,13 @@ As an example, we check the repositories of a GitHub user, in sorted form, using
 
 [https://api.github.com/users/neteler/repos?sort=pushed](https://api.github.com/users/neteler/repos?sort=pushed)
 
-**Header & Body:**
+### Header & Body
 
 * Both requests and responses have two parts: a header, and optionally a body.
 * Response headers contain information about the response.
 * In both requests & responses, the body contains the actual data being transmitted (e.g., population data).
 
-**Methods and Response Codes:**
+### Methods
 
 Request **methods** (source: [2]):
 
@@ -241,16 +241,16 @@ Request **methods** (source: [2]):
     * `PUT` - a PUT request sends data to a server in order to replace existing or create new resources
     * `DELETE` - a DELETE request is sent to remove or destroy a resource
 
-Response **codes**:
+### Response codes
 
 * HTTP responses don't have methods, but they do have status codes: HTTP status codes are included in the header of every response in a REST API. Status codes include information about the result of the original request.
 * Selected status codes (see also [https://httpstatuses.com](https://httpstatuses.com)):
-    * 200 - OK | All fine
-    * 404 - Not Found | The requested resource was not found
-    * 401 - Unauthorized | The request was rejected, as the sender is not (or wrongly) authorized
-    * 500 - Internal Server Error | Something went wrong while the server was processing your request
+    * `200` - OK | All fine
+    * `404` - Not Found | The requested resource was not found
+    * `401` - Unauthorized | The request was rejected, as the sender is not (or wrongly) authorized
+    * `500` - Internal Server Error | Ouch, something went wrong while the server was processing your request
 
-**JSON format**
+### Related data format: JSON
 
 JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation.
 
@@ -279,7 +279,7 @@ GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance
 }
 ```
 
-Hint: When writing JSON files, some linting (syntax validation) might come handy, e.g. using [https://jsonlint.com/](https://jsonlint.com/).
+Hint: When writing JSON files, some linting (process of checking the source code for programmatic as well as stylistic errors) might come handy, e.g. by using [https://jsonlint.com/](https://jsonlint.com/).
 
 ## First Hand-on: working with REST API requests
 
@@ -291,14 +291,19 @@ Hint: When writing JSON files, some linting (syntax validation) might come handy
 
 Step 1:
 
-* get your credentials (for authentication) from the trainer (or simply use the "demouser" with "gu3st!pa55w0rd")
+* get your credentials (for authentication) ~~from the trainer or~~: simply use the "demouser" with "gu3st!pa55w0rd"
 
 Step 2:
+
+* Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+* What does it show?
+
+Step 3:
 
 * choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
     * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
-* Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+* Try the same again
 
 <center>
 <a href="img/actinia_restman01.png"><img src="img/actinia_restman01.png" width="60%"></a><br>
@@ -306,9 +311,9 @@ Step 2:
 Fig. 3: Using RESTman
 </center>
 
-For a `curl` example, see below ("REST actinia examples with curl").
+For a `curl` example, see below ("[REST actinia examples with curl](index.html#rest-actinia-examples-with-curl)").
 
-Step 3:
+Step 4:
 
 * Explore the existing data on the actinia server:
     * i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets
