@@ -295,7 +295,7 @@ Step 1:
 
 Step 2:
 
-* Try this call: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+* Try this call, simply in a browser: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
 * What does it show?
 
 Step 3:
@@ -323,21 +323,20 @@ Step 4:
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
-    * process_results are ordered alphabetically, not thematically
+    * note: process_results are ordered alphabetically, not thematically
 
-Step 4:
-
-* Submit a compute job and check its status (in case of asynchronous jobs, by polling).
 
 ## Exploring the API: finding available actinia endpoints
 
-The actinia REST API documentation at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) comes with a series of examples.
+The actinia REST API documentation is available at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json).
 
-Check out the various sections in the actinia API docs:
+Check out some of the various sections in these [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
 
+* Module Management
 * Authentication Management
 * API Log
 * Cache Management
+* File Management
 * Satellite Image Algorithms
 * Location Management
 * Mapset Management
@@ -348,9 +347,11 @@ Check out the various sections in the actinia API docs:
 * STRDS Sampling
 * STRDS Statistics
 * Vector Management
+* GeoNetwork
 * Resource Management
+* User Management
 
-List of endpoints shown in the web browser:
+List of endpoints, shown in the web browser:
 
 * To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
 
@@ -371,8 +372,35 @@ List of endpoints shown on command line:
 * To get the available endpoints on command line, run
 
 ```bash
-# sudo npm install -g json
+## we filter on the fly with `json`
+# installation: sudo npm install -g json
+
 curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json -ka
+
+# result:
+/actiniamodules
+/actiniamodules/{actiniamodule}
+/api_key
+/api_log/{user_id}
+/download_cache
+/files
+/grassmodules
+/grassmodules/{grassmodule}
+/landsat_process/{landsat_id}/{atcor_method}/{processing_method}
+/landsat_query
+/locations
+/locations/{location_name}
+/locations/{location_name}/gdi_processing_async_export
+/locations/{location_name}/info
+/locations/{location_name}/mapsets
+/locations/{location_name}/mapsets/{mapset_name}
+/locations/{location_name}/mapsets/{mapset_name}/gdi_processing_async
+/locations/{location_name}/mapsets/{mapset_name}/info
+/locations/{location_name}/mapsets/{mapset_name}/landsat_import
+/locations/{location_name}/mapsets/{mapset_name}/lock
+/locations/{location_name}/mapsets/{mapset_name}/processing_async
+/locations/{location_name}/mapsets/{mapset_name}/raster_layers
+...
 ```
 
 ### REST actinia examples with curl
@@ -380,7 +408,7 @@ curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json
 Here we use the command line and the `curl` software to communicate with the actinia server.
 Optionally, to beautify the output, we use the `jq` command-line JSON processor which helps to turn the output into something human readable ([download jq](https://stedolan.github.io/jq/download/)).
 
-Hint: If you have troubles to use `jq` on command line, you can also use it in a browser at [https://jqplay.org/](https://jqplay.org/): copy the JSON code into the "JSON" field, then a `.` into the "Filter" field and it with show the result.
+Hint: If you have troubles to use `jq` on command line, you can also use it in a browser at [https://jqplay.org/](https://jqplay.org/): copy the JSON code into the "JSON" field, then a `.` into the "Filter" field and it will show the result.
 
 **Preparation:**
 
@@ -397,6 +425,7 @@ export AUTH='-u demouser:gu3st!pa55w0rd'
 curl ${AUTH} -X GET ${actinia}/api/v1/locations
 ```
 
+<!--
 **Show capabilities of user:**
 
 ```bash
@@ -404,6 +433,7 @@ curl ${AUTH} -X GET ${actinia}/api/v1/locations
 # show accessible_datasets, accessible_modules, raster cell_limit, process_num_limit, process_time_limit
 curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 ```
+-->
 
 **List mapsets in locations:**
 
@@ -412,14 +442,24 @@ curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets"
 ```
 
-Note the output difference:
+<center>
+<a href="img/curl_output_std.png"><img src="img/curl_output_std.png" width="60%"></a><br>
+</center>
+
+Note the style difference of output:
 
 ```bash
 # show available mapsets of a specific location
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets | jq"
 ```
 
+<center>
+<a href="img/curl_output_jq.png"><img src="img/curl_output_jq.png" width="60%"></a><br>
+</center>
+
 **List map layers and their metadata:**
+
+Vector data:
 
 ```bash
 # show available vector maps in a specific location/mapset
@@ -430,7 +470,11 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vec
 
 # show metadata of a specific vector map
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/geology"
+```
 
+Raster data:
+
+```bash
 # show available raster maps in a specific location/mapset
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers"
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers"
@@ -438,24 +482,31 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/ras
 
 # show metadata of a specific raster map
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40"
+```
 
+Space-time raster datasets (STRDS):
+
+```bash
 # show available STRDS in a specific location/mapset
-# STRDS = space time raster data set
+# MODIS Land Surface Temperature data
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds"
 
 # show specific STRDS in a specific location/mapset
+# MODIS Normalized Difference Vegetation Index
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m"
 
 # Get a list or raster layers from a STRDS
+# ECAD: Yearly precipitation
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers"
 
 # Get a list or raster layers from a STRDS, with date filter
+# ECAD: Yearly precipitation
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
 ```
 
 **Map layer queries:**
 
-We query the Land Surface Temperature (LST) values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
+Next we query the MODIS Land Surface Temperature (LST) values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
 
 ```bash
 # query point value in a STRDS, sending the JSON code directly in request
