@@ -72,10 +72,10 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 
 ## Warming up
 
-To make you familiar with a few concepts, let's take a look at the "graphical intro to actinia" - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: it requires the Chrome/ium browser).
+To make you familiar with a few concepts, let's take a look at the "graphical intro to actinia" - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: it requires the Chrome/ium browser; presentation provided by Carmen Tawalika, mundialis).
 
 <center>
-<img src="img/actinia_intro.png" width="40%">
+<img src="img/actinia_intro.png" width="60%">
 </center>
 
 ## Introduction
@@ -96,20 +96,26 @@ Cloud technology offers a series of **advantages**:
 * scalable, distributed, and high performance processing
 * large quantities of Earth Observation (EO) and geodata provided in dedicated cloud infrastructures
 * addressing the paradigm of computing next to the data
-* no need to bother yourself with the low-level management of petabytes of data
+* no need to bother yourself with the low-level management of tons of data.
 
-The five V’s of **big data**: Volume, velocity, variety, veracity and value.
+(Ideally) enjoy the **five V’s of big data**: Volume, velocity, variety, veracity and value.
 
 Still, some critical **issues** have to be addressed in the geospatial realm:
 
 * lack of Analysis-Ready-data (ARD) available for consumption in the cloud
 * lack of compatibility between different data systems
-    * we are on it: the [openEO H2020 project](https://openeo.org)
-* lack of cloud abstraction, for easier move between vendors and providers
+    * btw., we are on it: the [openEO H2020 project](https://openeo.org)
+* lack of cloud abstraction, needed for easier move between vendors and providers.
 
 ### Overview actinia
 
 Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
+
+### Components of actinia
+
+<center>
+<img src="img/actinia_architecture.png" width="60%">
+</center>
 
 **Functionality beyond GRASS GIS**
 
