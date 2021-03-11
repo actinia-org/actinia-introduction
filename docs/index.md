@@ -113,8 +113,16 @@ Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an *
 
 ### Components of actinia
 
+Actinia is composed of several components:
+
+* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks
+* [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin): contains module self-description and process-chain-template management and processing
+* [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
+* [actinia-statistic-plugin](https://github.com/mundialis/actinia_statistic_plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
+* [actinia-satellite-plugin](https://github.com/mundialis/actinia_satellite_plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
+
 <center>
-<img src="img/actinia_architecture.png" width="60%">
+<a href="img/actinia_architecture.png"><img src="img/actinia_architecture.png" width="60%"></a>
 </center>
 
 **Functionality beyond GRASS GIS**
