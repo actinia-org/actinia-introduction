@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 5 Feb 2021*
+*Last update: 11 Mar 2021*
 
 ## Abstract
 
@@ -39,6 +39,7 @@ We will use a browser plugin to try out some REST commands. Then we'll also use 
             * python3-click, python3-requests, python3-simplejson
     * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session; installation shown below)
     * [jq, a lightweight and flexible command-line JSON processor](https://stedolan.github.io/jq/download/)
+    * nice to have: <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>
 
 <center>
 <a href="img/osgeo4w_python_libs.png"><img src="img/osgeo4w_python_libs.png" width="30%"></a> &nbsp; &nbsp;
@@ -71,7 +72,11 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 
 ## Warming up
 
-A graphical intro to actinia - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: requires Chrome/ium browser)
+To make you familiar with a few concepts, let's take a look at the "graphical intro to actinia" - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: it requires the Chrome/ium browser).
+
+<center>
+<img src="img/actinia_intro.png" width="40%">
+</center>
 
 ## Introduction
 
@@ -79,22 +84,12 @@ A graphical intro to actinia - [GRASS GIS in the cloud: actinia geoprocessing](h
 (10 min)
 -->
 
-For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation.** The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API and cloud processing related basics.
+For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation** (i.e., geodata such as raster, vector, timeseries, and image data including aerial, drone, satellite data).
+The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API basics and cloud processing related hints.
 
-<!--
-### Geo and EO basics
+### Why cloud computing?
 
-* geodata layers
-    * raster
-    * vector
-    * timeseries of both
-    * image data (aerial, drone, satellite, ...)
-* single and multispectral data (2-D arrays of reflectance values)
--->
-
-### Why cloud computing ?
-
-With the tremendous increase of available geospatial and Earth observation lately driven by the Copernicus programme (esp. Sentinel satellites) and increasing availability of open data the need for computational resources is growing in a non-linear way.
+With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and increasing availability of open data the need for computational resources is growing in a non-linear way.
 
 Cloud technology offers a series of **advantages**:
 
@@ -103,12 +98,14 @@ Cloud technology offers a series of **advantages**:
 * addressing the paradigm of computing next to the data
 * no need to bother yourself with the low-level management of petabytes of data
 
-Still, some critical **issues** have to be addressed:
+The five V’s of **big data**: Volume, velocity, variety, veracity and value.
+
+Still, some critical **issues** have to be addressed in the geospatial realm:
 
 * lack of Analysis-Ready-data (ARD) available for consumption in the cloud
 * lack of compatibility between different data systems
-     * we are on it: the [openEO H2020 project](https://openeo.org)
- * lack of cloud abstraction, for easier move between vendors and providers
+    * we are on it: the [openEO H2020 project](https://openeo.org)
+* lack of cloud abstraction, for easier move between vendors and providers
 
 ### Overview actinia
 
