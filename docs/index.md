@@ -27,9 +27,9 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 We will use a browser plugin to try out some REST commands. Then we'll also use GRASS GIS and a special command to control actinia from remote. This requires some software to be installed:
 
-* REST client (browser plugin):
+* REST client (command line tool or browser plugin):
     * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
-    * optionally: Chrome/Chromium browser:
+    * Plugins for Chrome/Chromium browser:
         * [RESTman extension](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
         * and a nice [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 * For the "ace - actinia command execution" section:
@@ -332,12 +332,16 @@ Step 4:
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
     * note: `process_results` are ordered alphabetically, not thematically
 
+### Summary
+
+So far we have seen some REST basics and explored a few endpoints provided by actinia.
+Indeed the structure of the endpoints follow some GRASS GIS concepts (compare the graphical introduction above) but this does not limit us much from processing "any" geospatial data.
+
 
 ## Exploring the API: finding available actinia endpoints
 
-The actinia REST API documentation is available at [https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json).
-
-Check out some of the various sections in these [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
+The actinia REST API documentation is online available (directly generated from the source code of actinia).
+Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
 
 * Module Management
 * Authentication Management
@@ -360,14 +364,14 @@ Check out some of the various sections in these [actinia API docs](https://redoc
 
 List of endpoints, shown in the web browser:
 
-* To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json).
+* To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
 
 <center>
 <a href="img/actinia_swagger_paths.png"><img src="img/actinia_swagger_paths.png" width="60%"></a><br>
 Fig. 5: actinia list of endpoints (in "paths" section)
 </center>
 
-* List of supported processes (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
+* **List of supported processes** (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
 
 <center>
 <a href="img/actinia_modules.png"><img src="img/actinia_modules.png" width="60%"></a><br>
@@ -419,6 +423,8 @@ Hint: If you have troubles to use `jq` on command line, you can also use it in a
 
 **Preparation:**
 
+To simplify our life in terms of server communication we store the credentials and REST server URL in environmental variables (this is only relevant for command line usage; in RESTman the browser will request the credentials):
+
 ```bash
 # set credentials and REST server URL
 export actinia="https://actinia.mundialis.de"
@@ -426,6 +432,8 @@ export AUTH='-u demouser:gu3st!pa55w0rd'
 ```
 
 **List locations:**
+
+First we want to see the list of available "locations". A location in GRASS-speak is simply a project folder which contains geospatial data:
 
 ```bash
 # show available locations (locations are like projects)
@@ -443,6 +451,8 @@ curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 -->
 
 **List mapsets in locations:**
+
+Next we look at so-called "mapsets" which are subfolders in a location (just to better organise the geospatial data):
 
 ```bash
 # show available mapsets of a specific location
@@ -465,6 +475,8 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets | jq"
 </center>
 
 **List map layers and their metadata:**
+
+Eventually, digging more for content in "location" and "mapsets", we can look at the datasets stored therein:
 
 Vector data:
 
@@ -513,10 +525,10 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 
 **Map layer queries:**
 
-Next we query the MODIS Land Surface Temperature (LST) values in the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint `sampling_sync_geojson`:
+Time to retrieve something from the server. We want to query the stack of multitemporal datasets available and specifically retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
 
 ```bash
-# query point value in a STRDS, sending the JSON code directly in request
+# query point value in a STRDS, sending the JSON code directly in the request
 # (North Carolina LST time series)
 curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}'
 ```
