@@ -421,7 +421,7 @@ Optionally, to beautify the output, we use the `jq` command-line JSON processor 
 
 Hint: If you have troubles to use `jq` on command line, you can also use it in a browser at [https://jqplay.org/](https://jqplay.org/): copy the JSON code into the "JSON" field, then a `.` into the "Filter" field and it will show the result.
 
-**Preparation:**
+#### Preparation
 
 To simplify our life in terms of server communication we store the credentials and REST server URL in environmental variables (this is only relevant for command line usage; in RESTman the browser will request the credentials):
 
@@ -431,7 +431,7 @@ export actinia="https://actinia.mundialis.de"
 export AUTH='-u demouser:gu3st!pa55w0rd'
 ```
 
-**List locations:**
+#### List available locations
 
 First we want to see the list of available "locations". A location in GRASS-speak is simply a project folder which contains geospatial data:
 
@@ -441,7 +441,7 @@ curl ${AUTH} -X GET ${actinia}/api/v1/locations
 ```
 
 <!--
-**Show capabilities of user:**
+#### Show capabilities of user
 
 ```bash
 # NOTE: endpoint not available to the demouser but only to the admin user
@@ -450,7 +450,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 ```
 -->
 
-**List mapsets in locations:**
+#### List mapsets in locations
 
 Next we look at so-called "mapsets" which are subfolders in a location (just to better organise the geospatial data):
 
@@ -474,7 +474,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets | jq"
 <a href="img/curl_output_jq.png"><img src="img/curl_output_jq.png" width="60%"></a><br>
 </center>
 
-**List map layers and their metadata:**
+#### List map layers and their metadata
 
 Eventually, digging more for content in "location" and "mapsets", we can look at the datasets stored therein:
 
@@ -523,7 +523,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
 ```
 
-**Map layer queries:**
+#### Map layer and space-time cube queries
 
 Time to retrieve something from the server. We want to query the stack of multitemporal datasets available and specifically retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
 
@@ -543,9 +543,10 @@ Using RESTman you need to pay attention to these changes:
 <a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
 Fig. 7 RESTman POST request example (source: Luca Delucchi)
 </center>
-**Sending JSON payload as a file:**
 
-It is often much more convenient to store the JSON payload in a file and send it to server:
+#### Sending JSON payload as a file
+
+In the example above we have sent JSON code to the server directly in the request. However, with longer process chains this is hard to manage. It is often much more convenient to store the JSON code as "payload" in a file and send it to server:
 
 ```bash
 # store query in a JSON file "pc_query_point_.json" (or use a text editor for this)
@@ -555,7 +556,7 @@ echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn
 curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json  | jq
 ```
 
-**Validation of a process chain:**
+#### Validation of a process chain
 
 Why validation? It may happen that your JSON file to be sent to the endpoint contains a typo or other invalid content. For the identification of problems prior to executing the commands contained in the JSON file (which may last for hours), it is recommended to validate this file.
 For this, actinia can be used as it provides a validation endpoint.
@@ -567,7 +568,7 @@ Example: Download the process chain [process_chain_long.json](https://gitlab.com
 curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
 ```
 
-**Converting a process chain back into commands:**
+#### Converting a process chain back into commands
 
 To turn a process chain back into a command style notation, the validator can be used for this as well and the relevant code extracted from the resulting JSON response.
 Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the underlying commands by parsing the response with `json`:
