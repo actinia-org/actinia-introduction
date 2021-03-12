@@ -127,7 +127,8 @@ Plugins:
 * [actinia-satellite-plugin](https://github.com/mundialis/actinia_satellite_plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
 
 <center>
-<a href="img/actinia_architecture.png"><img src="img/actinia_architecture.png" width="60%"></a>
+<a href="img/actinia_architecture.png"><img src="img/actinia_architecture.png" width="60%"></a><br>
+Fig. 1: Components of actinia (core and plugins)
 </center>
 
 **Functionality beyond GRASS GIS**
@@ -144,16 +145,16 @@ In the cloud computing context these differences are relevant as cost incurs whe
 
 Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. In particular, the **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB).
 
-The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed. The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 1).
+The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed. The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 2).
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 1: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
+Fig. 2: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
 </center>
 
 **Architecture of actinia**
 
-Several **components** play a role in a cloud deployment of actinia (for an example, see Fig. 2):
+Several **components** play a role in a cloud deployment of actinia (for an example, see Fig. 3):
 
 * analytics: here are the workers of GRASS GIS or wrapped other software (GDAL, ESA-SNAP, ...),
 * external data sources: import providers for various external data sources,
@@ -172,7 +173,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
-Fig. 2: Architecture of an actinia deployment (source: <a href="https://github.com/mmacata/">Carmen Tawalika</a>, mundialis)
+Fig. 3: Architecture of an actinia deployment (source: <a href="https://github.com/mmacata/">Carmen Tawalika</a>, mundialis)
 </center>
 
 ### Deployment
@@ -313,7 +314,7 @@ Step 3:
 <center>
 <a href="img/actinia_restman01.png"><img src="img/actinia_restman01.png" width="60%"></a><br>
 <a href="img/actinia_restman02.png"><img src="img/actinia_restman02.png" width="60%"></a><br>
-Fig. 3: Using RESTman
+Fig. 4: Using RESTman
 </center>
 
 For a `curl` example, see below ("[REST actinia examples with curl](index.html#rest-actinia-examples-with-curl)").
@@ -362,14 +363,14 @@ List of endpoints, shown in the web browser:
 
 <center>
 <a href="img/actinia_swagger_paths.png"><img src="img/actinia_swagger_paths.png" width="60%"></a><br>
-Fig. 4: actinia list of endpoints (in "paths" section)
+Fig. 5: actinia list of endpoints (in "paths" section)
 </center>
 
 * List of supported processes (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
 
 <center>
 <a href="img/actinia_modules.png"><img src="img/actinia_modules.png" width="60%"></a><br>
-Fig. 5: actinia list of GRASS GIS processes (> 500)
+Fig. 6: actinia list of GRASS GIS processes (> 500)
 </center>
 
 List of endpoints shown on command line:
@@ -527,7 +528,7 @@ Using RESTman you need to pay attention to these changes:
 
 <center>
 <a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
-Fig. 6 RESTman POST request example (source: Luca Delucchi)
+Fig. 7 RESTman POST request example (source: Luca Delucchi)
 </center>
 **Sending JSON payload as a file:**
 
@@ -617,7 +618,7 @@ The resulting files can now be downloaded (they'll remain for 24 hs on the serve
 
 <center>
 <a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
-Fig. 7: actinia output shown in QGIS (aspect map)
+Fig. 8: actinia output shown in QGIS (aspect map)
 </center>
 
 ## Controlling actinia from a running GRASS GIS session
@@ -626,11 +627,11 @@ Controlling actinia from a running GRASS GIS session is a convenient way of writ
 
 The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
 
-To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 8) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
+To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 9) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
-Fig. 8: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+Fig. 9: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
 </center>
 
 Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.
