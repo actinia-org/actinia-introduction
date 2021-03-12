@@ -30,7 +30,8 @@ We will use a browser plugin to try out some REST commands. Then we'll also use 
 * REST client (browser plugin):
     * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
     * optionally: Chrome/Chromium browser:
-        * with RESTman extension: [https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
+        * [RESTman extension](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
+        * and a nice [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 * For the "ace - actinia command execution" section:
     * GRASS GIS 7.8+ ([download](https://grass.osgeo.org/download/))
     * three additional Python packages:
@@ -149,7 +150,7 @@ The actinia server has access to compute nodes (**actinia nodes**; separate phys
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 2: Architecture of an actinia deployment (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
+Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
 </center>
 
 **Architecture of actinia**
@@ -173,7 +174,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
-Fig. 3: Architecture of an actinia deployment (source: <a href="https://github.com/mmacata/">Carmen Tawalika</a>, mundialis)
+Fig. 3: Architecture of an actinia deployment (source: mundialis)
 </center>
 
 ### Deployment
@@ -297,7 +298,7 @@ Hint: When writing JSON files, some linting (process of checking the source code
 
 Step 1:
 
-* get your credentials (for authentication) ~~from the trainer or~~: simply use the "demouser" with "gu3st!pa55w0rd"
+* get your credentials (for authentication) <strike>from the trainer or~~:</strike> use the `demouser` with `gu3st!pa55w0rd`
 
 Step 2:
 
@@ -309,7 +310,7 @@ Step 3:
 * choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
     * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
-* Try the same again
+* Try the same request again:
 
 <center>
 <a href="img/actinia_restman01.png"><img src="img/actinia_restman01.png" width="60%"></a><br>
@@ -329,7 +330,7 @@ Step 4:
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
-    * note: process_results are ordered alphabetically, not thematically
+    * note: `process_results` are ordered alphabetically, not thematically
 
 
 ## Exploring the API: finding available actinia endpoints
