@@ -547,7 +547,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 Time to retrieve something from the server. We want to query the stack of multitemporal datasets available and specifically retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
 
 ```bash
-# query point value in a STRDS, sending the JSON code directly in the request
+# query point value in a STRDS, sending a GeoJSON file of the point position along with the request
 # (North Carolina LST time series)
 curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}'
 ```
@@ -620,6 +620,15 @@ curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${
 
 Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources. This can then be downloaded, opened by QGIS, imported into GRASS GIS or other software.
 Note that the download of Web resources provided by actinia requires authentication, e.g. the `demouser`.
+
+**Available export formats**
+
+At time (more to come) the following export formats are currently supported:
+
+* raster: `GTiff`, `COG`
+* vector: `ESRI_Shapefile`, `GeoJSON`, `GML`
+* table: `CSV`, `TXT`
+
 
 ### Dealing with workflows (processing chains)
 
