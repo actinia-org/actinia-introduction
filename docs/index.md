@@ -514,6 +514,16 @@ Next we query the MODIS Land Surface Temperature (LST) values in the space-time 
 curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}'
 ```
 
+Using RESTman you need to pay attention to these changes:
+
+* change type of request from GET to POST, in the top of the page lefthand of the URL
+* set the right header `content-type` and `application/json` as value
+* add the JSON in the body section in RAW format
+
+<center>
+<a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
+Fig.6 RESTman POST request example (source: Luca Delucchi)
+</center>
 **Sending JSON payload as a file:**
 
 It is often much more convenient to store the JSON payload in a file and send it to server:
@@ -602,7 +612,7 @@ The resulting files can now be downloaded (they'll remain for 24 hs on the serve
 
 <center>
 <a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
-Fig. 6: actinia output shown in QGIS (aspect map)
+Fig. 7: actinia output shown in QGIS (aspect map)
 </center>
 
 ## Controlling actinia from a running GRASS GIS session
@@ -615,7 +625,7 @@ To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample locati
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
-Fig. 7: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
+Fig. 8: Download and extraction of `nc_spm_08` North Carolina sample location ("Complete NC location")
 </center>
 
 Before starting GRASS GIS with the downloaded location create a new mapset "ace" in `nc_spm_08`.
