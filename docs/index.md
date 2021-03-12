@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 11 Mar 2021*
+*Last update: 12 Mar 2021*
 
 ## Abstract
 
@@ -73,6 +73,10 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 
 ## Warming up
 
+<!--
+(duration: 20 min)
+-->
+
 To make you familiar with a few concepts, let's take a look at the "graphical intro to actinia" - [GRASS GIS in the cloud: actinia geoprocessing](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html) (note: it requires the Chrome/ium browser; presentation provided by <a href="https://github.com/mmacata/">Carmen Tawalika</a>, mundialis).
 
 <center>
@@ -82,7 +86,7 @@ To make you familiar with a few concepts, let's take a look at the "graphical in
 ## Introduction
 
 <!--
-(10 min)
+(duration: 10 min)
 -->
 
 For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation** (i.e., geodata such as raster, vector, timeseries, and image data including aerial, drone, satellite data).
@@ -190,7 +194,7 @@ With respect to actinia, **various ways of [deployment](https://github.com/mundi
 ## REST API and geoprocessing basics
 
 <!--
-(20 min)
+(duration: 20 min)
 -->
 
 ### What is REST: intro
@@ -291,7 +295,7 @@ Hint: When writing JSON files, some linting (process of checking the source code
 ## First Hand-on: working with REST API requests
 
 <!--
-(50 min)
+(duration: 50 min)
 -->
 
 ### Step by step...
@@ -339,6 +343,10 @@ Indeed the structure of the endpoints follow some GRASS GIS concepts (compare th
 
 
 ## Exploring the API: finding available actinia endpoints
+
+<!--
+(duration: 40 min)
+-->
 
 The actinia REST API documentation is online available (directly generated from the source code of actinia).
 Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
@@ -672,6 +680,10 @@ Fig. 8: actinia output shown in QGIS (aspect map)
 
 ## Controlling actinia from a running GRASS GIS session
 
+<!--
+(duration: 40 min)
+-->
+
 Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/).
 
 The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
@@ -739,7 +751,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 ## Own exercises in actinia
 
 <!--
-(40 min)
+(duration: 40 min)
 -->
 
 ### EXERCISE: "Population at risk near coastal areas"
@@ -779,13 +791,13 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 ## Conclusions and future
 
 <!--
-(15 min incl discussions)
+(duration: 15 min incl discussions)
 -->
 
-* integration in own scientific or business processes
-* openEO actinia driver
-* where is the code and how to contribute: find it on GitHub
+* Discussion!
+* Where is the code and how to contribute: find it on GitHub
     * [https://github.com/mundialis/actinia_core/](https://github.com/mundialis/actinia_core/)
+
 
 ## See also
 
