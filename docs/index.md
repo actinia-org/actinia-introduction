@@ -29,7 +29,7 @@ We will use a browser plugin to try out some REST commands. Then we'll also use 
 
 * REST client (command line tool or browser plugin):
     * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
-    * Plugins for Chrome/Chromium browser:
+    * Extensions for Chrome/Chromium browser:
         * [RESTman extension](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
         * and a nice [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 * For the "ace - actinia command execution" section:
@@ -615,21 +615,26 @@ Note that the download of Web resources provided by actinia requires authenticat
 
 ### Dealing with workflows (processing chains)
 
-General procedure:
+The overall goal is to "getting stuff done". In this case it means that we can concatenate (chain) a series of command where the output of one step may be used an the input of the following step.
 
-* prepare a processing chain,
-* compare async versus sync REST API calls, decide which one to use,
-    * See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
-* submit the processing chain to an actinia endpoint,
+The general procedure comprises:
+
+* prepare a processing chain
+* compare async(cronous) versus sync(cronous) REST API calls, decide which endpoint to use
+* submit the processing chain to an actinia endpoint
 * retrieve the result(s).
 
-To turn this into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
+<!--
+(see also: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
+-->
+
+To turn concept this into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
 
 ```bash
 curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json | jq
 ```
 
-Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a Web resource ID (red box) and a resource URI is shown:
+Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a resource ID (red box) and a resource URI is shown:
 
 <center>
 <a href="img/curl_resource_id.png"><img src="img/curl_resource_id.png" width="60%"></a><br>
@@ -684,7 +689,7 @@ Before starting GRASS GIS with the downloaded location create a new mapset "ace"
 Note: Since we want to do cloud computing, the full location would not be needed but it is useful to have for an initial exercise in order to compare local and remote computations.
 </p>
 
-**Needed Python libraries**
+### Needed Python libraries
 
 In case not yet present on the system, the following Python libraries are needed:
 
@@ -692,7 +697,7 @@ In case not yet present on the system, the following Python libraries are needed
 * Windows users (Installer: [https://trac.osgeo.org/osgeo4w/](OSGeo4W) > Advanced installation > Search window):
     * three Python packages: python3-click, python3-requests, python3-simplejson
 
-**Installation of ace tools**
+### Installation of ace tools
 
 You need to be in a running GRASS GIS session:
 
@@ -717,7 +722,7 @@ To explore the `ace` tool, follow the usage examples found here:
 
 For this you can either use "ace" or write with an editor the JSON process chains and send them to actinia.
 
-**Computations using data in the `nc_spm_08` location:**
+### Computations using data in the `nc_spm_08` location
 
 * compute NDVI from a Landsat scene (using `i.vi`)
 * slope and aspect from a DEM (there are several;  using `r.slope.aspect`)
@@ -726,7 +731,7 @@ For this you can either use "ace" or write with an editor the JSON process chain
 * advanced: network allocation with hospitals and streets_wake (using `v.net.alloc`)
 * generalizing vector polygons with GRASS GIS' topology engine (using `v.generalize`)
 
-**Further examples incl. Spatio-Temporal sampling:**
+### Further examples incl. Spatio-Temporal sampling
 
 See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh)
 
@@ -737,7 +742,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 (40 min)
 -->
 
-**EXERCISE: "Population at risk near coastal areas"**
+### EXERCISE: "Population at risk near coastal areas"
 
 * needed geodata:
     * SRTM 30m (already available in actinia - find out the location yourself)
@@ -750,7 +755,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
     * buffer SRTM land areas by 5000 m inwards
     * zonal statistics with population map
 
-**EXERCISE: "Property risks from trees"**
+### EXERCISE: "Property risks from trees"
 
 (draft idea only, submit your suggestion to trainer how to solve this task)
 
@@ -788,8 +793,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 * OpenEO Web Editor: [https://open-eo.github.io/openeo-web-editor/demo/](https://open-eo.github.io/openeo-web-editor/demo/)
     * Server: [https://openeo.mundialis.de](https://openeo.mundialis.de)
-    * user: 'actinia_user'
-    * pw: 'actinia_pw'
+    * user, password: upon request
 
 ### REST introduction
 
@@ -809,7 +813,7 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 [3] [actinia API reference](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) documentation
 
-[4] actinia paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
+[4] actinia article: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
 
 ------------------------------------------------------------------------

@@ -108,7 +108,7 @@
         {
           "export": {
             "type": "raster",
-            "format": "COG"
+            "format": "GTiff"
           },
           "param": "map",
           "value": "my_aspect"
