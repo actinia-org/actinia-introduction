@@ -449,13 +449,13 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/loca
 
 Using RESTman you need to pay attention to these changes:
 
-* change type of request from GET to POST, in the top of the page at the left of url
+* change type of request from GET to POST, in the top of the page lefthand of the URL
 * set the right header `content-type` and `application/json` as value
 * add the JSON in the body section in RAW format
 
 <center>
 <a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
-Fig.6 RESTman POST request example (source Luca Delucchi)
+Fig.6 RESTman POST request example (source: Luca Delucchi)
 </center>
 **Sending JSON payload as a file:**
 
