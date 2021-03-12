@@ -113,9 +113,14 @@ Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an *
 
 ### Components of actinia
 
-Actinia is composed of several components:
+Actinia is composed of several components.
 
-* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks
+Core system:
+
+* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
+
+Plugins:
+
 * [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin): contains module self-description and process-chain-template management and processing
 * [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
 * [actinia-statistic-plugin](https://github.com/mundialis/actinia_statistic_plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
@@ -522,7 +527,7 @@ Using RESTman you need to pay attention to these changes:
 
 <center>
 <a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
-Fig.6 RESTman POST request example (source: Luca Delucchi)
+Fig. 6 RESTman POST request example (source: Luca Delucchi)
 </center>
 **Sending JSON payload as a file:**
 
@@ -621,7 +626,7 @@ Controlling actinia from a running GRASS GIS session is a convenient way of writ
 
 The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
 
-To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 7) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
+To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 8) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
 
 <center>
 <a href="img/grass78_download_NC_location.png"><img src="img/grass78_download_NC_location.png" width="40%"></a><br>
