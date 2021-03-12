@@ -100,7 +100,7 @@
         {
           "export": {
             "type": "raster",
-            "format": "GTiff"
+            "format": "COG"
           },
           "param": "map",
           "value": "my_slope"
@@ -108,7 +108,7 @@
         {
           "export": {
             "type": "raster",
-            "format": "GTiff"
+            "format": "COG"
           },
           "param": "map",
           "value": "my_aspect"
@@ -116,7 +116,7 @@
         {
           "export": {
             "type": "raster",
-            "format": "GTiff"
+            "format": "COG"
           },
           "param": "map",
           "value": "my_accumulation"

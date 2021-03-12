@@ -383,36 +383,47 @@ List of endpoints shown on command line:
 * To get the available endpoints on command line, run
 
 ```bash
-## we filter on the fly with `json`
+## we filter the paths on the fly with `jq`
+# note: no AUTH needed
+curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json | jq "."paths | jq 'keys'
+[
+  "/actiniamodules",
+  "/actiniamodules/{actiniamodule}",
+  "/api_key",
+  "/api_log/{user_id}",
+  "/download_cache",
+  "/files",
+  "/grassmodules",
+  "/grassmodules/{grassmodule}",
+  "/landsat_process/{landsat_id}/{atcor_method}/{processing_method}",
+  "/landsat_query",
+  "/locations",
+  "/locations/{location_name}",
+  "/locations/{location_name}/gdi_processing_async_export",
+  "/locations/{location_name}/info",
+  "/locations/{location_name}/mapsets",
+  "/locations/{location_name}/mapsets/{mapset_name}",
+  "/locations/{location_name}/mapsets/{mapset_name}/gdi_processing_async",
+  "/locations/{location_name}/mapsets/{mapset_name}/info",
+  "/locations/{location_name}/mapsets/{mapset_name}/landsat_import",
+...
+  "/sentinel2_query",
+  "/sentinel2a_aws_query",
+  "/token",
+  "/users",
+  "/users/{user_id}"
+]
+```
+
+<!-- 
+```
+## alternative: we filter the paths on the fly with `json`
 # installation: sudo npm install -g json
 
 curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json -ka
-
-# result:
-/actiniamodules
-/actiniamodules/{actiniamodule}
-/api_key
-/api_log/{user_id}
-/download_cache
-/files
-/grassmodules
-/grassmodules/{grassmodule}
-/landsat_process/{landsat_id}/{atcor_method}/{processing_method}
-/landsat_query
-/locations
-/locations/{location_name}
-/locations/{location_name}/gdi_processing_async_export
-/locations/{location_name}/info
-/locations/{location_name}/mapsets
-/locations/{location_name}/mapsets/{mapset_name}
-/locations/{location_name}/mapsets/{mapset_name}/gdi_processing_async
-/locations/{location_name}/mapsets/{mapset_name}/info
-/locations/{location_name}/mapsets/{mapset_name}/landsat_import
-/locations/{location_name}/mapsets/{mapset_name}/lock
-/locations/{location_name}/mapsets/{mapset_name}/processing_async
-/locations/{location_name}/mapsets/{mapset_name}/raster_layers
-...
+ ... see above
 ```
+-->
 
 ### REST actinia examples with curl
 
@@ -571,24 +582,36 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 #### Converting a process chain back into commands
 
 To turn a process chain back into a command style notation, the validator can be used for this as well and the relevant code extracted from the resulting JSON response.
-Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the underlying commands by parsing the response with `json`:
+Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the section containing the underlying commands by parsing the actinia server response with `jq`:
 
 ```bash
-# command extraction from a process chain (using sync call) by parsing the 'process_results' response (here we use the `json` tool):
-curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | json process_results
+# command extraction from a process chain (using sync call) by parsing the 'process_results' response (here we use the `jq` tool:)
+curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | jq "."process_results
+[
+  "grass g.region ['raster=elevation@PERMANENT', 'res=10', '-p']",
+  "grass r.slope.aspect ['elevation=elevation@PERMANENT', 'format=degrees', 'precision=FCELL', 'zscale=1.0', 'min_slope=0.0', 'slope=my_slope', 'aspect=my_aspect', '-a']",
+  "grass r.watershed ['elevation=elevation@PERMANENT', 'convergence=5', 'memory=500', 'accumulation=my_accumulation']",
+  "grass r.info ['map=my_aspect', '-gr']"
+]
+```
+
+<!--
+```
+# same thing, here we use the `json` tool:
+curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | json process_results
 [
   "grass g.region ['raster=elevation@PERMANENT', 'res=4', '-p']",
   "grass r.slope.aspect ['elevation=elevation@PERMANENT', 'format=degrees', 'precision=FCELL', 'zscale=1.0', 'min_slope=0.0', 'slope=my_slope', 'aspect=my_aspect', '-a']",
   "grass r.watershed ['elevation=elevation@PERMANENT', 'convergence=5', 'memory=300', 'accumulation=my_accumulation']",
   "grass r.info ['map=my_aspect', '-gr']"
 ]
-
 ```
+-->
 
 ### Data exchange: import and export
 
-Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources.
-Note that the download of Web resources provided by actinia requires authentication.
+Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources. This can then be downloaded, opened by QGIS, imported into GRASS GIS or other software.
+Note that the download of Web resources provided by actinia requires authentication, e.g. the `demouser`.
 
 ### Dealing with workflows (processing chains)
 
@@ -603,14 +626,21 @@ General procedure:
 To turn this into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
 
 ```bash
-curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json 
+curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json | jq
 ```
 
-Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a Web resource is shown. Use this URI for retrieving the process status. Once completed, three Web resources (here: GeoTIFF) are displayed:
+Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a Web resource ID (red box) and a resource URI is shown:
+
+<center>
+<a href="img/curl_resource_id.png"><img src="img/curl_resource_id.png" width="60%"></a><br>
+</center>
+
+Use this URI for retrieving the process status, e.g. using your browser (`F5` to reload page until job is ready).
+Once the job has been completed ("Processing successfully finished"), three Web resources (here: COG - Cloud Optimized GeoTIFF) are shown at bottom of the JSON output:
 
 ```bash
 # update the URI to that of your job, and be sure to use https:
-curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | json
+curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | jq
 
 ...
   "status": "finished",
