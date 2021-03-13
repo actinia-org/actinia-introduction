@@ -943,7 +943,7 @@ ace info_job="resource_id-b1cf32e3-bf07-4b57-858e-5d6a9767dd63"
  'user_id': 'demouser'}
 ```
 
-## Inspecting the REST call prior to submission: show process chain
+### Inspecting the REST call prior to submission: show process chain
 
 To generate the actinia process chain JSON request simply add the -d (dry-run) flag:
 
@@ -1326,6 +1326,8 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 <!--
 (duration: 40 min)
 -->
+
+Meanwhile you have seen a lot of material. Time to try out some further exercises...
 
 ### EXERCISE: "Population at risk near coastal areas"
 
