@@ -625,8 +625,9 @@ Note that the download of Web resources provided by actinia requires authenticat
 
 At time (more to come) the following export formats are currently supported:
 
-* raster: `GTiff`, `COG`
-* vector: `ESRI_Shapefile`, `GeoJSON`, `GML`
+* raster: `COG`, `GTiff`
+* vector: `GPKG`, `GML`, `GeoJSON`, `ESRI_Shapefile`, `SQLite`, `CSV`
+* database: `PostgreSQL`
 * table: `CSV`, `TXT`
 
 
