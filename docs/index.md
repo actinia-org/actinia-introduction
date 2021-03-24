@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 12 Mar 2021*
+*Last update: 24 Mar 2021*
 
 ## Abstract
 
@@ -1375,6 +1375,10 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
 
 
 ## See also
+
+### How to contribute
+
+Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/master/CONTRIBUTING.md)
 
 ### openEO resources
 
