@@ -17,9 +17,9 @@ URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://n
 
 <img src="img/actinia_logo.png" width="30%" align="right">
 
-Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019.
+Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019.
 
-In this course we will briefly give a short introduction to REST API and cloud processing concepts. This is followed by an introduction to actinia processing along with hands-on to get more familiar with the topic by exercises.
+In this course we will briefly give a short introduction to REST API and cloud processing concepts. This is followed by an introduction to actinia processing along with hands-on to get more familiar with the topic by means of exercises.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
@@ -89,12 +89,12 @@ To make you familiar with a few concepts, let's take a look at the "graphical in
 (duration: 10 min)
 -->
 
-For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation** (i.e., geodata such as raster, vector, timeseries, and image data including aerial, drone, satellite data).
+For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation** (i.e., geodata such as raster, vector, time series, and image data including aerial, drone, and satellite data).
 The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API basics and cloud processing related hints.
 
 ### Why cloud computing?
 
-With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and increasing availability of open data the need for computational resources is growing in a non-linear way.
+With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and theh increasing availability of open data, the need for computational resources is growing in a non-linear way.
 
 Cloud technology offers a series of **advantages**:
 
@@ -114,7 +114,7 @@ Still, some critical **issues** have to be addressed in the geospatial realm:
 
 ### Overview actinia
 
-Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
+Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
 
 ### Components of actinia
 
@@ -122,7 +122,7 @@ Actinia is composed of several components.
 
 Core system:
 
-* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
+* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed and, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
 
 Plugins:
 
@@ -138,13 +138,13 @@ Fig. 1: Components of actinia (core and plugins)
 
 **Functionality beyond GRASS GIS**
 
-Actinia is not only a REST interface to GRASS GIS, but it offers through wrapping the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). To integrate other than GRASS GIS software, a wrapper script is to be written (style: as a GRASS GIS Addon Python script) which then includes the respective function calls of the software to be integrated.
+Actinia is not only a REST interface to GRASS GIS, but it offers the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). To integrate other than GRASS GIS software, a wrapper script is to be written (style: as a GRASS GIS Addon Python script) which then includes the respective function calls of the software to be integrated.
 
 **Persistent and ephemeral databases**
 
 **Persistent storage** refers to a data store that retains data even in the event of a power-off, as well as retaining it without a scheduled deletion time. In the geo/EO context, persistent storage is used to provide, for example, base cartography, i.e. elevation models, road networks, building footprints, etc.
 
-The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage data are only kept for a limited period of time (e.g., in actinia, for 24 hs by default).
+The **ephemeral storage** is used for on demand computed results including user generated data and temporary data as occurring in processing chains. In an ephemeral storage, data are only kept for a limited period of time (e.g., in actinia, for 24 hs by default).
 
 In the cloud computing context these differences are relevant as cost incurs when storing data.
 
@@ -154,7 +154,7 @@ The actinia server has access to compute nodes (**actinia nodes**; separate phys
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf) )
+Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf))
 </center>
 
 **Architecture of actinia**
@@ -201,7 +201,7 @@ With respect to actinia, **various ways of [deployment](https://github.com/mundi
 
 An **API** (Application Programming Interface) defines a way of communicating between different software applications. A **RESTful** API (Representational State Transfer - REST, for details see [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)) is a web API for creating web services that communicate with web resources.
 
-In detail, a REST API uses URL arguments to specify what information shall be returned through the API. This is not much different from requesting a Web page in a browser but through the REST API we can **execute commands remotely and retrieve the results**.
+In detail, a REST API uses URL arguments to specify what information shall be returned through the API. This is not much different from requesting a Web page in a browser, but through the REST API we can **execute commands remotely and retrieve the results**.
 
 Each URL is called a **request** while the data sent back to the user is called a **response**, after some **processing** was performed.
 
@@ -225,9 +225,9 @@ A **request** requires/consists of four parts (see also [1]):
 
 ### Endpoint
 
-In general, an endpoint is an entry point to a service, a process, or a queue or topic destination in service-oriented architecture. In the case of actinia, it may be a data query function, the computation of a vegetation index, the deletion of a dataset, and more.
-Effectively, an endpoint is the URL you request for. It follows this structure: https://api.some.server/endpoint
-The final part of an endpoint is query parameters. Using query parameters you can modify your request with key-value pairs, beginning with a question mark (`?`). With an ampersand (`&`) each parameter pair is separated, e.g.:
+In general, an endpoint is an entry point to a service, a process, or a queue or topic destination in service-oriented architectures. In the case of actinia, it may be a data query function, the computation of a vegetation index, the deletion of a dataset, and more.
+Effectively, an endpoint is the URL you request for. It follows this structure: https://api.some.server/endpoint.
+The final part of an endpoint are the query parameters. Using query parameters you can modify your request with key-value pairs, beginning with a question mark (`?`). With an ampersand (`&`) each parameter pair is separated, e.g.:
 
 `?query1=value1&query2=value2`
 
@@ -239,7 +239,7 @@ As an example, we check the repositories of a GitHub user, in sorted form, using
 
 * Both requests and responses have two parts: a header, and optionally a body.
 * Response headers contain information about the response.
-* In both requests & responses, the body contains the actual data being transmitted (e.g., population data).
+* In both requests and responses, the body contains the actual data being transmitted (e.g., population data).
 
 ### Methods
 
@@ -263,10 +263,9 @@ Request **methods** (source: [2]):
 
 ### Related data format: JSON
 
-JSON is a structured, machine readable format (while also human readable at the same time; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation.
+JSON is a structured, machine readable format (while also human readable; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation. For example, this command line call...
 
-```bash
-# this command line call...
+```bash 
 GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
@@ -302,7 +301,7 @@ Hint: When writing JSON files, some linting (process of checking the source code
 
 Step 1:
 
-* get your credentials (for authentication) <strike>from the trainer or~~:</strike> use the `demouser` with `gu3st!pa55w0rd`
+* Get your credentials (for authentication) from the trainer or use the `demouser` with `gu3st!pa55w0rd`
 
 Step 2:
 
@@ -311,7 +310,7 @@ Step 2:
 
 Step 3:
 
-* choose and launch your REST client: cURL or RESTman or ...
+* Choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
     * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
 * Try the same request again:
@@ -334,12 +333,12 @@ Step 4:
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
-    * note: `process_results` are ordered alphabetically, not thematically
+    * Note: `process_results` are ordered alphabetically, not thematically
 
 ### Summary
 
 So far we have seen some REST basics and explored a few endpoints provided by actinia.
-Indeed the structure of the endpoints follow some GRASS GIS concepts (compare the graphical introduction above) but this does not limit us much from processing "any" geospatial data.
+Indeed the structure of the endpoints follow some GRASS GIS concepts (compare the graphical introduction above), but this does not limit us much from processing "any" geospatial data.
 
 
 ## Exploring the API: finding available actinia endpoints
@@ -348,7 +347,7 @@ Indeed the structure of the endpoints follow some GRASS GIS concepts (compare th
 (duration: 40 min)
 -->
 
-The actinia REST API documentation is online available (directly generated from the source code of actinia).
+The actinia REST API documentation is available online (directly generated from the source code of actinia).
 Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
 
 * Module Management
@@ -372,11 +371,11 @@ Check out some of the various sections in the [actinia API docs](https://redocly
 
 List of endpoints, shown in the web browser:
 
-* To see a simple **list of endpoints** (and more), see the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
+* To see a simple **list of endpoints** (and more), have a look at the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
 
 <center>
 <a href="img/actinia_swagger_paths.png"><img src="img/actinia_swagger_paths.png" width="60%"></a><br>
-Fig. 5: actinia list of endpoints (in "paths" section)
+Fig. 5: actinia list of endpoints (in the "paths" section)
 </center>
 
 * **List of supported processes** (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
@@ -452,7 +451,7 @@ export AUTH='-u demouser:gu3st!pa55w0rd'
 
 #### List available locations
 
-First we want to see the list of available "locations". A location in GRASS-speak is simply a project folder which contains geospatial data:
+First, we want to see the list of available "locations". A location in GRASS-speak is simply a project folder which contains geospatial data:
 
 ```bash
 # show available locations (locations are like projects)
@@ -471,7 +470,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
 
 #### List mapsets in locations
 
-Next we look at so-called "mapsets" which are subfolders in a location (just to better organise the geospatial data):
+Next, we look at so-called "mapsets" which are subfolders in a location (just to better organise the geospatial data):
 
 ```bash
 # show available mapsets of a specific location
@@ -544,7 +543,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 
 #### Map layer and space-time cube queries
 
-Time to retrieve something from the server. We want to query the stack of multitemporal datasets available and specifically retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)), For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
+It's time to retrieve something from the server. We want to query the stack of multitemporal datasets available and more specifically, retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)). For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
 
 ```bash
 # query point value in a STRDS, sending a GeoJSON file of the point position along with the request
@@ -565,7 +564,7 @@ Fig. 7 RESTman POST request example (source: Luca Delucchi)
 
 #### Sending JSON payload as a file
 
-In the example above we have sent JSON code to the server directly in the request. However, with longer process chains this is hard to manage. It is often much more convenient to store the JSON code as "payload" in a file and send it to server:
+In the example above we have sent JSON code to the server directly in the request. However, with longer process chains this is hard to manage. It is often much more convenient to store the JSON code as "payload" in a file and send it to the server:
 
 ```bash
 # store query in a JSON file "pc_query_point_.json" (or use a text editor for this)
@@ -589,7 +588,7 @@ curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/loca
 
 #### Converting a process chain back into commands
 
-To turn a process chain back into a command style notation, the validator can be used for this as well and the relevant code extracted from the resulting JSON response.
+To turn a process chain back into command style notation, the validator can be used and the relevant code extracted from the resulting JSON response.
 Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and extract the section containing the underlying commands by parsing the actinia server response with `jq`:
 
 ```bash
@@ -618,12 +617,12 @@ curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${
 
 ### Data exchange: import and export
 
-Actinia can import from external Web resources. use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources. This can then be downloaded, opened by QGIS, imported into GRASS GIS or other software.
+Actinia can import from external Web resources, use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources. These latter can then be downloaded, opened by QGIS, imported into GRASS GIS or other software.
 Note that the download of Web resources provided by actinia requires authentication, e.g. the `demouser`.
 
 **Available export formats**
 
-At time (more to come) the following export formats are currently supported:
+At time (more to come) the following export formats are supported:
 
 * raster: `GTiff`, `COG`
 * vector: `ESRI_Shapefile`, `GeoJSON`, `GML`
@@ -632,7 +631,7 @@ At time (more to come) the following export formats are currently supported:
 
 ### Dealing with workflows (processing chains)
 
-The overall goal is to "getting stuff done". In this case it means that we can concatenate (chain) a series of command where the output of one step may be used an the input of the following step.
+The overall goal is to "get stuff done". In this case it means that we can concatenate (chain) a series of commands where the output of one step may be used as the input of the following step.
 
 The general procedure comprises:
 
@@ -645,7 +644,7 @@ The general procedure comprises:
 (see also: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77](https://github.com/mundialis/actinia_core/blob/master/scripts/curl_commands.sh#L77)
 -->
 
-To turn concept this into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
+To turn this concept into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
 
 ```bash
 curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json | jq
@@ -658,7 +657,7 @@ Being an asynchronous process, the result is not offered directly but at the bot
 </center>
 
 Use this URI for retrieving the process status, e.g. using your browser (`F5` to reload page until job is ready).
-Once the job has been completed ("Processing successfully finished"), three Web resources (here: COG - Cloud Optimized GeoTIFF) are shown at bottom of the JSON output:
+Once the job has been completed ("Processing successfully finished"), three Web resources (here: COG - Cloud Optimized GeoTIFF) are shown at the bottom of the JSON output:
 
 ```bash
 # update the URI to that of your job, and be sure to use https:
@@ -693,9 +692,9 @@ Fig. 8: actinia output shown in QGIS (aspect map)
 (duration: 40 min)
 -->
 
-Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/).
+Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/)).
 
-The "ace" - actinia command execution from a GRASS GIS terminal is a wrapper tool written in Python which simplifies the writing of processing chains notably.
+The "ace" - actinia command execution from a GRASS GIS terminal - is a wrapper tool written in Python which simplifies the creation of processing chains notably.
 
 To try it out, start GRASS GIS with the `nc_spm_08` North Carolina sample location. You can download it easily through the `Download` button in the graphical startup (recommended; see Fig. 9) or from [grass.osgeo.org/download/sample-data/](https://grass.osgeo.org/download/sample-data/).
 
@@ -734,7 +733,7 @@ g.extension extension=exporter url=https://github.com/mundialis/exporter
 g.extension extension=ace url=https://github.com/mundialis/ace
 ```
 
-To explore the `ace` tool, follow the usage examples found here:
+To explore the `ace` tool, follow the usage examples here:
 
 [https://github.com/mundialis/actinia_core/blob/master/scripts/README.md](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md)
 
