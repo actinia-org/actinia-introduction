@@ -94,7 +94,7 @@ The tutorial includes, however, a brief introduction to **REST** (Representation
 
 ### Why cloud computing?
 
-With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and theh increasing availability of open data, the need for computational resources is growing in a non-linear way.
+With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and the increasing availability of open data, the need for computational resources is growing in a non-linear way.
 
 Cloud technology offers a series of **advantages**:
 
