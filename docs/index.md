@@ -11,7 +11,7 @@ Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
 
-*Last update: 24 Mar 2021*
+*Last update: 8 Apr 2021*
 
 ## Abstract
 
@@ -695,7 +695,7 @@ Fig. 8: actinia output shown in QGIS (aspect map)
 
 ### Introduction to ace - actinia command execution
 
-Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for intro course, see [here](https://neteler.gitlab.io/grass-gis-analysis/).
+Controlling actinia from a running GRASS GIS session is a convenient way of writing process chains. It requires some basic GRASS GIS knowledge (for an intro course, e.g. see [here](https://neteler.gitlab.io/grass-gis-analysis/)).
 
 The `ace` (actinia command execution) tool allows the execution of a single GRASS GIS command or a list of GRASS GIS commands on an actinia REST service (e.g., https://actinia.mundialis.de/). In addition it provides job management, the ability to list locations, mapsets and map layer the user has access to as well as the creation and deletion of mapsets. The `ace` tool is a GRASS GIS addon and must be executed in an active GRASS GIS session.
 
@@ -1375,7 +1375,7 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
 
 ## See also
 
-### How to contribute
+### How to contribute to actinia
 
 Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/master/CONTRIBUTING.md)
 
@@ -1405,6 +1405,9 @@ Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/mast
 
 [4] actinia article: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
+## Acknowledgement
+
+The review by [Vero Andreo](https://veroandreo.gitlab.io/) is greatly appreciated.
 
 ------------------------------------------------------------------------
 
