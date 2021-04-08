@@ -567,7 +567,9 @@ Fig. 7 RESTman POST request example (source: Luca Delucchi)
 In the example above we have sent JSON code to the server directly in the request. However, with longer process chains this is hard to manage. It is often much more convenient to store the JSON code as "payload" in a file and send it to the server:
 
 ```bash
-# store query in a JSON file "pc_query_point_.json" (or use a text editor for this)
+# note: you can easily generate such a GeoJSON file with ogr2ogr or v.out.ogr
+#
+# store the query in a JSON file "pc_query_point_.json" (or use a text editor for this)
 echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}' > pc_query_point_.json
 
 # send JSON file as payload to query the STRDS
@@ -868,7 +870,7 @@ Simply use `@name_of_mapset`.
 
 A great feature is the possibility to import remote datasets on the fly. This means that a raster or vector file may be retrieved through a URL specified in a command by adding it to the input map name. There are two options:
 
-1. use of the `importer` addon (required for multispectral data; works for raster and vector data). Example:
+1) use of the `importer` addon (required for multispectral data; works for raster and vector data). Example:
 
 ```
 ...
@@ -876,7 +878,7 @@ importer raster=ortho2010@https://apps.mundialis.de/workshops/osgeo_ireland2017/
 ...
 ```
 
-2. use of augmented map names by specifying the URL with the `@` operator to import a web located resource.
+2) use of an "augmented" (GRASS GIS notion enhanced by actinia... smiley) map names by specifying the URL with the `@` operator to import a web located resource. Example:
 
 ```
 ...
