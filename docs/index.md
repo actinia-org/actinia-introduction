@@ -167,7 +167,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
     * most importantly, the **REST API**,
     * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
     * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session),
-* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi),
+* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI (Geodata Infrastructure, also called SDI: Spatial Data Infrastructure) including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi),
 * metadata management: interface to GNOS via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin),
 * module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin),
 * database system:
