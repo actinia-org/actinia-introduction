@@ -1377,6 +1377,10 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
 
 ## See also
 
+### What does actinia mean?
+
+Actinia is a beautiful sea creature and a genus of sea anemones in the family Actiniidae (see https://en.wikipedia.org/wiki/Actinia). While the sea creature is filtering the sea water, the [actinia geoprocessing platform](https://actinia.mundialis.de/) filters in large data oceans.
+
 ### How to contribute to actinia
 
 Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/master/CONTRIBUTING.md)
