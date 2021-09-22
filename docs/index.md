@@ -265,7 +265,7 @@ Request **methods** (source: [2]):
 
 JSON is a structured, machine readable format (while also human readable; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation. For example, this command line call...
 
-```bash 
+```bash
 GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
@@ -422,7 +422,7 @@ curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json
 ]
 ```
 
-<!-- 
+<!--
 ```
 ## alternative: we filter the paths on the fly with `json`
 # installation: sudo npm install -g json
@@ -1333,15 +1333,16 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
 ### EXERCISE: "Population at risk near coastal areas"
 
 * needed geodata:
-    * SRTM 30m (already available in actinia - find out the location yourself)
-    * Global Population 2015 (already available in actinia - find out the location yourself)
-    * vector shorelines (get from [naturalearthdata](http://www.naturalearthdata.com/downloads/))
-* fetch metadata with actinia interface
-* before doing any computations: what's important about projections?
+    * Worldwide SRTM 30m (already available in actinia as `srtmgl1_v003_30m` - find out the location yourself)
+    * South America Population 2015 (already available in actinia as `worldpop_2015_1km_aggregated_UNadj`- find out the location yourself)
+    * raster shorelines (already available in actinia as `ne_30m_coastlines`- find out the location yourself)
+* fetch metadata with actinia interface and render input data
 * proposed workflow:
-    * set computational region to a small subregion and constrain the pixel number through defined user settings
-    * buffer SRTM land areas by 5000 m inwards
-    * zonal statistics with population map
+    * set computational region to a small subregion (hint: `align` the region resolution to the population raster) and check the pixel number against user constraints
+    * buffer the coastlines by 5000 m and set a mask to the result
+    * Extract only the peopulation below 10 m
+    * Calculate the statistic to get the population at risk near coastal areas
+* Hints for example GRASS modules to use in process chain: `g.region`, `r.buffer`, `r.mapcalc`, `r.mask`, `r.univar`
 
 ### EXERCISE: "Property risks from trees"
 
