@@ -3,19 +3,21 @@
 Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
 
 <!-- **** Begin Fork-Me-On-Gitlab-Ribbon-HTML. See MIT License at https://gitlab.com/seanwasere/fork-me-on-gitlab **** -->
-<a href="https://gitlab.com/neteler/actinia-introduction/">
-    <span style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); background-color:green; color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitLab</span>
+<a href="https://github.com/mmacata/actinia-introduction/">
+    <span style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); background-color:green; color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitHub</span>
 </a>
 <!-- **** End Fork-Me-On-Gitlab-Ribbon-HTML **** -->
 
 
-URL of this dcument: [https://neteler.gitlab.io/actinia-introduction/](https://neteler.gitlab.io/actinia-introduction/)
+URL of this dcument: [https://mmacata.github.io/actinia-introduction/](https://mmacata.github.io/actinia-introduction/)
 
-*Last update: 8 Apr 2021*
+This workshop is a fork of https://neteler.gitlab.io/actinia-introduction. The initial workshop has a more detailed chapter about ace - the actinia command execution. This workshop focuses more on the "bare" HTTP API from actinia.
+
+*Last update: 21 Sep 2021*
 
 ## Abstract
 
-<img src="img/actinia_logo.png" width="30%" align="right">
+<img src="img/actinia_logo.svg" width="30%" align="right">
 
 Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an open source REST API for scalable, distributed, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019.
 
@@ -25,7 +27,7 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 ## Required software for this tutorial
 
-We will use a browser plugin to try out some REST commands. Then we'll also use GRASS GIS and a special command to control actinia from remote. This requires some software to be installed:
+We will use a command line tool or browser plugin to try out some REST commands. Then we'll also use GRASS GIS and a special command to control actinia from remote. This requires some software to be installed:
 
 * REST client (command line tool or browser plugin):
     * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
@@ -130,15 +132,20 @@ Plugins:
 * [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
 * [actinia-statistic-plugin](https://github.com/mundialis/actinia_statistic_plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
 * [actinia-satellite-plugin](https://github.com/mundialis/actinia_satellite_plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
+* [actinia-stac-plugin](https://github.com/mundialis/actinia-stac-plugin): Plugin for actinia to read STAC catalogs and retrieve data for processing
+
+Related:
+
+* [openeo-grassgis-driver](https://github.com/Open-EO/openeo-grassgis-driver): OpenEO driver for GRASS GIS/actinia. Backend description at https://openeo.mundialis.de/.well-known/openeo
 
 <center>
-<a href="img/actinia_architecture.png"><img src="img/actinia_architecture.png" width="60%"></a><br>
+<a href="img/actinia-plugins.png"><img src="img/actinia-plugins.png" width="80%"></a><br>
 Fig. 1: Components of actinia (core and plugins)
 </center>
 
 **Functionality beyond GRASS GIS**
 
-Actinia is not only a REST interface to GRASS GIS, but it offers the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). To integrate other than GRASS GIS software, a wrapper script is to be written (style: as a GRASS GIS Addon Python script) which then includes the respective function calls of the software to be integrated.
+Actinia is not only a REST interface to GRASS GIS, but it offers the possibility to extend its functionality with other software (ESA SNAP, GDAL, ...). To integrate other than GRASS GIS software, a wrapper script is to be written (style: as a GRASS GIS Addon Python script) which then includes the respective function calls of the software to be integrated. Calling shell commands in an actinia process chain is also possible but limited due to security risks.
 
 **Persistent and ephemeral databases**
 
@@ -150,11 +157,11 @@ In the cloud computing context these differences are relevant as cost incurs whe
 
 Accordingly, actinia offers two modes of operation: persistent and ephemeral processing. In particular, the **actinia server** is typically deployed on a server with access to a persistent GRASS GIS database (PDB) and optionally to one or more GRASS GIS user databases (UDB).
 
-The actinia server has access to compute nodes (**actinia nodes**; separate physically distinct machines) where the actual computations are performed. The actinia server acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 2).
+Actinia is deployed multiple times as so called **actinia nodes** (separate physically distinct machines) where the actual computations are performed. They can be deployed with the help of cloud technology like e.g. kubernetes, openshift and docker-swarm. This technology then acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 2).
 
 <center>
 <a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/digging_earth_ftth_grass_actinia/2019_foss4g_bucharest_digging_earth_ftth_grass_actinia.pdf))
+Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html))
 </center>
 
 **Architecture of actinia**
@@ -174,7 +181,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
     * job management in a Redis database,
     * the GRASS GIS database (here are the geo/EO data stored!),
 * connection to OGC Web services for output:
-   * Geoserver integration (forthcoming).
+   * Geoserver integration.
 
 <center>
 <a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
@@ -199,22 +206,13 @@ With respect to actinia, **various ways of [deployment](https://github.com/mundi
 
 ### What is REST: intro
 
-An **API** (Application Programming Interface) defines a way of communicating between different software applications. A **RESTful** API (Representational State Transfer - REST, for details see [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)) is a web API for creating web services that communicate with web resources.
+An **API** (Application Programming Interface) defines a way of communicating between different software applications. A **RESTful** API (Representational State Transfer - REST, for details see [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)) is a web API for communicating with web resources.
 
 In detail, a REST API uses URL arguments to specify what information shall be returned through the API. This is not much different from requesting a Web page in a browser, but through the REST API we can **execute commands remotely and retrieve the results**.
 
 Each URL is called a **request** while the data sent back to the user is called a **response**, after some **processing** was performed.
 
-There are two types of request: **synchronous** and **asynchronous**. In the case of a synchronous request, the client sends it to the server and waits for a response. In geospatial computing, processing can take some time, which would block the client because it is only waiting. To avoid this, there is also the asynchronous request type. Here the client does not wait directly for a response, but checks from time to time whether the job has been completed (by "polling").
-
-<!--
-###  Concepts of service URL, resources, request, response...
-
-Looking in further detail into REST calls, we see that an API request consists of three parts (source: [https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/)):
-*   Data **request**: through this you try to access an URL using your browser that specifies a particular subset of data.
-*   Data **processing:** A web server somewhere uses that URL to query a specified dataset.
-*   Data **response**: The web server then sends back some content to you.
--->
+There are two types of request: **synchronous** and **asynchronous**. In the case of a synchronous request, the client sends it to the server and waits for a response. In geospatial computing, processing can take some time, which would block the client because it is only waiting. In default configurations the communication is canceled by the client after some minutes, called a "timeout". To avoid this, there is also the asynchronous request type. Here the client does not wait directly for a response, but checks from time to time whether the job has been completed (by "polling"), or by providing an API itself which will be informed when the job is finished ("webhook").
 
 A **request** requires/consists of four parts (see also [1]):
 
@@ -233,13 +231,15 @@ The final part of an endpoint are the query parameters. Using query parameters y
 
 As an example, we check the repositories of a GitHub user, in sorted form, using the `repos` endpoint + query:
 
-[https://api.github.com/users/neteler/repos?sort=pushed](https://api.github.com/users/neteler/repos?sort=pushed)
+[https://api.github.com/users/mmacata/repos?sort=pushed](https://api.github.com/users/mmacata/repos?sort=pushed)
 
 ### Header & Body
 
-* Both requests and responses have two parts: a header, and optionally a body.
-* Response headers contain information about the response.
-* In both requests and responses, the body contains the actual data being transmitted (e.g., population data).
+* Both requests and responses have two parts: a header, and optionally a body
+* Header information contain e.g. authentication
+* In both requests and responses, the body contains the actual data being transmitted
+* The request body is only necessary for certain HTTP methods (e.g. HTTP POST) and can contain any form of data, e.g. an actinia process chain
+* The response body returns information or results. Examples in actinia are json data or GeoTIFF results
 
 ### Methods
 
@@ -248,8 +248,8 @@ Request **methods** (source: [2]):
 * In REST APIs, every request has an HTTP method type associated with it.
 * The most common HTTP methods (or verbs) include:
     * `GET` - a GET request asks to receive a copy of a resource
-    * `POST` - a POST request sends data to a server in order to change or update resources
-    * `PUT` - a PUT request sends data to a server in order to replace existing or create new resources
+    * `POST` - a POST request sends data to a server in order to replace existing or create new resources
+    * `PUT` - a PUT request sends data to a server in order to change or update resources
     * `DELETE` - a DELETE request is sent to remove or destroy a resource
 
 ### Response codes
@@ -312,7 +312,8 @@ Step 3:
 
 * Choose and launch your REST client: cURL or RESTman or ...
     * a) [cURL](https://curl.haxx.se/docs/manpage.html), on command line
-    * b) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
+    * b) [Thunderclient plugin](https://www.thunderclient.io/), for VS Code editor or find a plugin for your favorite editor
+    * c) [RESTman](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi) ([manual](https://github.com/jsargiot/restman)), in Browser
 * Try the same request again:
 
 <center>
