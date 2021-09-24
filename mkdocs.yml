@@ -5,3 +5,14 @@ docs_dir:  docs
 theme:     readthedocs
 # https://github.com/mkdocs/mkdocs/issues/991
 use_directory_urls: true
+# use_directory_urls: false
+# plugins:
+#     - with-pdf
+nav:
+    - 'inidex.md'
+    - '2_concepts.md'
+    - '3_explore.md'
+    - '4_ace.md'
+    - '5_exercises.md'
+    - '6_conclusions.md'
+    - 'about.md'
