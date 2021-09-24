@@ -265,7 +265,7 @@ Request **methods** (source: [2]):
 
 JSON is a structured, machine readable format (while also human readable; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation. For example, this command line call...
 
-```bash 
+```bash
 GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
@@ -422,7 +422,7 @@ curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json
 ]
 ```
 
-<!-- 
+<!--
 ```
 ## alternative: we filter the paths on the fly with `json`
 # installation: sudo npm install -g json
@@ -1330,20 +1330,41 @@ See: [https://github.com/mundialis/actinia_core/blob/master/scripts/curl_command
 
 Meanwhile you have seen a lot of material. Time to try out some further exercises...
 
+### SMALL EXERCISES
+
+1. What is the altitude of the highest point in North Carolina? Check it with actinia.
+  * Find the correct raster in the North Carolina location and PERMANENT mapset.
+  * Find the relevant raster layer by rendering it
+  * Print the information and get altitude of the highest point
+
+2. Find the zipcode in Wake county with the most hospitals
+  * Find the relevant vector layers
+  * Check the zipcode vector layer for the relevant column to get the zipcode
+  * Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules `g.copy` (because you are not allowed to change data from an other mapset), `v.vect.stats` and `v.db.select`
+  * Post the created process chain to `https://actinia.mundialis.de/api/v1/locations/nc_spm_08/processing_async` for ephemeral processing
+
+3. Export the water bodies from the available Landsat imagery of North Carolina
+  * Create a process chain as a .json file
+    * Remember to set the computational region
+    * Compute the NDWI (Normalized difference water index); use `r.mapcalc` or `i.vi`
+    * Filter water bodies by a threshold of e.g. 0.35 using `r.mapcalc`
+  * Either export the water bodies (use the `exporter` with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use `r.colors` and persistent processing in your own mapset)
+
 ### EXERCISE: "Population at risk near coastal areas"
 
 * needed geodata:
-    * SRTM 30m (already available in actinia - find out the location yourself)
-    * Global Population 2015 (already available in actinia - find out the location yourself)
-    * vector shorelines (get from [naturalearthdata](http://www.naturalearthdata.com/downloads/))
-* fetch metadata with actinia interface
-* before doing any computations: what's important about projections?
+    * Worldwide SRTM 30m (already available in actinia as `srtmgl1_v003_30m` - find out the location yourself)
+    * South America Population 2015 (already available in actinia as `worldpop_2015_1km_aggregated_UNadj`- find out the location yourself)
+    * raster shorelines (already available in actinia as `ne_1000m_coastlines`- find out the location yourself)
+* fetch metadata with actinia interface and render input data
 * proposed workflow:
-    * set computational region to a small subregion and constrain the pixel number through defined user settings
-    * buffer SRTM land areas by 5000 m inwards
-    * zonal statistics with population map
+    * set computational region to a small subregion (hint: `align` the region resolution to the population raster) and check the pixel number against user constraints
+    * buffer the coastlines by 5000 m and set a mask to the result
+    * Extract only the peopulation below 10 m
+    * Calculate the statistic to get the population at risk near coastal areas
+* Hints for example GRASS modules to use in process chain: `g.region`, `r.buffer`, `r.mapcalc`, `r.mask`, `r.univar`
 
-### EXERCISE: "Property risks from trees"
+<!-- ### EXERCISE: "Property risks from trees"
 
 (draft idea only, submit your suggestion to trainer how to solve this task)
 
@@ -1362,7 +1383,7 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
     * on binary tree map (which corresponds to risk exposure)
     * count number of tree pixels in 5x5 moving window (`r.neighbors` with method "count")
     * compute property risk statistics using buffers and tree count map and upload to buffered building map (`v.rast.stats`, method=maximum)
-    * export of results through REST resources
+    * export of results through REST resources -->
 
 ## Conclusions and future
 
