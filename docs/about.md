@@ -4,6 +4,8 @@ Markus Neteler is co-founder of [mundialis](https://www.mundialis.de) GmbH & Co.
 
 Carmen Tawalika started working for mundialis in 2015 as the first developer. Growing together with the company, her passion for open source software never faded. In 2016 she was in the FOSS4G Bonn organization team and responsible for the workshops. In 2019 she became a member of OSGeo. She is heavily involved in the development of [actinia](https://github.com/mundialis/actinia_core) and a member of the PSC.
 
+Guido Riembauer studied Geoinformation and Visualisation at University of Potsdam and worked as a trainee for ESA’s Earth Observation Programme before joining mundialis in early 2020. He is a developer and data analyst at mundialis and has specialized in (radar) remote sensing. Guido is involved in the development of [GRASS-GIS](https://github.com/OSGeo/grass-addons) and [actinia](https://github.com/mundialis/actinia_core) modules to import and analyse Copernicus Sentinel data.
+
 # Any feedback?
 
 Please write to me at: neteler @ mundialis.de
