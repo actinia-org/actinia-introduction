@@ -1,7 +1,7 @@
 # Own exercises in actinia
 
 <!--
-(duration: 40 min)
+(duration: up to 2h)
 -->
 
 Meanwhile you have seen a lot of material. Time to try out some further exercises...
