@@ -1,7 +1,5 @@
 # Some Concepts
 
-## Introduction
-
 <!--
 (duration: 10 min)
 -->
@@ -9,7 +7,7 @@
 For this tutorial we assume working knowledge concerning **geospatial analysis and Earth observation** (i.e., geodata such as raster, vector, time series, and image data including aerial, drone, and satellite data).
 The tutorial includes, however, a brief introduction to **REST** (Representational State Transfer) API basics and cloud processing related hints.
 
-### Why cloud computing?
+## Why cloud computing?
 
 With the tremendous increase of available geospatial and Earth observation lately driven by the European <a href="https://www.copernicus.eu">Copernicus programme</a> (esp. the Sentinel satellites) and the increasing availability of open data, the need for computational resources is growing in a non-linear way.
 
@@ -29,7 +27,7 @@ Still, some critical **issues** have to be addressed in the geospatial realm:
     * btw., we are on it: the [openEO H2020 project](https://openeo.org)
 * lack of cloud abstraction, needed for easier move between vendors and providers.
 
-### Overview actinia
+## Overview actinia
 
 Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
 

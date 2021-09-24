@@ -6,6 +6,8 @@ Carmen Tawalika started working for mundialis in 2015 as the first developer. Gr
 
 Anika Weinmann studied geodesy and geoinformation at the University of Bonn. In her master thesis she specializes in solving remote sensing tasks with a Deep Learning approach. She started working for mundialis in 2018, contributes to [actinia](https://github.com/mundialis/actinia_core) and is a member of the PSC.
 
+Guido Riembauer studied Geoinformation and Visualisation at University of Potsdam and worked as a trainee for ESA’s Earth Observation Programme before joining mundialis in early 2020. He is a developer and data analyst at mundialis and has specialized in (radar) remote sensing. Guido is involved in the development of [GRASS-GIS](https://github.com/OSGeo/grass-addons) and [actinia](https://github.com/mundialis/actinia_core) modules to import and analyse Copernicus Sentinel data.
+
 # Any feedback?
 
 Please write to me at: neteler @ mundialis.de
