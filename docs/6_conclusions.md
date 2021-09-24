@@ -14,7 +14,7 @@
 ### FOSS4G 2021 talk "news from actinia"
 2021-09-30, 09:30–10:00, Córdoba
 
-<a href="https://callforpapers.2021.foss4g.org/foss4g2021/talk/E9ZA7B/"><img src="img/news-from-actinia.jpeg" width="60%"></a><br>
+<a href="https://callforpapers.2021.foss4g.org/foss4g2021/talk/E9ZA7B/"><img src="../img/news-from-actinia.jpeg" width="60%"></a><br>
 
 ### FOSS4G 2021 OSGeo Community sprint
 

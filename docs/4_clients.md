@@ -162,7 +162,7 @@ ace location="nc_spm_08" script="/tmp/ace_segmentation.sh"
 
 The results are provided as REST resources for download or consumtion in other systems.
 
-<a href="img/ortho2010.jpeg"><img src="img/ortho2010.jpeg" width="100%"></a><br>
+<a href="../img/ortho2010.jpeg"><img src="../img/ortho2010.jpeg" width="100%"></a><br>
 Fig. 9: actinia output maps. From left to right: "ortho2010_segment_25.tif", "ortho2010_seg_25_fit.tif", "ortho2010_segment_25.geojson"
 
 <p style="border:lightgreen solid 5px;padding:5px; width:80%">
@@ -193,14 +193,14 @@ In the actinia Connector plugin you can create a new project or load an old one.
 When a new project is created, a new project file is created. The user can set a project name and a data directory, where data created by the plugin are saved.
 Additional the actinia settings have to be set. These settings are the base url, user and password. As simple example you can select the https://actinia.mundialis.de/ with the demouser and password gu3st!pa55w0rd. But you can also use another actinia server or one you have set up yourself.
 
-<a href="img/ac_project_setup.jpg"><img src="img/ac_project_setup.jpg" width="60%"></a><br>
+<a href="../img/ac_project_setup.jpg"><img src="../img/ac_project_setup.jpg" width="60%"></a><br>
 Fig. 10: actinia connector, project setup
 
 ### Location management
 
 In the location management screen you can query all locations available for you with the “Get locations” button and then select a location and query its information with the “Get selected location info (region and projection)” button or use this location in another tab for another functionality.
 
-<a href="img/ac_01_location_management.jpg"><img src="img/ac_01_location_management.jpg" width="60%"></a><br>
+<a href="../img/ac_01_location_management.jpg"><img src="../img/ac_01_location_management.jpg" width="60%"></a><br>
 Fig. 11: actinia connector, location management
 
 ### Mapset management
@@ -209,7 +209,7 @@ For mapset management a selected location (in the location tab) is required. Fro
 
 When selecting one of these mapsets, information can be queried with the “Get selected mapset info (region and projection)” button or the layer in this mapset can be used in the raster maps or vector maps tab.
 
-<a href="img/ac_02_mapset_management.jpg"><img src="img/ac_02_mapset_management.jpg" width="60%"></a><br>
+<a href="../img/ac_02_mapset_management.jpg"><img src="../img/ac_02_mapset_management.jpg" width="60%"></a><br>
 Fig. 12: actinia connector, mapset management
 
 ### Raster management
@@ -219,7 +219,7 @@ For raster management, both a location and a mapset must be selected (these are 
 If you select one of them, you can query the map information for it using the “Get selected raster map info” or import the raster map into QGIS.
 There are two ways to import a raster layer into QGIS. One is to simply use the button “Import selected raster map into QGIS” to import the entire raster map. There is also another possibility to select a layer in QGIS and then additionally select the radio button “by selected layer extent” to limit the extent of the raster map to be imported to the extent of the selected raster map. This extent can also be increased by a number of cells. However, care must be taken that the two maps overlap, otherwise an empty map will be imported into QGIS.
 
-<a href="img/ac_03_raster_management.jpg"><img src="img/ac_03_raster_management.jpg" width="60%"></a><br>
+<a href="../img/ac_03_raster_management.jpg"><img src="../img/ac_03_raster_management.jpg" width="60%"></a><br>
 Fig. 13: actinia connector, raster management
 
 ### Vector management
@@ -228,7 +228,7 @@ For vector management, both a location and a mapset must be selected (these are 
 
 If you select one of them, you can query the map information for it using the “Get selected vector map info” or import the vector map into QGIS with the “Import selected vector map into QGIS” button.
 
-<a href="img/ac_04_vector_management.jpg"><img src="img/ac_04_vector_management.jpg" width="60%"></a><br>
+<a href="../img/ac_04_vector_management.jpg"><img src="../img/ac_04_vector_management.jpg" width="60%"></a><br>
 Fig. 14: actinia connector, vector management
 
 ### Persistent and Ephemeral processing
@@ -238,5 +238,5 @@ For processing, a location must be selected (in the location tab). Via “Load p
 Before the processing can be started, the process type must also be selected. The process can be started as ephermeral or persistent process.
 If persistent processing is used, a mapset name must be entered in the empty text field. This can be a simple text e.g. “mapset_XY”. The mapset with this name is then created during the processing, and can be loaded afterwards via the tab mapsets.
 
-<a href="img/ac_05_processing.jpg"><img src="img/ac_05_processing.jpg" width="60%"></a><br>
+<a href="../img/ac_05_processing.jpg"><img src="../img/ac_05_processing.jpg" width="60%"></a><br>
 Fig. 15: actinia connector, persistent and ephemeral processing

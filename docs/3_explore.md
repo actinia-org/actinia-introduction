@@ -26,8 +26,8 @@ Step 3:
 * Try the same request again:
 
 <center>
-<a href="img/actinia_restman01.png"><img src="img/actinia_restman01.png" width="60%"></a><br>
-<a href="img/actinia_restman02.png"><img src="img/actinia_restman02.png" width="60%"></a><br>
+<a href="../img/actinia_restman01.png"><img src="../img/actinia_restman01.png" width="60%"></a><br>
+<a href="../img/actinia_restman02.png"><img src="../img/actinia_restman02.png" width="60%"></a><br>
 Fig. 4: Using RESTman
 </center>
 
@@ -89,14 +89,14 @@ List of endpoints, shown in the web browser:
 * To see a simple **list of endpoints** (and more), have a look at the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
 
 <center>
-<a href="img/actinia_swagger_paths.png"><img src="img/actinia_swagger_paths.png" width="60%"></a><br>
+<a href="../img/actinia_swagger_paths.png"><img src="../img/actinia_swagger_paths.png" width="60%"></a><br>
 Fig. 5: actinia list of endpoints (in the "paths" section)
 </center>
 
 * **List of supported processes** (> 500): see [API modules](https://actinia.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
 
 <center>
-<a href="img/actinia_modules.png"><img src="img/actinia_modules.png" width="60%"></a><br>
+<a href="../img/actinia_modules.png"><img src="../img/actinia_modules.png" width="60%"></a><br>
 Fig. 6: actinia list of GRASS GIS processes (> 500)
 </center>
 
@@ -193,7 +193,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets"
 ```
 
 <center>
-<a href="img/curl_output_std.png"><img src="img/curl_output_std.png" width="60%"></a><br>
+<a href="../img/curl_output_std.png"><img src="../img/curl_output_std.png" width="60%"></a><br>
 </center>
 
 Note the style difference of output:
@@ -204,7 +204,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets" | jqs
 ```
 
 <center>
-<a href="img/curl_output_jq.png"><img src="img/curl_output_jq.png" width="60%"></a><br>
+<a href="../img/curl_output_jq.png"><img src="../img/curl_output_jq.png" width="60%"></a><br>
 </center>
 
 #### List map layers and their metadata
@@ -283,7 +283,7 @@ Using RESTman you need to pay attention to these changes:
 * add the JSON in the body section in RAW format
 
 <center>
-<a href="img/actinia_restman_post.png"><img src="img/actinia_restman_post.png" width="60%"></a><br>
+<a href="../img/actinia_restman_post.png"><img src="../img/actinia_restman_post.png" width="60%"></a><br>
 Fig. 7 RESTman POST request example (source: Luca Delucchi)
 </center>
 
@@ -368,7 +368,7 @@ curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${
 Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a resource ID (red box) and a resource URI is shown:
 
 <center>
-<a href="img/curl_resource_id.png"><img src="img/curl_resource_id.png" width="60%"></a><br>
+<a href="../img/curl_resource_id.png"><img src="../img/curl_resource_id.png" width="60%"></a><br>
 </center>
 
 Use this URI for retrieving the process status, e.g. using your browser (`F5` to reload page until job is ready).
@@ -397,6 +397,6 @@ curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/reso
 The resulting files can now be downloaded (they'll remain for 24 hs on the server).
 
 <center>
-<a href="img/qgis_actinia_data_viz.png"><img src="img/qgis_actinia_data_viz.png" width="60%"></a><br>
+<a href="../img/qgis_actinia_data_viz.png"><img src="../img/qgis_actinia_data_viz.png" width="60%"></a><br>
 Fig. 8: actinia output shown in QGIS (aspect map)
 </center>

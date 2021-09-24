@@ -52,7 +52,7 @@ Related:
 * [openeo-grassgis-driver](https://github.com/Open-EO/openeo-grassgis-driver): OpenEO driver for GRASS GIS/actinia. Backend description at https://openeo.mundialis.de/.well-known/openeo
 
 <center>
-<a href="img/actinia-plugins.png"><img src="img/actinia-plugins.png" width="80%"></a><br>
+<a href="../img/actinia-plugins.png"><img src="../img/actinia-plugins.png" width="80%"></a><br>
 Fig. 1: Components of actinia (core and plugins)
 </center>
 
@@ -73,7 +73,7 @@ Accordingly, actinia offers two modes of operation: persistent and ephemeral pro
 Actinia is deployed multiple times as so called **actinia nodes** (separate physically distinct machines) where the actual computations are performed. They can be deployed with the help of cloud technology like e.g. kubernetes, openshift and docker-swarm. This technology then acts as a **load balancer**, distributing jobs to actinia nodes. Results are either stored in GRASS UDBs in GRASS native format or directly exported to a different data format (see Fig. 2).
 
 <center>
-<a href="img/actinia_PDB_UDB.png"><img src="img/actinia_PDB_UDB.png" width="60%"></a><br>
+<a href="../img/actinia_PDB_UDB.png"><img src="../img/actinia_PDB_UDB.png" width="60%"></a><br>
 Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html))
 </center>
 
@@ -97,7 +97,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
    * Geoserver integration.
 
 <center>
-<a href="img/actinia_architecture_FTTH.png"><img src="img/actinia_architecture_FTTH.png" width="60%"></a><br>
+<a href="../img/actinia_architecture_FTTH.png"><img src="../img/actinia_architecture_FTTH.png" width="60%"></a><br>
 Fig. 3: Architecture of an actinia deployment (source: mundialis)
 </center>
 
