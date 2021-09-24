@@ -1,19 +1,19 @@
 # A gentle introduction to actinia
 
-Author: Markus Neteler, mundialis GmbH & Co. KG, Bonn
+Authors: Markus Neteler, Carmen Tawalika, Anika Weinmann, Guido Riembauer, mundialis GmbH & Co. KG, Bonn
 
 <!-- **** Begin Fork-Me-On-Gitlab-Ribbon-HTML. See MIT License at https://gitlab.com/seanwasere/fork-me-on-gitlab **** -->
 <a href="https://github.com/mmacata/actinia-introduction/">
-    <span style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); background-color:green; color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitHub</span>
+    <span id="fork-me" style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitHub</span>
 </a>
 <!-- **** End Fork-Me-On-Gitlab-Ribbon-HTML **** -->
 
 
 URL of this dcument: [https://mmacata.github.io/actinia-introduction/](https://mmacata.github.io/actinia-introduction/)
 
-This workshop is a fork of https://neteler.gitlab.io/actinia-introduction. The initial workshop has a more detailed chapter about ace - the actinia command execution. This workshop focuses more on the "bare" HTTP API from actinia.
+This workshop is a fork of [https://neteler.gitlab.io/actinia-introduction](https://neteler.gitlab.io/actinia-introduction). The initial workshop has a more detailed chapter about ace - the actinia command execution. This workshop focuses more on the "bare" HTTP API from actinia and extended excercises.
 
-*Last update: 21 Sep 2021*
+*Last update: 24 Sep 2021*
 
 ## Abstract
 
@@ -27,27 +27,24 @@ In this course we will briefly give a short introduction to REST API and cloud p
 
 ## Required software for this tutorial
 
-We will use a command line tool or browser plugin to try out some REST commands. Then we'll also use GRASS GIS and a special command to control actinia from remote. This requires some software to be installed:
+We will use an HTTP client to try out some REST commands. This can be a command line tool, code editor plugin or browser plugin.
+This requires some software to be installed:
 
-* REST client (command line tool or browser plugin):
-    * [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
+* REST client (one of the options below):
+    * Command line tool: [cURL](https://curl.haxx.se/docs/manpage.html), to be used on command line
     * Extensions for Chrome/Chromium browser:
         * [RESTman extension](https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi)
         * and a nice [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
-* For the "ace - actinia command execution" section:
-    * GRASS GIS 7.8+ ([download](https://grass.osgeo.org/download/))
-    * three additional Python packages:
-        * Linux: `pip3 install click requests simplejson`
-        * Windows users (Installer: [OSGeo4W](https://trac.osgeo.org/osgeo4w/) > Advanced installation > Search window):
-            * python3-click, python3-requests, python3-simplejson
-    * ace - [actinia command execution](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md) (to be run from a GRASS GIS session; installation shown below)
-    * [jq, a lightweight and flexible command-line JSON processor](https://stedolan.github.io/jq/download/)
-    * nice to have: <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>
+    * Extension for code editor, here for VS Code
+        * [Thunderclient plugin](https://www.thunderclient.io/)
+        * If you use a different editor, a similar plugin might exist
 
-<center>
-<a href="img/osgeo4w_python_libs.png"><img src="img/osgeo4w_python_libs.png" width="30%"></a> &nbsp; &nbsp;
-<a href="img/osgeo4w_grass78.png"><img src="img/osgeo4w_grass78.png" width="30%"></a>
-</center>
+* Not required for this workshop but nice to have:
+    * [jq](https://stedolan.github.io/jq/download/), a lightweight and flexible command-line JSON processor
+    * <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>
+
+The "ace - actinia command execution" section is a demonstration only. To dive deeper into this topic,
+you can follow [these installation instructions](https://neteler.gitlab.io/actinia-introduction/#preparation_1).
 
 Note: We will use the demo actinia server at [https://actinia.mundialis.de/](https://actinia.mundialis.de/) - hence Internet connection is required.
 
@@ -56,22 +53,23 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
 **Content**
 
 * Warming up
-* Introduction
+* Some Concepts
     * Why cloud computing?
     * Overview actinia
-* REST API and geoprocessing basics
-    * What is REST: intro
-* First Hand-on: working with REST API requests
-    * Step by step...
-* Exploring the API: finding available actinia endpoints
-    * REST actinia examples with curl
-* Controlling actinia from a running GRASS GIS session
-    * Further command line exercise suggestions
+    * REST API and geoprocessing basics
+* Explore
+    * First Hand-on: working with REST API requests
+    * Exploring the API: finding available actinia endpoints
+* Client implementations
+    * ACE - Controlling actinia from a running GRASS GIS session
+    * actinia Connector - a QGIS plugin
 * Own exercises in actinia
+    * Small excercises
+    * EXERCISE: "Population at risk near coastal areas"
 * Conclusions and future
 * See also: openEO resources
 * References
-* About the trainer
+* About the trainers
 
 ## Warming up
 

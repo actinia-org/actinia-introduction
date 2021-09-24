@@ -44,6 +44,7 @@ Step 4:
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
     * Note: `process_results` are ordered alphabetically, not thematically
+    * Bonus: use the render endpoint. Here, no JSON but an image is returned: [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render)
 
 ### Summary
 
@@ -60,7 +61,8 @@ Indeed the structure of the endpoints follow some GRASS GIS concepts (compare th
 The actinia REST API documentation is available online (directly generated from the source code of actinia).
 Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
 
-* Module Management
+* Module Viewer
+* Process Chain Template Management
 * Authentication Management
 * API Log
 * Cache Management
@@ -75,8 +77,11 @@ Check out some of the various sections in the [actinia API docs](https://redocly
 * STRDS Sampling
 * STRDS Statistics
 * Vector Management
+* Mapsets
 * GeoNetwork
 * Resource Management
+* Process Chain Monitoring
+* Resource Iteration Management
 * User Management
 
 List of endpoints, shown in the web browser:
@@ -88,7 +93,7 @@ List of endpoints, shown in the web browser:
 Fig. 5: actinia list of endpoints (in the "paths" section)
 </center>
 
-* **List of supported processes** (> 500): see [API modules](https://actinia-dev.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
+* **List of supported processes** (> 500): see [API modules](https://actinia.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
 
 <center>
 <a href="img/actinia_modules.png"><img src="img/actinia_modules.png" width="60%"></a><br>
@@ -104,25 +109,24 @@ List of endpoints shown on command line:
 # note: no AUTH needed
 curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json | jq "."paths | jq 'keys'
 [
-  "/actiniamodules",
-  "/actiniamodules/{actiniamodule}",
+  "/actinia_modules",
+  "/actinia_modules/{actiniamodule}",
+  "/actinia_templates",
+  "/actinia_templates/{template_id}",
   "/api_key",
   "/api_log/{user_id}",
   "/download_cache",
   "/files",
-  "/grassmodules",
-  "/grassmodules/{grassmodule}",
+  "/grass_modules",
+  "/grass_modules/{grassmodule}",
   "/landsat_process/{landsat_id}/{atcor_method}/{processing_method}",
   "/landsat_query",
   "/locations",
   "/locations/{location_name}",
-  "/locations/{location_name}/gdi_processing_async_export",
   "/locations/{location_name}/info",
   "/locations/{location_name}/mapsets",
   "/locations/{location_name}/mapsets/{mapset_name}",
-  "/locations/{location_name}/mapsets/{mapset_name}/gdi_processing_async",
   "/locations/{location_name}/mapsets/{mapset_name}/info",
-  "/locations/{location_name}/mapsets/{mapset_name}/landsat_import",
 ...
   "/sentinel2_query",
   "/sentinel2a_aws_query",
@@ -131,6 +135,7 @@ curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json
   "/users/{user_id}"
 ]
 ```
+
 
 <!--
 ```
@@ -195,7 +200,7 @@ Note the style difference of output:
 
 ```bash
 # show available mapsets of a specific location
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets | jq"
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets" | jqs
 ```
 
 <center>
@@ -251,6 +256,16 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
 ```
 
+#### Render maps
+
+This can be achieved by simply adding `/render` at the end of a layer resource:
+
+```bash
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/geology_30m/render > geology_30m.png
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40/render" > lsat7_2000_40.png
+
+```
+
 #### Map layer and space-time cube queries
 
 It's time to retrieve something from the server. We want to query the stack of multitemporal datasets available and more specifically, retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)). For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
@@ -291,7 +306,7 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/loca
 Why validation? It may happen that your JSON file to be sent to the endpoint contains a typo or other invalid content. For the identification of problems prior to executing the commands contained in the JSON file (which may last for hours), it is recommended to validate this file.
 For this, actinia can be used as it provides a validation endpoint.
 
-Example: Download the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) and validate it:
+Example: Download the process chain [process_chain_long.json](https://github.com/mmacata/actinia-introduction/raw/main/docs/process_chain_long.json) and validate it:
 
 ```bash
 # validation of a process chain (using sync call)
@@ -314,19 +329,6 @@ curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${
 ]
 ```
 
-<!--
-```
-# same thing, here we use the `json` tool:
-curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | json process_results
-[
-  "grass g.region ['raster=elevation@PERMANENT', 'res=4', '-p']",
-  "grass r.slope.aspect ['elevation=elevation@PERMANENT', 'format=degrees', 'precision=FCELL', 'zscale=1.0', 'min_slope=0.0', 'slope=my_slope', 'aspect=my_aspect', '-a']",
-  "grass r.watershed ['elevation=elevation@PERMANENT', 'convergence=5', 'memory=300', 'accumulation=my_accumulation']",
-  "grass r.info ['map=my_aspect', '-gr']"
-]
-```
--->
-
 ### Data exchange: import and export
 
 Actinia can import from external Web resources, use data in the actinia server (persistent and ephemeral storage) and make results available for download as Web resources. These latter can then be downloaded, opened by QGIS, imported into GRASS GIS or other software.
@@ -337,9 +339,9 @@ Note that the download of Web resources provided by actinia requires authenticat
 At time (more to come) the following export formats are supported:
 
 * raster: `COG`, `GTiff`
-* vector: `GPKG`, `GML`, `GeoJSON`, `ESRI_Shapefile`, `SQLite`, `CSV`
-* database: `PostgreSQL`
-* table: `CSV`, `TXT`
+* strds: `GTiff` (multiple files packed in an tar.gz archive)
+* vector: `PostgreSQL`, `GPKG`, `GML`, `GeoJSON`, `ESRI_Shapefile`, `SQLite`, `CSV`
+* file: `CSV`, `TXT`
 
 
 ### Dealing with workflows (processing chains)
