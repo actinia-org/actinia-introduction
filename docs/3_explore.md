@@ -200,7 +200,7 @@ Note the style difference of output:
 
 ```bash
 # show available mapsets of a specific location
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets" | jqs
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets" | jq
 ```
 
 <center>
