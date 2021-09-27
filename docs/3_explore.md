@@ -261,7 +261,7 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 This can be achieved by simply adding `/render` at the end of a layer resource:
 
 ```bash
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/geology_30m/render > geology_30m.png
+curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/geology_30m/render" > geology_30m.png
 curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40/render" > lsat7_2000_40.png
 
 ```
