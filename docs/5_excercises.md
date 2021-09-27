@@ -6,27 +6,28 @@
 
 Meanwhile you have seen a lot of material. Time to try out some further exercises...
 
-### SMALL EXERCISES
+### 1. What is the altitude of the highest point in North Carolina? Check it with actinia.
 
-1. What is the altitude of the highest point in North Carolina? Check it with actinia.
   * Find the correct raster in the North Carolina location and PERMANENT mapset.
   * Find the relevant raster layer by rendering it
   * Print the information and get altitude of the highest point
 
-2. Find the zipcode in Wake county with the most hospitals
+### 2. Find the zipcode in Wake county with the most hospitals
+
   * Find the relevant vector layers
   * Check the zipcode vector layer for the relevant column to get the zipcode
   * Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules `g.copy` (because you are not allowed to change data from an other mapset), `v.vect.stats` and `v.db.select`
   * Post the created process chain to `https://actinia.mundialis.de/api/v1/locations/nc_spm_08/processing_async` for ephemeral processing
 
-3. Export the water bodies from the available Landsat imagery of North Carolina
+### 3. Export the water bodies from the available Landsat imagery of North Carolina
+
   * Create a process chain as a .json file
     * Remember to set the computational region
     * Compute the NDWI (Normalized difference water index); use `r.mapcalc` or `i.vi`
     * Filter water bodies by a threshold of e.g. 0.35 using `r.mapcalc`
   * Either export the water bodies (use the `exporter` with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use `r.colors` and persistent processing in your own mapset)
 
-### EXERCISE: "Population at risk near coastal areas"
+### 4. Population at risk near coastal areas
 
 * needed geodata:
     * Worldwide SRTM 30m (already available in actinia as `srtmgl1_v003_30m` - find out the location yourself)
