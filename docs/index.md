@@ -64,8 +64,10 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
     * ACE - Controlling actinia from a running GRASS GIS session
     * actinia Connector - a QGIS plugin
 * Own exercises in actinia
-    * Small excercises
-    * EXERCISE: "Population at risk near coastal areas"
+    * 1. What is the altitude of the highest point in North Carolina? Check it with actinia.
+    * 2. Find the zipcode in Wake county with the most hospitals
+    * 3. Export the water bodies from the available Landsat imagery of North Carolina
+    * 4. Population at risk near coastal areas
 * Conclusions and future
 * See also: openEO resources
 * References

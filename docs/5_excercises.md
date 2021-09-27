@@ -27,7 +27,7 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
     * Filter water bodies by a threshold of e.g. 0.35 using `r.mapcalc`
   * Either export the water bodies (use the `exporter` with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use `r.colors` and persistent processing in your own mapset)
 
-### 4. "Population at risk near coastal areas"
+### 4. Population at risk near coastal areas
 
 * needed geodata:
     * Worldwide SRTM 30m (already available in actinia as `srtmgl1_v003_30m` - find out the location yourself)
