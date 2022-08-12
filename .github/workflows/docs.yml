@@ -2,6 +2,7 @@ name: Publish docs via GitHub Pages
 on:
   push:
     branches:
+      - foss4g2022
       - main
 jobs:
   deploy:
