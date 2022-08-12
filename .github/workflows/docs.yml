@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - foss4g2022
-      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -13,4 +12,4 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force --config-file docs/mkdocs.yml
+      - run: mkdocs gh-deploy
