@@ -3,17 +3,17 @@
 Authors: Markus Neteler, Carmen Tawalika, Anika Weinmann, Guido Riembauer, mundialis GmbH & Co. KG, Bonn
 
 <!-- **** Begin Fork-Me-On-Gitlab-Ribbon-HTML. See MIT License at https://gitlab.com/seanwasere/fork-me-on-gitlab **** -->
-<a href="https://github.com/mmacata/actinia-introduction/">
+<a href="https://github.com/mundialis/actinia-introduction/">
     <span id="fork-me" style="font-family: tahoma; font-size: 18px; position:fixed; top:50px; right:-45px; display:block; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); color:white; padding: 4px 30px 4px 30px; z-index:99; opacity:0.6">Fork Me On GitHub</span>
 </a>
 <!-- **** End Fork-Me-On-Gitlab-Ribbon-HTML **** -->
 
 
-URL of this dcument: [https://mmacata.github.io/actinia-introduction/](https://mmacata.github.io/actinia-introduction/)
+URL of this dcument: [https://mundialis.github.io/actinia-introduction/](https://mundialis.github.io/actinia-introduction/)
 
 This workshop is a fork of [https://neteler.gitlab.io/actinia-introduction](https://neteler.gitlab.io/actinia-introduction). The initial workshop has a more detailed chapter about ace - the actinia command execution. This workshop focuses more on the "bare" HTTP API from actinia and extended excercises.
 
-*Last update: 24 Sep 2021*
+*Last update: 12 Aug 2022*
 
 ## Abstract
 

@@ -106,7 +106,7 @@ Running the module `g.region` in a new ephemeral location, to show the default r
 ace location="nc_spm_08" grass_command="g.region -p"
 
 Resource status accepted
-Polling: https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-b398b4dd-a47c-4443-a07d-7814cc737973
+Polling: https://actinia.mundialis.de/api/v3/resources/demouser/resource_id-b398b4dd-a47c-4443-a07d-7814cc737973
 Resource poll status: finished
 Processing successfully finished
 Resource status finished
@@ -126,7 +126,7 @@ cols:       1630
 cells:      1010600
 
 {'resources': [],
- 'status': 'https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-b398b4dd-a47c-4443-a07d-7814cc737973'}
+ 'status': 'https://actinia.mundialis.de/api/v3/resources/demouser/resource_id-b398b4dd-a47c-4443-a07d-7814cc737973'}
 ```
 
 ### Script examples

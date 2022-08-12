@@ -17,7 +17,7 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
   * Find the relevant vector layers
   * Check the zipcode vector layer for the relevant column to get the zipcode
   * Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules `g.copy` (because you are not allowed to change data from an other mapset), `v.vect.stats` and `v.db.select`
-  * Post the created process chain to `https://actinia.mundialis.de/api/v1/locations/nc_spm_08/processing_async` for ephemeral processing
+  * Post the created process chain to `https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async` for ephemeral processing
 
 ### 3. Export the water bodies from the available Landsat imagery of North Carolina
 
