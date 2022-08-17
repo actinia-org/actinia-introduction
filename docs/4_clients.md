@@ -4,7 +4,91 @@
 (duration: 20 min)
 -->
 
+## actinia-python-client
+Python library to access an actinia server easily via python.
+See also [source code](https://github.com/mundialis/actinia-python-client) and [full documentation](https://mundialis.github.io/actinia-python-client/)
+
+### Installation
+```
+VERSION="0.1.2"
+
+pip3 install "actinia-python-client @ https://github.com/mundialis/actinia-python-client/releases/download/${VERSION}/actinia_python_client-${VERSION}-py3-none-any.whl"
+```
+### Quickstart
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/03_quickstart.md', '') }}
+
+### Location Management
+With the location management the locations can be requested as well as
+information of each location. Also a location can be created and deleted if the user is permitted.
+#### Get locations and locaton information of a special location:
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Get locations and locaton information of a special location:') }}
+#### Create a new location
+(Attention: The demouser is not permitted to create or delete a location!)
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Create a new location') }}
+#### Delete a location
+(Attention: The demouser is not permitted to create or delete a location!)
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Delete a location') }}
+
+### Mapset Management
+With the mapset management the mapsets of a specified location can be
+requested as well as information of each mapset.
+
+Upcoming: Create and delete mapsets if the user is permitted.
+
+#### Get Mapsets of Specified Location
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/05_mapset_managment.md', '## Get Mapsets of Specified Location') }}
+
+### Raster, Vector and STRDS Management
+#### Raster manangement
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/06_raster_vector_strds_managment.md', '## Raster manangement') }}
+#### Vector manangement
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/06_raster_vector_strds_managment.md', '## Vector management') }}
+
+
+
+### Process Chain Validation
+A process chain can be validated before a job is started.
+
+First connecting actinia Python library with [actinia](https://actinia.mundialis.de/) and set authentication:
+```
+from actinia import Actinia
+
+actinia_mundialis = Actinia()
+actinia_mundialis.get_version()
+actinia_mundialis.set_authentication("demouser", "gu3st!pa55w0rd")
+
+# request all locations
+locations = actinia_mundialis.get_locations()
+```
+#### Synchronous process chain validation
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/07_process_chain_validation.md', '## Synchronous process chain validation') }}
+#### Asynchronous process chain validation:
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/07_process_chain_validation.md', '## Asynchronous process chain validation:') }}
+
+
+### Processing
+Start a processing job with a valid process chain.
+
+First connect actinia Python library with [actinia](https://actinia.mundialis.de/) and set authentication:
+```
+from actinia import Actinia
+
+actinia_mundialis = Actinia()
+actinia_mundialis.get_version()
+actinia_mundialis.set_authentication("demouser", "gu3st!pa55w0rd")
+
+# request all locations
+locations = actinia_mundialis.get_locations()
+```
+#### Ephemeral Processing
+{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/08_processing.md', '## Ephemeral Processing') }}
+
+
+
+
 ## ACE - Controlling actinia from a running GRASS GIS session
+
+Python library to access an actinia server easily via python.
 
 
 ### Introduction to ace - actinia command execution
@@ -240,3 +324,12 @@ If persistent processing is used, a mapset name must be entered in the empty tex
 
 <a href="../img/ac_05_processing.jpg"><img src="../img/ac_05_processing.jpg" width="60%"></a><br>
 Fig. 15: actinia connector, persistent and ephemeral processing
+
+
+## actinia jupyter notebooks
+
+You can find various actinia notebooks on [GitHub](https://github.com/mundialis/actinia-jupyter).
+
+On error `ImportError: cannot import name 'contextfilter' from 'jinja2' (/home/ctawalika/.local/lib/python3.8/site-packages/jinja2/__init__.py)`:
+Remove pip packages with eg `pip3 uninstall jinja2 notebook`
+and install them via package manager, e.g. with `apt install python3-jinja2 python3-notebook`

@@ -61,8 +61,10 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
     * First Hand-on: working with REST API requests
     * Exploring the API: finding available actinia endpoints
 * Client implementations
+    * actinia-python-client - A python client library
     * ACE - Controlling actinia from a running GRASS GIS session
     * actinia Connector - a QGIS plugin
+    * actinia Jupyter Notebooks
 * Own exercises in actinia
     * What is the altitude of the highest point in North Carolina? Check it with actinia.
     * Find the zipcode in Wake county with the most hospitals

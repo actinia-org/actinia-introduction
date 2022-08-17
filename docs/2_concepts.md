@@ -39,6 +39,10 @@ Core system:
 
 * [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed and, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
 
+API:
+
+* [actinia-api](https://github.com/mundialis/actinia-api): API description for actinia_core and official plugins.
+
 Plugins:
 
 * [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin): contains module self-description and process-chain-template management and processing
@@ -46,10 +50,13 @@ Plugins:
 * [actinia-statistic-plugin](https://github.com/mundialis/actinia_statistic_plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
 * [actinia-satellite-plugin](https://github.com/mundialis/actinia_satellite_plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
 * [actinia-stac-plugin](https://github.com/mundialis/actinia-stac-plugin): Plugin for actinia to read STAC catalogs and retrieve data for processing
+* [actinia-tiling-plugin](https://github.com/mundialis/actinia-tiling-plugin): Plugin for actinia to tile areas, e.g. to process them in parallel
+* [actinia-parallel-plugin](https://github.com/mundialis/actinia-parallel-plugin): Plugin for actinia to allow to specify parallel processes for faster processing (WIP)
+* ([actinia-example-plugin](https://github.com/mundialis/actinia-example-plugin): A small example plugin for actinia-core. This can be used as base for developing an own plugin)
 
 Related:
 
-* [openeo-grassgis-driver](https://github.com/Open-EO/openeo-grassgis-driver): OpenEO driver for GRASS GIS/actinia. Backend description at https://openeo.mundialis.de/.well-known/openeo
+* [openeo-grassgis-driver](https://github.com/Open-EO/openeo-grassgis-driver): OpenEO driver for GRASS GIS/actinia. Backend description at [https://openeo.mundialis.de/.well-known/openeo](https://openeo.mundialis.de/.well-known/openeo)
 
 <center>
 <a href="../img/actinia-plugins.png"><img src="../img/actinia-plugins.png" width="80%"></a><br>
@@ -74,7 +81,7 @@ Actinia is deployed multiple times as so called **actinia nodes** (separate phys
 
 <center>
 <a href="../img/actinia_PDB_UDB.png"><img src="../img/actinia_PDB_UDB.png" width="60%"></a><br>
-Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FTTH talk 2019](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html))
+Fig. 2: Persistent and ephemeral storage with actinia nodes (source: [mundialis FOSS4G talk 2019](https://mundialis.github.io/foss4g2019/grass-gis-in-the-cloud-actinia-geoprocessing/index.html))
 </center>
 
 **Architecture of actinia**
@@ -87,8 +94,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
     * most importantly, the **REST API**,
     * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
     * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session),
-* GDI management: actinia-gdi helps integrating actinia-core in an existing GDI (Geodata Infrastructure, also called SDI: Spatial Data Infrastructure) including process-chain manipulation and job management, through [actinia-GDI](https://github.com/mundialis/actinia-gdi),
-* metadata management: interface to GNOS via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin),
+* metadata management: interface to Geonetwork Opensource via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin),
 * module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin),
 * database system:
     * job management in a Redis database,
@@ -98,7 +104,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 
 <center>
 <a href="../img/actinia_architecture_FTTH.png"><img src="../img/actinia_architecture_FTTH.png" width="60%"></a><br>
-Fig. 3: Architecture of an actinia deployment (source: mundialis)
+Fig. 3: Example architecture of an actinia deployment (source: mundialis)
 </center>
 
 ### Deployment
