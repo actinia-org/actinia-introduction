@@ -11,15 +11,14 @@
 
 ## UPCOMING
 
-### FOSS4G 2021 talk "news from actinia"
-2021-09-30, 09:30–10:00, Córdoba
+### FOSS4G 2022 talk "News from actinia - let`s STAC!"
+2022-08-24, 15:15–15:45, Room Onice
 
-<a href="https://callforpapers.2021.foss4g.org/foss4g2021/talk/E9ZA7B/"><img src="../img/news-from-actinia.jpeg" width="60%"></a><br>
+<a href="https://talks.osgeo.org/foss4g-2022/talk/TD3HNC/"><img src="../img/news-from-actinia.jpeg" width="60%"></a><br>
 
-### FOSS4G 2021 OSGeo Community sprint
+### FOSS4G 2022 OSGeo Community sprint
 
-* [details in OSGeo Wiki](https://wiki.osgeo.org/wiki/FOSS4G_2021/Community_sprint)
-* [Kanban Board](https://github.com/mundialis/actinia_core/projects/2)
+* [details in OSGeo Wiki](https://wiki.osgeo.org/wiki/FOSS4G_2022/Community_sprint)
 
 ## See also
 
@@ -67,7 +66,7 @@ Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/mast
 
 [2] Planet 2019: Developer resource center, [https://developers.planet.com/planetschool/rest-apis/](https://developers.planet.com/planetschool/rest-apis/)
 
-[3] [actinia API reference](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json) documentation
+[3] [actinia API reference](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v3/swagger.json) documentation
 
 [4] actinia article: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2631917.svg)](https://doi.org/10.5281/zenodo.2631917)
 
@@ -82,7 +81,7 @@ for updating the excercises and creating new fun and smaller tasks.
 
 ------------------------------------------------------------------------
 
-- Repository of this material on [github](https://github.com/mmacata/actinia-introduction/)
+- Repository of this material on [github](https://github.com/mundialis/actinia-introduction/)
 
 
 *[About](about.md) | [Privacy](https://docs.github.com/en/github/site-policy/github-privacy-statement)*

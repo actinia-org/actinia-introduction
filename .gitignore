@@ -1,2 +1,3 @@
 # the default out put of `mkdocs build`
 site/
+past/

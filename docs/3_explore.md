@@ -14,7 +14,7 @@ Step 1:
 
 Step 2:
 
-* Try this call, simply in a browser: [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
+* Try this call, simply in a browser: [https://actinia.mundialis.de/api/v3/locations](https://actinia.mundialis.de/api/v3/locations)
 * What does it show?
 
 Step 3:
@@ -39,12 +39,12 @@ Step 4:
     * i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets
     * Check the [list of data](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md#available-data) currently available on the actinia server
     * e.g.
-        * [https://actinia.mundialis.de/api/v1/locations](https://actinia.mundialis.de/api/v1/locations)
-        * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets)
-        * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers)
-        * [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
+        * [https://actinia.mundialis.de/api/v3/locations](https://actinia.mundialis.de/api/v3/locations)
+        * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets)
+        * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers)
+        * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
     * Note: `process_results` are ordered alphabetically, not thematically
-    * Bonus: use the render endpoint. Here, no JSON but an image is returned: [https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render)
+    * Bonus: use the render endpoint. Here, no JSON but an image is returned: [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10/render)
 
 ### Summary
 
@@ -59,7 +59,7 @@ Indeed the structure of the endpoints follow some GRASS GIS concepts (compare th
 -->
 
 The actinia REST API documentation is available online (directly generated from the source code of actinia).
-Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v1/swagger.json):
+Check out some of the various sections in the [actinia API docs](https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/api/v3/swagger.json):
 
 * Module Viewer
 * Process Chain Template Management
@@ -86,14 +86,14 @@ Check out some of the various sections in the [actinia API docs](https://redocly
 
 List of endpoints, shown in the web browser:
 
-* To see a simple **list of endpoints** (and more), have a look at the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v1/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
+* To see a simple **list of endpoints** (and more), have a look at the "paths" section in the [API JSON](https://actinia.mundialis.de/api/v3/swagger.json). If the formatting looks "ugly", get the [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) extension.
 
 <center>
 <a href="../img/actinia_swagger_paths.png"><img src="../img/actinia_swagger_paths.png" width="60%"></a><br>
 Fig. 5: actinia list of endpoints (in the "paths" section)
 </center>
 
-* **List of supported processes** (> 500): see [API modules](https://actinia.mundialis.de/api/v1/modules) (note: the process chain templates are at bottom, category "actinia-module")
+* **List of supported processes** (> 500): see [API modules](https://actinia.mundialis.de/api/v3/modules) (note: the process chain templates are at bottom, category "actinia-module")
 
 <center>
 <a href="../img/actinia_modules.png"><img src="../img/actinia_modules.png" width="60%"></a><br>
@@ -107,7 +107,7 @@ List of endpoints shown on command line:
 ```bash
 ## we filter the paths on the fly with `jq`
 # note: no AUTH needed
-curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json | jq "."paths | jq 'keys'
+curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v3/swagger.json | jq "."paths | jq 'keys'
 [
   "/actinia_modules",
   "/actinia_modules/{actiniamodule}",
@@ -142,7 +142,7 @@ curl --no-progress-meter -X GET https://actinia.mundialis.de/api/v1/swagger.json
 ## alternative: we filter the paths on the fly with `json`
 # installation: sudo npm install -g json
 
-curl -X GET https://actinia.mundialis.de/api/v1/swagger.json | json paths | json -ka
+curl -X GET https://actinia.mundialis.de/api/v3/swagger.json | json paths | json -ka
  ... see above
 ```
 -->
@@ -170,7 +170,7 @@ First, we want to see the list of available "locations". A location in GRASS-spe
 
 ```bash
 # show available locations (locations are like projects)
-curl ${AUTH} -X GET ${actinia}/api/v1/locations
+curl ${AUTH} -X GET ${actinia}/api/v3/locations
 ```
 
 <!--
@@ -179,7 +179,7 @@ curl ${AUTH} -X GET ${actinia}/api/v1/locations
 ```bash
 # NOTE: endpoint not available to the demouser but only to the admin user
 # show accessible_datasets, accessible_modules, raster cell_limit, process_num_limit, process_time_limit
-curl ${AUTH} -X GET "${actinia}/api/v1/users/demouser"
+curl ${AUTH} -X GET "${actinia}/api/v3/users/demouser"
 ```
 -->
 
@@ -189,7 +189,7 @@ Next, we look at so-called "mapsets" which are subfolders in a location (just to
 
 ```bash
 # show available mapsets of a specific location
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets"
 ```
 
 <center>
@@ -200,7 +200,7 @@ Note the style difference of output:
 
 ```bash
 # show available mapsets of a specific location
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets" | jq
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets" | jq
 ```
 
 <center>
@@ -215,25 +215,25 @@ Vector data:
 
 ```bash
 # show available vector maps in a specific location/mapset
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers"
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers" | jq
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/PERMANENT/vector_layers"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/PERMANENT/vector_layers" | jq
 
 # note: you can always add `| jq`
 
 # show metadata of a specific vector map
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/geology"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/geology"
 ```
 
 Raster data:
 
 ```bash
 # show available raster maps in a specific location/mapset
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers"
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers"
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/PERMANENT/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/modis_lst/raster_layers"
 
 # show metadata of a specific raster map
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40"
 ```
 
 Space-time raster datasets (STRDS):
@@ -241,19 +241,19 @@ Space-time raster datasets (STRDS):
 ```bash
 # show available STRDS in a specific location/mapset
 # MODIS Land Surface Temperature data
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/modis_lst/strds"
 
 # show specific STRDS in a specific location/mapset
 # MODIS Normalized Difference Vegetation Index
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m"
 
 # Get a list or raster layers from a STRDS
 # ECAD: Yearly precipitation
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers"
 
 # Get a list or raster layers from a STRDS, with date filter
 # ECAD: Yearly precipitation
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
 ```
 
 #### Render maps
@@ -261,19 +261,19 @@ curl ${AUTH} -X GET "${actinia}/api/v1/locations/ECAD/mapsets/PERMANENT/strds/pr
 This can be achieved by simply adding `/render` at the end of a layer resource:
 
 ```bash
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/geology_30m/render" > geology_30m.png
-curl ${AUTH} -X GET "${actinia}/api/v1/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40/render" > lsat7_2000_40.png
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/geology_30m/render" > geology_30m.png
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat7_2000_40/render" > lsat7_2000_40.png
 
 ```
 
 #### Map layer and space-time cube queries
 
-It's time to retrieve something from the server. We want to query the stack of multitemporal datasets available and more specifically, retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)). For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
+It's time to retrieve something from the server. We want to query the stack of multitemporal datasets available and more specifically, retrieve MODIS Land Surface Temperature (LST) values from the space-time cube at a specific position (North Carolina data set; at [78W, 36N](https://www.openstreetmap.org/?mlat=36.00&mlon=-78.00#map=10/36.00/-78.00)). For this, we use the endpoint [sampling_sync_geojson](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson):
 
 ```bash
 # query point value in a STRDS, sending a GeoJSON file of the point position along with the request
 # (North Carolina LST time series)
-curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}'
+curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v3/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}'
 ```
 
 Using RESTman you need to pay attention to these changes:
@@ -298,7 +298,7 @@ In the example above we have sent JSON code to the server directly in the reques
 echo '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{"cat":1},"geometry":{"type":"Point","coordinates":[-78,36]}}]}' > pc_query_point_.json
 
 # send JSON file as payload to query the STRDS
-curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json  | jq
+curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v3/locations/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/sampling_sync_geojson" -d @pc_query_point_.json  | jq
 ```
 
 #### Validation of a process chain
@@ -306,11 +306,11 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v1/loca
 Why validation? It may happen that your JSON file to be sent to the endpoint contains a typo or other invalid content. For the identification of problems prior to executing the commands contained in the JSON file (which may last for hours), it is recommended to validate this file.
 For this, actinia can be used as it provides a validation endpoint.
 
-Example: Download the process chain [process_chain_long.json](https://github.com/mmacata/actinia-introduction/raw/main/docs/process_chain_long.json) and validate it:
+Example: Download the process chain [process_chain_long.json](https://github.com/mundialis/actinia-introduction/raw/main/docs/process_chain_long.json) and validate it:
 
 ```bash
 # validation of a process chain (using sync call)
-curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
+curl ${AUTH} -H "Content-Type: application/json" -X POST "${actinia}/api/v3/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json
 ```
 
 #### Converting a process chain back into commands
@@ -320,7 +320,7 @@ Download the process chain [process_chain_long.json](https://gitlab.com/neteler/
 
 ```bash
 # command extraction from a process chain (using sync call) by parsing the 'process_results' response (here we use the `jq` tool:)
-curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | jq "."process_results
+curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v3/locations/nc_spm_08/process_chain_validation_sync" -d @process_chain_long.json | jq "."process_results
 [
   "grass g.region ['raster=elevation@PERMANENT', 'res=10', '-p']",
   "grass r.slope.aspect ['elevation=elevation@PERMANENT', 'format=degrees', 'precision=FCELL', 'zscale=1.0', 'min_slope=0.0', 'slope=my_slope', 'aspect=my_aspect', '-a']",
@@ -362,7 +362,7 @@ The general procedure comprises:
 To turn this concept into an example, we use again the process chain [process_chain_long.json](https://gitlab.com/neteler/actinia-introduction/raw/master/docs/process_chain_long.json) from above and execute it, here using the asynchonous `processing_async_export` endpoint. By this, the `exporter` in the process chain will be activated and deliver the computed maps as Web resources for subsequent download:
 
 ```bash
-curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v1/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json | jq
+curl ${AUTH} --no-progress-meter -H "Content-Type: application/json" -X POST "${actinia}/api/v3/locations/nc_spm_08/processing_async_export" -d @process_chain_long.json | jq
 ```
 
 Being an asynchronous process, the result is not offered directly but at the bottom of the JSON output (in the terminal) a resource ID (red box) and a resource URI is shown:
@@ -376,7 +376,7 @@ Once the job has been completed ("Processing successfully finished"), three Web 
 
 ```bash
 # update the URI to that of your job, and be sure to use https:
-curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | jq
+curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v3/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0" | jq
 
 ...
   "status": "finished",
@@ -384,11 +384,11 @@ curl ${AUTH} -X GET "https://actinia.mundialis.de/api/v1/resources/demouser/reso
   "timestamp": 1580767679.525925,
   "urls": {
     "resources": [
-      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_slope.tiff",
-      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_aspect.tiff",
-      "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_accumulation.tiff"
+      "http://actinia.mundialis.de/api/v3/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_slope.tiff",
+      "http://actinia.mundialis.de/api/v3/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_aspect.tiff",
+      "http://actinia.mundialis.de/api/v3/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0/my_accumulation.tiff"
     ],
-    "status": "http://actinia.mundialis.de/api/v1/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0"
+    "status": "http://actinia.mundialis.de/api/v3/resources/demouser/resource_id-284d42c7-9ba7-415d-b675-cf1a534f4af0"
   },
   "user_id": "demouser"
 }
