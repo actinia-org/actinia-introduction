@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://pages.github.io/actinia-introduction/solution/exercises_solution/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Own exercises in actinia - solution - A gentle introduction to actinia</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Own exercises in actinia - solution";
+        var mkdocs_page_input_path = "solution/exercises_solution.md";
+        var mkdocs_page_url = "/actinia-introduction/solution/exercises_solution/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> A gentle introduction to actinia
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">A gentle introduction to actinia</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../2_concepts/">Some Concepts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../3_explore/">Explore</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../4_clients/">Client implementations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../5_excercises/">Own exercises in actinia</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../6_conclusions/">Conclusions and future</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About the trainers</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">A gentle introduction to actinia</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Own exercises in actinia - solution</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="own-exercises-in-actinia-solution">Own exercises in actinia - solution</h1>
+<h3 id="small-exercises">SMALL EXERCISES</h3>
+<h4 id="1-altitude-of-the-highest-point-in-north-carolina">1. altitude of the highest point in North Carolina</h4>
+<ul>
+<li>statisitcs of elevation map: https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/elev_state_500m
+  <code>curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/PERMANENT/raster_layers/elev_state_500m | jq</code></li>
+<li>answer: 1952.0009637576 m (max) zum Vergleich https://de.wikipedia.org/wiki/Mount_Mitchell 2037m</li>
+</ul>
+<h4 id="2-zipcode-in-wake-county-with-the-most-hospitals">2. zipcode in Wake county with the most hospitals</h4>
+<ul>
+<li>vector layer:</li>
+<li>zipcodes: https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/zipcodes_wake/render</li>
+<li>
+<p>hospitals: https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/PERMANENT/vector_layers/hospitals/render</p>
+</li>
+<li>
+<p>PC: exercise02_hospitals.json</p>
+</li>
+<li>ephemeral processing
+  ```
+  curl -u "foss4g2022:shuDo6oo" -X POST https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async -H 'accept: application/json' -H 'Content-Type: application/json' -d @exercise02_hospitals.json | jq</li>
+</ul>
+<p>curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/resources/foss4g2022/resource_id-... | jq
+  ```
+* answer: 2 hospitals in "RALEIGH 27603"</p>
+<h4 id="3-water-bodies-from-the-available-landsat-imagery">3. water bodies from the available Landsat imagery</h4>
+<ul>
+<li>PC: exercise03_ndwi.json</li>
+<li>ephemeral processing with export
+  ```
+  curl -u "foss4g2022:shuDo6oo" -X POST https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async_export -H 'accept: application/json' -H 'Content-Type: application/json' -d @exercise03_ndwi.json | jq</li>
+</ul>
+<p>curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/resources/foss4g2022/... | jq
+  <code>* persistent processing with color setting</code>
+  curl -u "foss4g2022:shuDo6oo" -X POST https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/workshop_gr_aw/processing_async -H 'accept: application/json' -H 'Content-Type: application/json' -d @exercise03_ndwi.json | jq</p>
+<p>curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/resources/foss4g2022/... | jq
+  ```
+  * https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/workshop_gr_aw/raster_layers/ndwi_1/render
+  * https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/workshop_gr_aw/raster_layers/water_bodies/render</p>
+<h3 id="exercise-population-at-risk-near-coastal-areas">EXERCISE: "Population at risk near coastal areas"</h3>
+<ul>
+<li>Data:</li>
+<li>SRTM: https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/srtmgl1_30m/raster_layers/srtmgl1_v003_30m/render</li>
+<li>Population: https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/worldpop_south_america/raster_layers/worldpop_2015_1km_aggregated_UNadj/render</li>
+<li>coastline: https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/coastlines/raster_layers/ne_1000m_coastline/render
+  <code># SRTM 30m
+  curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/srtmgl1_30m/raster_layers/srtmgl1_v003_30m
+  # Population
+  curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/worldpop_south_america/raster_layers/worldpop_2015_1km_aggregated_UNadj | jq
+  # coastline raster
+  curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/coastlines/raster_layers/ne_1000m_coastline | jq</code></li>
+<li>PC: exercise_pop.json</li>
+<li>persistent processing:
+  ```
+  curl -u "foss4g2022:shuDo6oo" -X POST https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/workshop_gr_aw/processing -H 'accept: application/json' -H 'Content-Type: application/json' -d @exercise_pop.json | jq</li>
+</ul>
+<p>curl -u "foss4g2022:shuDo6oo" -X GET https://actinia.mundialis.de/api/v3/resources/foss4g2022/resource_id-... | jq
+  ```
+* answer: 759932 people (sum)
+  * https://actinia.mundialis.de/api/v3/locations/latlong_wgs84/mapsets/workshop_gr_aw/raster_layers/peop/render</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

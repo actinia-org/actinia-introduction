@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://pages.github.io/actinia-introduction/5_excercises/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Own exercises in actinia - A gentle introduction to actinia</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Own exercises in actinia";
+        var mkdocs_page_input_path = "5_excercises.md";
+        var mkdocs_page_url = "/actinia-introduction/5_excercises/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> A gentle introduction to actinia
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">A gentle introduction to actinia</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_concepts/">Some Concepts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3_explore/">Explore</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4_clients/">Client implementations</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Own exercises in actinia</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-what-is-the-altitude-of-the-highest-point-in-north-carolina-check-it-with-actinia">1. What is the altitude of the highest point in North Carolina? Check it with actinia.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-find-the-zipcode-in-wake-county-with-the-most-hospitals">2. Find the zipcode in Wake county with the most hospitals</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-export-the-water-bodies-from-the-available-landsat-imagery-of-north-carolina">3. Export the water bodies from the available Landsat imagery of North Carolina</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-population-at-risk-near-coastal-areas">4. Population at risk near coastal areas</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_conclusions/">Conclusions and future</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About the trainers</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">A gentle introduction to actinia</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Own exercises in actinia</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="own-exercises-in-actinia">Own exercises in actinia</h1>
+<!--
+(duration: up to 2h)
+-->
+
+<p>Meanwhile you have seen a lot of material. Time to try out some further exercises...</p>
+<h3 id="1-what-is-the-altitude-of-the-highest-point-in-north-carolina-check-it-with-actinia">1. What is the altitude of the highest point in North Carolina? Check it with actinia.</h3>
+<ul>
+<li>Find the correct raster in the North Carolina location and PERMANENT mapset.</li>
+<li>Find the relevant raster layer by rendering it</li>
+<li>Print the information and get altitude of the highest point</li>
+</ul>
+<h3 id="2-find-the-zipcode-in-wake-county-with-the-most-hospitals">2. Find the zipcode in Wake county with the most hospitals</h3>
+<ul>
+<li>Find the relevant vector layers</li>
+<li>Check the zipcode vector layer for the relevant column to get the zipcode</li>
+<li>Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules <code>g.copy</code> (because you are not allowed to change data from an other mapset), <code>v.vect.stats</code> and <code>v.db.select</code></li>
+<li>Post the created process chain to <code>https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async</code> for ephemeral processing</li>
+</ul>
+<h3 id="3-export-the-water-bodies-from-the-available-landsat-imagery-of-north-carolina">3. Export the water bodies from the available Landsat imagery of North Carolina</h3>
+<ul>
+<li>Create a process chain as a .json file<ul>
+<li>Remember to set the computational region</li>
+<li>Compute the NDWI (Normalized difference water index); use <code>r.mapcalc</code> or <code>i.vi</code></li>
+<li>Filter water bodies by a threshold of e.g. 0.35 using <code>r.mapcalc</code></li>
+</ul>
+</li>
+<li>Either export the water bodies (use the <code>exporter</code> with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use <code>r.colors</code> and persistent processing in your own mapset)</li>
+</ul>
+<h3 id="4-population-at-risk-near-coastal-areas">4. Population at risk near coastal areas</h3>
+<ul>
+<li>needed geodata:<ul>
+<li>Worldwide SRTM 30m (already available in actinia as <code>srtmgl1_v003_30m</code> - find out the location yourself)</li>
+<li>South America Population 2015 (already available in actinia as <code>worldpop_2015_1km_aggregated_UNadj</code>- find out the location yourself)</li>
+<li>raster shorelines (already available in actinia as <code>ne_1000m_coastlines</code>- find out the location yourself)</li>
+</ul>
+</li>
+<li>fetch metadata with actinia interface and render input data</li>
+<li>proposed workflow:<ul>
+<li>set computational region to a small subregion (hint: <code>align</code> the region resolution to the population raster) and check the pixel number against user constraints</li>
+<li>buffer the coastlines by 5000 m and set a mask to the result</li>
+<li>Extract only the peopulation below 10 m</li>
+<li>Calculate the statistic to get the population at risk near coastal areas</li>
+</ul>
+</li>
+<li>Hints for example GRASS modules to use in process chain: <code>g.region</code>, <code>r.buffer</code>, <code>r.mapcalc</code>, <code>r.mask</code>, <code>r.univar</code></li>
+</ul>
+<!-- ### EXERCISE: "Property risks from trees"
+
+(draft idea only, submit your suggestion to trainer how to solve this task)
+
+* define your region of interest
+* needed geodata:
+    * building footprints
+        * download from OSM (via [https://overpass-turbo.eu/](https://overpass-turbo.eu/) | Wizard > building > ok > Export > Geojson)
+        * these data are now on your machine and not on the actinia server
+        * use "ace importer" or cURL to upload
+    * select Sentinel-2 scene
+* proposed workflow:
+    * actinia "ace" importer for building footprint upload
+    * `v.buffer` of 10m and 30m around footprints
+    * select S2 scene, compute NDVI with `i.vi`
+    * filter NDVI threshold > 0.6 (map algebra) to get the tree pixels - more exiting would be a ML approach (with previously prepared training data ;-)) (`r.learn.ml` offers RF and SVM)
+    * on binary tree map (which corresponds to risk exposure)
+    * count number of tree pixels in 5x5 moving window (`r.neighbors` with method "count")
+    * compute property risk statistics using buffers and tree count map and upload to buffered building map (`v.rast.stats`, method=maximum)
+    * export of results through REST resources -->
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../4_clients/" class="btn btn-neutral float-left" title="Client implementations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../6_conclusions/" class="btn btn-neutral float-right" title="Conclusions and future">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../4_clients/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../6_conclusions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
