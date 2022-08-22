@@ -14,20 +14,55 @@ VERSION="0.1.2"
 
 pip3 install "actinia-python-client @ https://github.com/mundialis/actinia-python-client/releases/download/${VERSION}/actinia_python_client-${VERSION}-py3-none-any.whl"
 ```
+
 ### Quickstart
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/03_quickstart.md', '') }}
+
+Connecting actinia Python library with [actinia](https://actinia.mundialis.de/)
+```
+from actinia import Actinia
+
+actinia_mundialis = Actinia()
+actinia_mundialis.get_version()
+```
+or connect to [actinia-dev](https://actinia-dev.mundialis.de/) with version 3:
+```
+from actinia import Actinia
+
+actinia_dev_mundialis = Actinia("https://actinia-dev.mundialis.de/", "v3")
+actinia_dev_mundialis.get_version()
+```
+
+Set authentication to get access to the actinia functionallity
+```
+actinia_mundialis.set_authentication("demouser", "gu3st!pa55w0rd")
+```
 
 ### Location Management
 With the location management the locations can be requested as well as
 information of each location. Also a location can be created and deleted if the user is permitted.
 #### Get locations and locaton information of a special location:
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Get locations and locaton information of a special location:') }}
+```
+locations = actinia_mundialis.get_locations()
+print(locations.keys())
+locations["nc_spm_08"].get_info()
+# or
+actinia_mundialis.locations["nc_spm_08"].get_info()
+```
 #### Create a new location
 (Attention: The demouser is not permitted to create or delete a location!)
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Create a new location') }}
+```
+new_location = actinia_mundialis.create_location("test_location", 25832)
+print(new_location.name)
+print(new_location.region)
+print([loc for loc in actinia_mundialis.locations])
+```
 #### Delete a location
 (Attention: The demouser is not permitted to create or delete a location!)
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/04_location_management.md', '## Delete a location') }}
+```
+actinia_mundialis.locations["test_location"].delete()
+print([loc for loc in actinia_mundialis.locations()])
+```
+
 
 ### Mapset Management
 With the mapset management the mapsets of a specified location can be
@@ -36,14 +71,80 @@ requested as well as information of each mapset.
 Upcoming: Create and delete mapsets if the user is permitted.
 
 #### Get Mapsets of Specified Location
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/05_mapset_managment.md', '## Get Mapsets of Specified Location') }}
+Get mapsets of the ***nc_spm_08*** location:
+```
+mapsets = actinia_mundialis.locations["nc_spm_08"].get_mapsets()
+print(mapsets.keys())
+```
 
 ### Raster, Vector and STRDS Management
 #### Raster manangement
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/06_raster_vector_strds_managment.md', '## Raster manangement') }}
-#### Vector manangement
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/06_raster_vector_strds_managment.md', '## Vector management') }}
 
+Get all rasters of the `PERMANENT` mapsets
+```
+rasters = mapsets["PERMANENT"].get_raster_layers()
+print(rasters.keys())
+```
+
+Get information of the raster `zipcodes`
+```
+info = rasters["zipcodes"].get_info()
+```
+
+Upload a GTif as raster layer to a user mapset (here the user mapset will be
+created before)
+```
+# TODO add mapset creation
+mapset_name = "test_mapset"
+
+# upload tif
+raster_layer_name = "test"
+file = "/home/testuser/data/elevation.tif"
+locations["nc_spm_08"].mapsets[mapset_name].upload_raster(raster_layer_name, file)
+print(locations["nc_spm_08"].mapsets[mapset_name].raster_layers.keys())
+```
+
+Delete a raster layer
+```
+locations["nc_spm_08"].mapsets[mapset_name].delete_raster(raster_layer_name)
+print(locations["nc_spm_08"].mapsets[mapset_name].raster_layers.keys())
+
+# TODO delete mapset
+```
+
+#### Vector manangement
+
+Get all vector maps of the `PERMANENT` mapsets
+```
+vectors = mapsets["PERMANENT"].get_vector_layers()
+print(vectors.keys())
+```
+
+Get information of the vector `boundary_county`
+```
+info = vectors["boundary_county"].get_info()
+```
+
+Upload a GeoJSON as vector layer to a user mapset (here the user mapset will
+be created before)
+```
+# TODO add mapset creation
+mapset_name = "test_mapset"
+
+# upload tif
+vector_layer_name = "test"
+file = "/home/testuser/data/firestations.geojson"
+locations["nc_spm_08"].mapsets[mapset_name].upload_vector(vector_layer_name, file)
+print(locations["nc_spm_08"].mapsets[mapset_name].vector_layers.keys())
+```
+
+Delete a raster layer
+```
+locations["nc_spm_08"].mapsets[mapset_name].delete_vector(vector_layer_name)
+print(locations["nc_spm_08"].mapsets[mapset_name].vector_layers.keys())
+
+# TODO delete mapset
+```
 
 
 ### Process Chain Validation
@@ -61,10 +162,48 @@ actinia_mundialis.set_authentication("demouser", "gu3st!pa55w0rd")
 locations = actinia_mundialis.get_locations()
 ```
 #### Synchronous process chain validation
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/07_process_chain_validation.md', '## Synchronous process chain validation') }}
+```
+pc = {
+    "list": [
+      {
+          "id": "r_mapcalc",
+          "module": "r.mapcalc",
+          "inputs": [
+              {
+                  "param": "expression",
+                  "value": "elevation=42"
+              }
+          ]
+      }
+    ],
+    "version": "1"
+}
+pc = {"list": [{"id": "r_mapcalc","module": "r.mapcalc","inputs": [{"param": "expression","value": "elevation=42"}]}],"version": "1"}
+actinia_mundialis.locations["nc_spm_08"].validate_process_chain_sync(pc)
+```
 #### Asynchronous process chain validation:
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/07_process_chain_validation.md', '## Asynchronous process chain validation:') }}
-
+```
+pc = {
+    "list": [
+      {
+          "id": "r_mapcalc",
+          "module": "r.mapcalc",
+          "inputs": [
+              {
+                  "param": "expression",
+                  "value": "elevation=42"
+              }
+          ]
+      }
+    ],
+    "version": "1"
+}
+pc = {"list": [{"id": "r_mapcalc","module": "r.mapcalc","inputs": [{"param": "expression","value": "elevation=42"}]}],"version": "1"}
+val_job = actinia_mundialis.locations["nc_spm_08"].validate_process_chain_async(pc)
+val_job.poll_until_finished()
+print(val_job.status)
+print(val_job.message)
+```
 
 ### Processing
 Start a processing job with a valid process chain.
@@ -81,8 +220,29 @@ actinia_mundialis.set_authentication("demouser", "gu3st!pa55w0rd")
 locations = actinia_mundialis.get_locations()
 ```
 #### Ephemeral Processing
-{{ external_markdown('https://raw.githubusercontent.com/mundialis/actinia-python-client/main/docs/docs/08_processing.md', '## Ephemeral Processing') }}
+Start an ephemeral processing job
+```
+pc = {
+    "list": [
+      {
+          "id": "r_mapcalc",
+          "module": "r.mapcalc",
+          "inputs": [
+              {
+                  "param": "expression",
+                  "value": "baum=5"
+              }
+          ]
+      }
+    ],
+    "version": "1"
+}
+job = actinia_mundialis.locations["nc_spm_08"].create_processing_export_job(pc, "test")
+job.poll_until_finished()
 
+print(job.status)
+print(job.message)
+```
 
 
 
@@ -330,6 +490,10 @@ Fig. 15: actinia connector, persistent and ephemeral processing
 
 You can find various actinia notebooks on [GitHub](https://github.com/mundialis/actinia-jupyter).
 
+<a href="../img/actinia-jupyter.jpeg"><img src="../img/actinia-jupyter.jpeg" width="60%"></a><br>
+<a href="../img/actinia-jupyter2.jpeg"><img src="../img/actinia-jupyter2.jpeg" width="60%"></a><br>
+
+<b>Hint:</b></br>
 On error `ImportError: cannot import name 'contextfilter' from 'jinja2' (/home/ctawalika/.local/lib/python3.8/site-packages/jinja2/__init__.py)`:
 Remove pip packages with eg `pip3 uninstall jinja2 notebook`
 and install them via package manager, e.g. with `apt install python3-jinja2 python3-notebook`
