@@ -105,7 +105,7 @@ Note: The option `mapset=MAPSET_NAME` allows the execution of commands in the **
 
 To use ace, some things are required:
 
-* GRASS GIS 7.8+ ([download](https://grass.osgeo.org/download/))
+* GRASS GIS ([download](https://grass.osgeo.org/download/))
 * three additional Python packages: `click` `requests` `simplejson`
 ```
 pip3 install click requests simplejson
@@ -220,7 +220,7 @@ cells:      1010600
 Store the following script as text file `/tmp/ace_segmentation.sh`:
 
 ```bash
-# grass78 ~/grassdata/nc_spm_08/user1/
+# grass ~/grassdata/nc_spm_08/user1/
 # Import the web resource and set the region to the imported map
 # we apply a trick for the import of multi-band GeoTIFFs:
 # install with: g.extension importer
