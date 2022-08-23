@@ -265,7 +265,7 @@ Note: The option `mapset=MAPSET_NAME` allows the execution of commands in the **
 
 To use ace, some things are required:
 
-* GRASS GIS 7.8+ ([download](https://grass.osgeo.org/download/))
+* GRASS GIS ([download](https://grass.osgeo.org/download/))
 * three additional Python packages: `click` `requests` `simplejson`
 ```
 pip3 install click requests simplejson
@@ -380,10 +380,10 @@ cells:      1010600
 Store the following script as text file `/tmp/ace_segmentation.sh`:
 
 ```bash
-# grass78 ~/grassdata/nc_spm_08/user1/
+# grass ~/grassdata/nc_spm_08/user1/
 # Import the web resource and set the region to the imported map
 # we apply a trick for the import of multi-band GeoTIFFs:
-# install with: g.extension importer
+# install with: g.extension importer url=https://github.com/mundialis/importer/
 importer raster=ortho2010@https://apps.mundialis.de/workshops/osgeo_ireland2017/north_carolina/ortho2010_t792_subset_20cm.tif
 # The importer has created three new raster maps, one for each band in the geotiff file
 # stored them in an image group
@@ -420,14 +420,14 @@ If you want to try out more things with ace, take a look at a <a href="https://n
 
 ### Introduction to the actinia Connector
 
-The actinia Connector is a QGIS Plugin for actinia communication. With it it is possible to connect to a
-running actinia instance, request locations, mapsets and detailed layer information.
-It is also possible to download maps directly into QGIS for local processing and even
+The actinia Connector is a QGIS Plugin for actinia communication. With this plugin it is possible
+to connect to a running actinia instance, request locations, mapsets and detailed layer information.
+It is also possible to download maps directly into QGIS for further local processing and even
 to start processes. For ephemeral processing the plugin downloads the results directly.
 
 This is still a development version but can be tested and used already.
 
-Download is available from [https://apps.mundialis.de/actinia_connector/plugins.xml](https://apps.mundialis.de/actinia_connector/plugins.xml)
+The actinia connector is available from [https://apps.mundialis.de/actinia_connector/plugins.xml](https://apps.mundialis.de/actinia_connector/plugins.xml), simply add this URL in QGIS under Plugins > Manage and install plugins > Settings > Plugin repositories > Add.
 
 
 ### Project Setup
@@ -488,12 +488,17 @@ Fig. 15: actinia connector, persistent and ephemeral processing
 
 ## actinia jupyter notebooks
 
+Jupyter Notebooks are server-client applications that allow code written in a notebook document to be edited and executed through a web browser. They can be run on a local computer that does not require internet access, as well as used to control computations on a remote server accessed via the Internet.
+
+Jupyter notebooks can be interactive and are run through a web browser. They provide the ability to combine live code, explanatory text, and computational results into a single document. Jupyter Notebooks can be easily shared as documents.
+
 You can find various actinia notebooks on [GitHub](https://github.com/mundialis/actinia-jupyter).
 
 <a href="../img/actinia-jupyter.jpeg"><img src="../img/actinia-jupyter.jpeg" width="60%"></a><br>
 <a href="../img/actinia-jupyter2.jpeg"><img src="../img/actinia-jupyter2.jpeg" width="60%"></a><br>
 
 <b>Hint:</b></br>
+
 On error `ImportError: cannot import name 'contextfilter' from 'jinja2' (/home/ctawalika/.local/lib/python3.8/site-packages/jinja2/__init__.py)`:
 Remove pip packages with eg `pip3 uninstall jinja2 notebook`
 and install them via package manager, e.g. with `apt install python3-jinja2 python3-notebook`

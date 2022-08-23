@@ -185,7 +185,7 @@ Request **methods** (source: [2]):
 JSON is a structured, machine readable format (while also human readable; in contrast to XML, at least for many people). [JSON](https://json.org/) is short for JavaScript Object Notation. For example, this command line call...
 
 ```bash
-GRASS 7.8.git (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
+GRASS (nc_spm_08):~ > v.buffer input=roadlines output=roadbuf10 distance=10 --json
 ```
 
 ... looks like the following in JSON:

@@ -8,13 +8,15 @@
 
 ### Step by step...
 
+We will now send a REST API call to the actinia server and receive the server response.
+
 Step 1:
 
 * Get your credentials (for authentication) from the trainer or use the `demouser` with `gu3st!pa55w0rd`
 
 Step 2:
 
-* Try this call, simply in a browser: [https://actinia.mundialis.de/api/v3/locations](https://actinia.mundialis.de/api/v3/locations)
+* First try the following API call; simply in a browser: [https://actinia.mundialis.de/api/v3/locations](https://actinia.mundialis.de/api/v3/locations)
 * What does it show?
 
 Step 3:
@@ -36,10 +38,11 @@ For a `curl` example, see below ("[REST actinia examples with curl](index.html#r
 Step 4:
 
 * Explore the existing data on the actinia server:
-    * i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets
+    * i.e., available GRASS locations, info, mapsets, raster, vector, and space-time datasets
     * Check the [list of data](https://github.com/mundialis/actinia_core/blob/master/scripts/README.md#available-data) currently available on the actinia server
     * e.g.
         * [https://actinia.mundialis.de/api/v3/locations](https://actinia.mundialis.de/api/v3/locations)
+        * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/info](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/info)
         * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets)
         * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers)
         * [https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10](https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10)
@@ -253,7 +256,7 @@ curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/pr
 
 # Get a list or raster layers from a STRDS, with date filter
 # ECAD: Yearly precipitation
-curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>2012-01-01"
+curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>'2012-01-01'"
 ```
 
 #### Render maps

@@ -13,7 +13,7 @@ URL of this dcument: [https://mundialis.github.io/actinia-introduction/](https:/
 
 This workshop is a fork of [https://neteler.gitlab.io/actinia-introduction](https://neteler.gitlab.io/actinia-introduction). The initial workshop has a more detailed chapter about ace - the actinia command execution. This workshop focuses more on the "bare" HTTP API from actinia and extended excercises.
 
-*Last update: 12 Aug 2022*
+*Last update: 23 Aug 2022*
 
 ## Abstract
 
