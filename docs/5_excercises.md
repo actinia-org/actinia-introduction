@@ -6,11 +6,13 @@
 
 Meanwhile you have seen a lot of material. Time to try out some further exercises...
 
+
 ### 1. What is the altitude of the highest point in North Carolina? Check it with actinia.
 
   * Find the correct raster in the North Carolina location and PERMANENT mapset.
   * Find the relevant raster layer by rendering it
   * Print the information and get altitude of the highest point
+  * [List of available data](https://www.grassbook.org/wp-content/uploads/grasslocations/nc_spm_08_contents.html) in the North Carolina sample dataset.
 
 ### 2. Find the zipcode in Wake county with the most hospitals
 
