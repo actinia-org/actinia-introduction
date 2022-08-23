@@ -383,7 +383,7 @@ Store the following script as text file `/tmp/ace_segmentation.sh`:
 # grass ~/grassdata/nc_spm_08/user1/
 # Import the web resource and set the region to the imported map
 # we apply a trick for the import of multi-band GeoTIFFs:
-# install with: g.extension importer
+# install with: g.extension importer url=https://github.com/mundialis/importer/
 importer raster=ortho2010@https://apps.mundialis.de/workshops/osgeo_ireland2017/north_carolina/ortho2010_t792_subset_20cm.tif
 # The importer has created three new raster maps, one for each band in the geotiff file
 # stored them in an image group
