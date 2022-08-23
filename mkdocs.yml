@@ -1,6 +1,5 @@
 site_name: A gentle introduction to actinia
-site_url:  https://pages.gitlab.io/actinia-introduction
-#site_url: https://namespace.gitlab.io
+site_url:  https://pages.github.io/actinia-introduction
 docs_dir:  docs
 theme:     readthedocs
 extra_css: [extra.css]
@@ -9,8 +8,7 @@ use_directory_urls: true
 # use_directory_urls: false
 # plugins:
 #     - with-pdf
-plugins:
-    - external-markdown
+#     - external-markdown
 nav:
     - 'index.md'
     - '2_concepts.md'
