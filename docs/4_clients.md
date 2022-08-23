@@ -427,7 +427,7 @@ to start processes. For ephemeral processing the plugin downloads the results di
 
 This is still a development version but can be tested and used already.
 
-The actinia Connector is available from [https://apps.mundialis.de/actinia_connector/plugins.xml](https://apps.mundialis.de/actinia_connector/plugins.xml), simply add this URL in QGIS under Plugins > Manage and install plugins > Settings > Plugin repositories > Add.
+The actinia connector is available from [https://apps.mundialis.de/actinia_connector/plugins.xml](https://apps.mundialis.de/actinia_connector/plugins.xml), simply add this URL in QGIS under Plugins > Manage and install plugins > Settings > Plugin repositories > Add.
 
 
 ### Project Setup
@@ -488,7 +488,7 @@ Fig. 15: actinia connector, persistent and ephemeral processing
 
 ## actinia jupyter notebooks
 
-Jupyter Notebooks are server-client applications that allow code written in a notebook document to be edited and executed through a web browser. They can be run on a local computer that does not require Internet access, as well as used to control computations on a remote server accessed via the Internet.
+Jupyter Notebooks are server-client applications that allow code written in a notebook document to be edited and executed through a web browser. They can be run on a local computer that does not require internet access, as well as used to control computations on a remote server accessed via the Internet.
 
 Jupyter notebooks can be interactive and are run through a web browser. They provide the ability to combine live code, explanatory text, and computational results into a single document. Jupyter Notebooks can be easily shared as documents.
 

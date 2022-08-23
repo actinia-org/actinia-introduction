@@ -8,7 +8,7 @@
 
 ### Step by step...
 
-We will now send an REST API call to the actinia server and receive the server response.
+We will now send a REST API call to the actinia server and receive the server response.
 
 Step 1:
 
