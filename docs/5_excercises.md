@@ -18,6 +18,10 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
   * Check the zipcode vector layer for the relevant column to get the zipcode
   * Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules `g.copy` (because you are not allowed to change data from an other mapset), `v.vect.stats` and `v.db.select`
   * Post the created process chain to `https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async` for ephemeral processing
+  * Related GRASS GIS manual pages:
+      [g.copy](https://grass.osgeo.org/grass-stable/manuals/g.copy.html),
+      [v.vect.stats](https://grass.osgeo.org/grass-stable/manuals/v.vect.stats.html),
+      [v.db.select](https://grass.osgeo.org/grass-stable/manuals/v.db.select.html).
 
 ### 3. Export the water bodies from the available Landsat imagery of North Carolina
 
@@ -26,20 +30,29 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
     * Compute the NDWI (Normalized difference water index); use `r.mapcalc` or `i.vi`
     * Filter water bodies by a threshold of e.g. 0.35 using `r.mapcalc`
   * Either export the water bodies (use the `exporter` with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use `r.colors` and persistent processing in your own mapset)
+  * Related GRASS GIS manual pages:
+      [r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html),
+      [i.vi](https://grass.osgeo.org/grass-stable/manuals/i.vi.html),
+      [exporter](https://github.com/mundialis/exporter/).
 
 ### 4. Population at risk near coastal areas
 
-* needed geodata:
+  * needed geodata:
     * Worldwide SRTM 30m (already available in actinia as `srtmgl1_v003_30m` - find out the location yourself)
     * South America Population 2015 (already available in actinia as `worldpop_2015_1km_aggregated_UNadj`- find out the location yourself)
     * raster shorelines (already available in actinia as `ne_1000m_coastlines`- find out the location yourself)
-* fetch metadata with actinia interface and render input data
-* proposed workflow:
+  * fetch metadata with actinia interface and render input data
+  * proposed workflow:
     * set computational region to a small subregion (hint: `align` the region resolution to the population raster) and check the pixel number against user constraints
     * buffer the coastlines by 5000 m and set a mask to the result
     * Extract only the peopulation below 10 m
     * Calculate the statistic to get the population at risk near coastal areas
-* Hints for example GRASS modules to use in process chain: `g.region`, `r.buffer`, `r.mapcalc`, `r.mask`, `r.univar`
+  * Hints for example GRASS modules to use in process chain: `g.region`, `r.buffer`, `r.mapcalc`, `r.mask`, `r.univar`
+  * Related GRASS GIS manual pages:
+      [g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html),
+      [r.buffer](https://grass.osgeo.org/grass-stable/manuals/r.buffer),
+      [r.mask](https://grass.osgeo.org/grass-stable/manuals/r.mask),
+      [r.univar](https://grass.osgeo.org/grass-stable/manuals/r.univar.html).
 
 <!-- ### EXERCISE: "Property risks from trees"
 
