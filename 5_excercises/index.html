@@ -113,6 +113,7 @@
 <li>Find the correct raster in the North Carolina location and PERMANENT mapset.</li>
 <li>Find the relevant raster layer by rendering it</li>
 <li>Print the information and get altitude of the highest point</li>
+<li><a href="https://www.grassbook.org/wp-content/uploads/grasslocations/nc_spm_08_contents.html">List of available data</a> in the North Carolina sample dataset.</li>
 </ul>
 <h3 id="2-find-the-zipcode-in-wake-county-with-the-most-hospitals">2. Find the zipcode in Wake county with the most hospitals</h3>
 <ul>
@@ -120,6 +121,10 @@
 <li>Check the zipcode vector layer for the relevant column to get the zipcode</li>
 <li>Create a process chain as a .json file to ask for the number of hospitals in the zipcodes: Use the GRASS GIS modules <code>g.copy</code> (because you are not allowed to change data from an other mapset), <code>v.vect.stats</code> and <code>v.db.select</code></li>
 <li>Post the created process chain to <code>https://actinia.mundialis.de/api/v3/locations/nc_spm_08/processing_async</code> for ephemeral processing</li>
+<li>Related GRASS GIS manual pages:
+      <a href="https://grass.osgeo.org/grass-stable/manuals/g.copy.html">g.copy</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/v.vect.stats.html">v.vect.stats</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/v.db.select.html">v.db.select</a>.</li>
 </ul>
 <h3 id="3-export-the-water-bodies-from-the-available-landsat-imagery-of-north-carolina">3. Export the water bodies from the available Landsat imagery of North Carolina</h3>
 <ul>
@@ -130,6 +135,10 @@
 </ul>
 </li>
 <li>Either export the water bodies (use the <code>exporter</code> with the ephemeral processing) or render the maps of NDWI and water bodies with a nice color (use <code>r.colors</code> and persistent processing in your own mapset)</li>
+<li>Related GRASS GIS manual pages:
+      <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/i.vi.html">i.vi</a>,
+      <a href="https://github.com/mundialis/exporter/">exporter</a>.</li>
 </ul>
 <h3 id="4-population-at-risk-near-coastal-areas">4. Population at risk near coastal areas</h3>
 <ul>
@@ -148,6 +157,11 @@
 </ul>
 </li>
 <li>Hints for example GRASS modules to use in process chain: <code>g.region</code>, <code>r.buffer</code>, <code>r.mapcalc</code>, <code>r.mask</code>, <code>r.univar</code></li>
+<li>Related GRASS GIS manual pages:
+      <a href="https://grass.osgeo.org/grass-stable/manuals/g.region.html">g.region</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/r.buffer">r.buffer</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/r.mask">r.mask</a>,
+      <a href="https://grass.osgeo.org/grass-stable/manuals/r.univar.html">r.univar</a>.</li>
 </ul>
 <!-- ### EXERCISE: "Property risks from trees"
 

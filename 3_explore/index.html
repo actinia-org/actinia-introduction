@@ -139,13 +139,14 @@
 -->
 
 <h3 id="step-by-step">Step by step...</h3>
+<p>We will now send a REST API call to the actinia server and receive the server response.</p>
 <p>Step 1:</p>
 <ul>
 <li>Get your credentials (for authentication) from the trainer or use the <code>demouser</code> with <code>gu3st!pa55w0rd</code></li>
 </ul>
 <p>Step 2:</p>
 <ul>
-<li>Try this call, simply in a browser: <a href="https://actinia.mundialis.de/api/v3/locations">https://actinia.mundialis.de/api/v3/locations</a></li>
+<li>First try the following API call; simply in a browser: <a href="https://actinia.mundialis.de/api/v3/locations">https://actinia.mundialis.de/api/v3/locations</a></li>
 <li>What does it show?</li>
 </ul>
 <p>Step 3:</p>
@@ -167,10 +168,11 @@ Fig. 4: Using RESTman
 <p>Step 4:</p>
 <ul>
 <li>Explore the existing data on the actinia server:<ul>
-<li>i.e., available GRASS locations, mapsets, raster, vector, and space-time datasets</li>
+<li>i.e., available GRASS locations, info, mapsets, raster, vector, and space-time datasets</li>
 <li>Check the <a href="https://github.com/mundialis/actinia_core/blob/master/scripts/README.md#available-data">list of data</a> currently available on the actinia server</li>
 <li>e.g.<ul>
 <li><a href="https://actinia.mundialis.de/api/v3/locations">https://actinia.mundialis.de/api/v3/locations</a></li>
+<li><a href="https://actinia.mundialis.de/api/v3/locations/nc_spm_08/info">https://actinia.mundialis.de/api/v3/locations/nc_spm_08/info</a></li>
 <li><a href="https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets">https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets</a></li>
 <li><a href="https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers">https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers</a></li>
 <li><a href="https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10">https://actinia.mundialis.de/api/v3/locations/nc_spm_08/mapsets/landsat/raster_layers/lsat5_1987_10</a></li>
@@ -352,7 +354,7 @@ curl ${AUTH} -X GET &quot;${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/str
 
 # Get a list or raster layers from a STRDS, with date filter
 # ECAD: Yearly precipitation
-curl ${AUTH} -X GET &quot;${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time&gt;2012-01-01&quot;
+curl ${AUTH} -X GET &quot;${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time&gt;'2012-01-01'&quot;
 </code></pre>
 <h4 id="render-maps">Render maps</h4>
 <p>This can be achieved by simply adding <code>/render</code> at the end of a layer resource:</p>
