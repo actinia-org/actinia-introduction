@@ -81,7 +81,7 @@ for updating the excercises and creating new fun and smaller tasks.
 
 ------------------------------------------------------------------------
 
-- Repository of this material on [github](https://github.com/mundialis/actinia-introduction/)
+- Repository of this material on [github](https://github.com/actinia-ogr/actinia-introduction/)
 
 
 *[About](about.md) | [Privacy](https://docs.github.com/en/github/site-policy/github-privacy-statement)*
