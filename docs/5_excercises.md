@@ -35,7 +35,7 @@ Meanwhile you have seen a lot of material. Time to try out some further exercise
   * Related GRASS GIS manual pages:
       [r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html),
       [i.vi](https://grass.osgeo.org/grass-stable/manuals/i.vi.html),
-      [exporter](https://github.com/mundialis/exporter/).
+      [exporter](https://github.com/actinia-org/exporter/).
 
 ### 4. Population at risk near coastal areas
 

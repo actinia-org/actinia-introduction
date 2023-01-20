@@ -6,7 +6,7 @@
 
 * Discussion!
 * Where is the code and how to contribute: find it on GitHub
-    * [https://github.com/mundialis/actinia_core/](https://github.com/mundialis/actinia_core/)
+    * [https://github.com/actinia-org/actinia-core/](https://github.com/actinia-org/actinia-core/)
 
 
 ## UPCOMING
@@ -28,7 +28,7 @@ Actinia is a beautiful sea creature and a genus of sea anemones in the family Ac
 
 ### How to contribute to actinia
 
-Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/master/CONTRIBUTING.md)
+Please see [CONTRIBUTING.md](https://github.com/actinia-org/actinia-core/blob/master/CONTRIBUTING.md)
 
 ### openEO resources
 
@@ -38,16 +38,16 @@ Please see [CONTRIBUTING.md](https://github.com/mundialis/actinia_core/blob/mast
 
 ## actinia, plugins and related repositories
 
-* [actinia_core](https://github.com/mundialis/actinia_core)
-* [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin)
-* [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin)
-* [actinia_satellite_plugin](https://github.com/mundialis/actinia_satellite_plugin)
-* [actinia_statistic_plugin](https://github.com/mundialis/actinia_statistic_plugin)
-* [actinia-stac-plugin](https://github.com/mundialis/actinia-stac-plugin)
-* [ace](https://github.com/mundialis/ace)
-* [exporter](https://github.com/mundialis/exporter)
-* [importer](https://github.com/mundialis/importer)
-* [helm charts](https://github.com/mundialis/helm-charts/tree/main/charts)
+* [actinia_core](https://github.com/actinia-org/actinia-core)
+* [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin)
+* [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin)
+* [actinia_satellite_plugin](https://github.com/actinia-org/actinia-satellite-plugin)
+* [actinia_statistic_plugin](https://github.com/actinia-org/actinia-statistic-plugin)
+* [actinia-stac-plugin](https://github.com/actinia-org/actinia-stac-plugin)
+* [ace](https://github.com/actinia-org/ace)
+* [exporter](https://github.com/actinia-org/exporter)
+* [importer](https://github.com/actinia-org/importer)
+* [helm charts](https://github.com/actinia-org/helm-charts/tree/main/charts)
 * [openeo-grassgis-drives](https://github.com/Open-EO/openeo-grassgis-driver)
 
 ### REST introduction
@@ -81,7 +81,7 @@ for updating the excercises and creating new fun and smaller tasks.
 
 ------------------------------------------------------------------------
 
-- Repository of this material on [github](https://github.com/mundialis/actinia-introduction/)
+- Repository of this material on [github](https://github.com/actinia-org/actinia-introduction/)
 
 
 *[About](about.md) | [Privacy](https://docs.github.com/en/github/site-policy/github-privacy-statement)*

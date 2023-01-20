@@ -29,7 +29,7 @@ Still, some critical **issues** have to be addressed in the geospatial realm:
 
 ## Overview actinia
 
-Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/mundialis/actinia_core](https://github.com/mundialis/actinia_core). It is written in Python and uses Flask, Redis, and other components.
+Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/actinia-org/actinia-core](https://github.com/actinia-org/actinia-core). It is written in Python and uses Flask, Redis, and other components.
 
 ### Components of actinia
 
@@ -37,22 +37,22 @@ Actinia is composed of several components.
 
 Core system:
 
-* [actinia-core](https://github.com/mundialis/actinia_core/): an open source REST API for scalable, distributed and, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
+* [actinia-core](https://github.com/actinia-org/actinia-core/): an open source REST API for scalable, distributed and, high performance processing of geographical data that uses mainly GRASS GIS for computational tasks. It can be installed as is or enhanced with multiple plugins.
 
 API:
 
-* [actinia-api](https://github.com/mundialis/actinia-api): API description for actinia_core and official plugins.
+* [actinia-api](https://github.com/actinia-org/actinia-api): API description for actinia_core and official plugins.
 
 Plugins:
 
-* [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin): contains module self-description and process-chain-template management and processing
-* [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
-* [actinia-statistic-plugin](https://github.com/mundialis/actinia_statistic_plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
-* [actinia-satellite-plugin](https://github.com/mundialis/actinia_satellite_plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
-* [actinia-stac-plugin](https://github.com/mundialis/actinia-stac-plugin): Plugin for actinia to read STAC catalogs and retrieve data for processing
-* [actinia-tiling-plugin](https://github.com/mundialis/actinia-tiling-plugin): Plugin for actinia to tile areas, e.g. to process them in parallel
-* [actinia-parallel-plugin](https://github.com/mundialis/actinia-parallel-plugin): Plugin for actinia to allow to specify parallel processes for faster processing (WIP)
-* ([actinia-example-plugin](https://github.com/mundialis/actinia-example-plugin): A small example plugin for actinia-core. This can be used as base for developing an own plugin)
+* [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin): contains module self-description and process-chain-template management and processing
+* [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
+* [actinia-statistic-plugin](https://github.com/actinia-org/actinia-statistic-plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
+* [actinia-satellite-plugin](https://github.com/actinia-org/actinia-satellite-plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
+* [actinia-stac-plugin](https://github.com/actinia-org/actinia-stac-plugin): Plugin for actinia to read STAC catalogs and retrieve data for processing
+* [actinia-tiling-plugin](https://github.com/actinia-org/actinia-tiling-plugin): Plugin for actinia to tile areas, e.g. to process them in parallel
+* [actinia-parallel-plugin](https://github.com/actinia-org/actinia-parallel-plugin): Plugin for actinia to allow to specify parallel processes for faster processing (WIP)
+* ([actinia-example-plugin](https://github.com/actinia-org/actinia-example-plugin): A small example plugin for actinia-core. This can be used as base for developing an own plugin)
 
 Related:
 
@@ -93,9 +93,9 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 * interface layer:
     * most importantly, the **REST API**,
     * [openEO GRASS GIS driver](https://github.com/Open-EO/openeo-grassgis-driver),
-    * ace - [actinia command execution](https://github.com/mundialis/ace) (to be run in a GRASS GIS session),
-* metadata management: interface to Geonetwork Opensource via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/mundialis/actinia-metadata-plugin),
-* module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/mundialis/actinia-module-plugin),
+    * ace - [actinia command execution](https://github.com/actinia-org/ace) (to be run in a GRASS GIS session),
+* metadata management: interface to Geonetwork Opensource via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin),
+* module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin),
 * database system:
     * job management in a Redis database,
     * the GRASS GIS database (here are the geo/EO data stored!),
@@ -115,7 +115,7 @@ An aim is to operate **Infrastructure as Code** ([IaC](https://en.wikipedia.org/
 
 **CI/CD** systems (continuous integration/continuous deployment) allow to define dependencies, prevent from launching broken software and allow the versioning of the entire software stack.
 
-With respect to actinia, **various ways of [deployment](https://github.com/mundialis/actinia_core/tree/master/docker)** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
+With respect to actinia, **various ways of [deployment](https://github.com/actinia-org/actinia-core/tree/master/docker)** are offered: local installation, docker, docker-compose, docker-swarm, Openshift, and kubernetes.
 
 ## REST API and geoprocessing basics
 

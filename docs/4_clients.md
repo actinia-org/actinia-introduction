@@ -6,13 +6,13 @@
 
 ## actinia-python-client
 Python library to access an actinia server easily via python.
-See also [source code](https://github.com/mundialis/actinia-python-client) and [full documentation](https://mundialis.github.io/actinia-python-client/)
+See also [source code](https://github.com/actinia-org/actinia-python-client) and [full documentation](https://mundialis.github.io/actinia-python-client/)
 
 ### Installation
 ```
 VERSION="0.1.2"
 
-pip3 install "actinia-python-client @ https://github.com/mundialis/actinia-python-client/releases/download/${VERSION}/actinia_python_client-${VERSION}-py3-none-any.whl"
+pip3 install "actinia-python-client @ https://github.com/actinia-org/actinia-python-client/releases/download/${VERSION}/actinia_python_client-${VERSION}-py3-none-any.whl"
 ```
 
 ### Quickstart
@@ -277,9 +277,9 @@ grass -c nc_spm_08/ace
 ```
 * `ace` itself, `importer` and `exporter`  tools as GRASS GIS extensions
 ```
-g.extension extension=importer url=https://github.com/mundialis/importer
-g.extension extension=exporter url=https://github.com/mundialis/exporter
-g.extension extension=ace url=https://github.com/mundialis/ace
+g.extension extension=importer url=https://github.com/actinia-org/importer
+g.extension extension=exporter url=https://github.com/actinia-org/exporter
+g.extension extension=ace url=https://github.com/actinia-org/ace
 ```
 
 For more detailed information on how to set this up yourself, see [different actinia workshop](https://neteler.gitlab.io/actinia-introduction/#preparation_1).
@@ -383,7 +383,7 @@ Store the following script as text file `/tmp/ace_segmentation.sh`:
 # grass ~/grassdata/nc_spm_08/user1/
 # Import the web resource and set the region to the imported map
 # we apply a trick for the import of multi-band GeoTIFFs:
-# install with: g.extension importer url=https://github.com/mundialis/importer/
+# install with: g.extension importer url=https://github.com/actinia-org/importer/
 importer raster=ortho2010@https://apps.mundialis.de/workshops/osgeo_ireland2017/north_carolina/ortho2010_t792_subset_20cm.tif
 # The importer has created three new raster maps, one for each band in the geotiff file
 # stored them in an image group
@@ -492,7 +492,7 @@ Jupyter Notebooks are server-client applications that allow code written in a no
 
 Jupyter notebooks can be interactive and are run through a web browser. They provide the ability to combine live code, explanatory text, and computational results into a single document. Jupyter Notebooks can be easily shared as documents.
 
-You can find various actinia notebooks on [GitHub](https://github.com/mundialis/actinia-jupyter).
+You can find various actinia notebooks on [GitHub](https://github.com/actinia-org/actinia-jupyter).
 
 <a href="../img/actinia-jupyter.jpeg"><img src="../img/actinia-jupyter.jpeg" width="60%"></a><br>
 <a href="../img/actinia-jupyter2.jpeg"><img src="../img/actinia-jupyter2.jpeg" width="60%"></a><br>
