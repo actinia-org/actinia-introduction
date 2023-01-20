@@ -309,7 +309,7 @@ curl ${AUTH} -X POST -H "content-type: application/json" "${actinia}/api/v3/loca
 Why validation? It may happen that your JSON file to be sent to the endpoint contains a typo or other invalid content. For the identification of problems prior to executing the commands contained in the JSON file (which may last for hours), it is recommended to validate this file.
 For this, actinia can be used as it provides a validation endpoint.
 
-Example: Download the process chain [process_chain_long.json](https://github.com/actinia-ogr/actinia-introduction/raw/main/docs/process_chain_long.json) and validate it:
+Example: Download the process chain [process_chain_long.json](https://github.com/actinia-org/actinia-introduction/raw/main/docs/process_chain_long.json) and validate it:
 
 ```bash
 # validation of a process chain (using sync call)
