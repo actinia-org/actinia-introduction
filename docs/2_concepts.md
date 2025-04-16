@@ -29,7 +29,7 @@ Still, some critical **issues** have to be addressed in the geospatial realm:
 
 ## Overview actinia
 
-Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/actinia-org/actinia-core](https://github.com/actinia-org/actinia-core). It is written in Python and uses Flask, Redis, and other components.
+Actinia ([https://actinia.mundialis.de/](https://actinia.mundialis.de/)) is an **open source REST API for scalable, distributed, high performance processing of geospatial and Earth observation data** that uses mainly GRASS GIS for computational tasks. Core functionality includes the processing of single scenes and time series of satellite images, of raster and vector data. With the existing (e.g. Landsat) and Copernicus Sentinel big geodata pools which are growing day by day, actinia is designed to follow the paradigm of bringing algorithms to the cloud stored geodata. Actinia is an OSGeo Community Project since 2019. The source code is available on GitHub at [https://github.com/actinia-org/actinia-core](https://github.com/actinia-org/actinia-core). It is written in Python and uses Flask, Valkey, and other components.
 
 ### Components of actinia
 
@@ -97,7 +97,7 @@ Several **components** play a role in a cloud deployment of actinia (for an exam
 * metadata management: interface to Geonetwork Opensource via OGC-CSW, managed through [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin),
 * module self-description and process-chain-template management and processing, managed through [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin),
 * database system:
-    * job management in a Redis database,
+    * job management in a Valkey database,
     * the GRASS GIS database (here are the geo/EO data stored!),
 * connection to OGC Web services for output:
    * Geoserver integration.
