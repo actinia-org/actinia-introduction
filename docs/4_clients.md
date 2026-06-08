@@ -245,7 +245,7 @@ print(job.message)
 ```
 
 
-
+<!--
 ## ACE - Controlling actinia from a running GRASS GIS session
 
 Python library to access an actinia server easily via python.
@@ -414,7 +414,7 @@ If you want to try out more things with ace, take a look at a <a href="https://n
 </p>
 
 
-
+-->
 
 ## actinia Connector - a QGIS plugin
 

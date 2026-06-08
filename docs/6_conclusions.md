@@ -41,14 +41,14 @@ Please see [CONTRIBUTING.md](https://github.com/actinia-org/actinia-core/blob/ma
 * [actinia_core](https://github.com/actinia-org/actinia-core)
 * [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin)
 * [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin)
-* [actinia_satellite_plugin](https://github.com/actinia-org/actinia-satellite-plugin)
 * [actinia_statistic_plugin](https://github.com/actinia-org/actinia-statistic-plugin)
 * [actinia-stac-plugin](https://github.com/actinia-org/actinia-stac-plugin)
-* [ace](https://github.com/actinia-org/ace)
 * [exporter](https://github.com/actinia-org/exporter)
 * [importer](https://github.com/actinia-org/importer)
 * [helm charts](https://github.com/actinia-org/helm-charts/tree/main/charts)
 * [openeo-grassgis-drives](https://github.com/Open-EO/openeo-grassgis-driver)
+<!--* [actinia_satellite_plugin](https://github.com/actinia-org/actinia-satellite-plugin) 
+* [ace](https://github.com/actinia-org/ace)-->
 
 ### REST introduction
 

@@ -48,12 +48,13 @@ Plugins:
 * [actinia-module-plugin](https://github.com/actinia-org/actinia-module-plugin): contains module self-description and process-chain-template management and processing
 * [actinia-metadata-plugin](https://github.com/actinia-org/actinia-metadata-plugin): contains communication with a metadata catalog via OGC-CSW, in usage with GeoNetwork opensource
 * [actinia-statistic-plugin](https://github.com/actinia-org/actinia-statistic-plugin): designed for computing raster map and raster-time-series statistics for categorical and continuous data
-* [actinia-satellite-plugin](https://github.com/actinia-org/actinia-satellite-plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
 * [actinia-stac-plugin](https://github.com/actinia-org/actinia-stac-plugin): Plugin for actinia to read STAC catalogs and retrieve data for processing
 * [actinia-tiling-plugin](https://github.com/actinia-org/actinia-tiling-plugin): Plugin for actinia to tile areas, e.g. to process them in parallel
 * [actinia-parallel-plugin](https://github.com/actinia-org/actinia-parallel-plugin): Plugin for actinia to allow to specify parallel processes for faster processing (WIP)
 * ([actinia-example-plugin](https://github.com/actinia-org/actinia-example-plugin): A small example plugin for actinia-core. This can be used as base for developing an own plugin)
-
+<!--
+* [actinia-satellite-plugin](https://github.com/actinia-org/actinia-satellite-plugin): designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes
+--> 
 Related:
 
 * [openeo-grassgis-driver](https://github.com/Open-EO/openeo-grassgis-driver): OpenEO driver for GRASS GIS/actinia. Backend description at [https://openeo.mundialis.de/.well-known/openeo](https://openeo.mundialis.de/.well-known/openeo)
