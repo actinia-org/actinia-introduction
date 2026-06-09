@@ -251,12 +251,12 @@ curl ${AUTH} -X GET "${actinia}/api/v3/locations/nc_spm_08/mapsets/modis_lst/str
 curl ${AUTH} -X GET "${actinia}/api/v3/locations/latlong_wgs84/mapsets/modis_ndvi_global/strds/ndvi_16_5600m"
 
 # Get a list or raster layers from a STRDS
-# ECAD: Yearly precipitation
-curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers"
+# nc_spm_08: Monthly MODIS Land Surface Temperature Day
+curl ${AUTH} -X GET "${actinia}/api/v3/projects/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/raster_layers"
 
 # Get a list or raster layers from a STRDS, with date filter
-# ECAD: Yearly precipitation
-curl ${AUTH} -X GET "${actinia}/api/v3/locations/ECAD/mapsets/PERMANENT/strds/precipitation_1950_2013_yearly_mm/raster_layers?where=start_time>'2012-01-01'"
+# nc_spm_08: Monthly MODIS Land Surface Temperature Day
+curl ${AUTH} -X GET "${actinia}/api/v3/projects/nc_spm_08/mapsets/modis_lst/strds/LST_Day_monthly/raster_layers?where=start_time>'2016-01-01'"
 ```
 
 #### Render maps
