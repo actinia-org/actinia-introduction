@@ -47,8 +47,6 @@ Please see [CONTRIBUTING.md](https://github.com/actinia-org/actinia-core/blob/ma
 * [importer](https://github.com/actinia-org/importer)
 * [helm charts](https://github.com/actinia-org/helm-charts/tree/main/charts)
 * [openeo-grassgis-drives](https://github.com/Open-EO/openeo-grassgis-driver)
-<!--* [actinia_satellite_plugin](https://github.com/actinia-org/actinia-satellite-plugin) 
-* [ace](https://github.com/actinia-org/ace)-->
 
 ### REST introduction
 
