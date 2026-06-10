@@ -62,7 +62,6 @@ Note: We will use the demo actinia server at [https://actinia.mundialis.de/](htt
     * Exploring the API: finding available actinia endpoints
 * Client implementations
     * actinia-python-client - A python client library
-    <!--* ACE - Controlling actinia from a running GRASS GIS session -->
     * actinia Connector - a QGIS plugin
     * actinia Jupyter Notebooks
 * Own exercises in actinia
