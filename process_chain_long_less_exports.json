@@ -1,0 +1,111 @@
+{
+    "version": "1",
+    "list": [
+      {
+        "id": "g.region_1",
+        "module": "g.region",
+        "comment": "Set bbox and raster resolution of computational region to elevation map",
+        "flags": "p",
+        "inputs": [
+          {
+            "param": "raster",
+            "value": "elevation@PERMANENT"
+          },
+          {
+            "param": "res",
+            "value": "10"
+          }
+        ]
+      },
+      {
+        "id": "r.slope.aspect_1",
+        "module": "r.slope.aspect",
+        "comment": "Compute slope and aspect from elevation map",
+        "flags": "a",
+        "inputs": [
+          {
+            "param": "elevation",
+            "value": "elevation@PERMANENT"
+          },
+          {
+            "param": "format",
+            "value": "degrees"
+          },
+          {
+            "param": "precision",
+            "value": "FCELL"
+          },
+          {
+            "param": "zscale",
+            "value": "1.0"
+          },
+          {
+            "param": "min_slope",
+            "value": "0.0"
+          }
+        ],
+        "outputs": [
+          {
+            "param": "slope",
+            "value": "my_slope"
+          },
+          {
+            "param": "aspect",
+            "value": "my_aspect"
+          }
+        ]
+      },
+      {
+        "id": "r.watershed_1",
+        "module": "r.watershed",
+        "comment": "Compute flow accumulation from elevation map",
+        "inputs": [
+          {
+            "param": "elevation",
+            "value": "elevation@PERMANENT"
+          },
+          {
+            "param": "convergence",
+            "value": "5"
+          },
+          {
+            "param": "memory",
+            "value": "500"
+          }
+        ],
+        "outputs": [
+          {
+            "param": "accumulation",
+            "value": "my_accumulation"
+          }
+        ]
+      },
+      {
+        "id": "r.info_1",
+        "module": "r.info",
+        "comment": "Show metadata of previously computed aspect map",
+        "flags": "gr",
+        "inputs": [
+          {
+            "param": "map",
+            "value": "my_aspect"
+          }
+        ]
+      },
+      {
+        "id": "exporter_1",
+        "module": "exporter",
+        "comment": "Export the slope, aspect and flow accumulation maps (note: exporter is only used when using ephemeral processing endpoint)",
+        "outputs": [
+          {
+            "export": {
+              "type": "raster",
+              "format": "GTiff"
+            },
+            "param": "map",
+            "value": "my_aspect"
+          }
+        ]
+      }
+    ]
+  }

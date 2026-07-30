@@ -1,0 +1,86 @@
+{
+  "list": [
+    {
+      "id": "set_region",
+      "module": "g.region",
+      "inputs": [
+        {
+          "param": "n",
+          "value": "-34.3"
+        },
+        {
+          "param": "s",
+          "value": "-35.0"
+        },
+        {
+          "param": "e",
+          "value": "-57.0"
+        },
+        {
+          "param": "w",
+          "value": "-58.9"
+        },
+        {
+          "param": "align",
+          "value": "worldpop_2015_1km_aggregated_UNadj@worldpop_south_america"
+        }
+      ],
+      "flags": "g"
+    },
+    {
+      "id": "buffer SRTM land areas by 5000 m inwards",
+      "module": "r.buffer",
+      "inputs": [
+        {
+          "param": "input",
+          "value": "ne_1000m_coastline@coastlines"
+        },
+        {
+          "param": "output",
+          "value": "coastline_buffered"
+        },
+        {
+          "param": "distances",
+          "value": "5000"
+        },
+        {
+          "param": "units",
+          "value": "meters"
+        }
+      ]
+    },
+    {
+      "id": "mask_to_buffer",
+      "module": "r.mask",
+      "inputs": [
+        {
+          "param": "raster",
+          "value": "coastline_buffered"
+        }
+      ]
+    },
+    {
+      "id": "people_in_buffer_below_10m",
+      "module": "r.mapcalc",
+      "inputs": [
+        {
+          "param": "expression",
+          "value": "peop = if(srtmgl1_v003_30m@srtmgl1_30m < 10, worldpop_2015_1km_aggregated_UNadj@worldpop_south_america, null())"
+        }
+      ]
+    },
+    {
+      "id": "sum_of_people_in_buffer_below_10m",
+      "module": "r.univar",
+      "inputs": [
+        {
+          "param": "map",
+          "value": "peop"
+        }
+      ],
+      "flags": "g",
+      "stdout": {"id": "People_statistics", "format": "kv", "delimiter": "="}
+    }
+  ],
+  "version": "1"
+}
