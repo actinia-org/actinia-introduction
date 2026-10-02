@@ -1,0 +1,101 @@
+{
+  "list": [{
+    "id": "set_region",
+    "module": "g.region",
+    "inputs": [{
+      "param": "raster",
+      "value": "lsat7_2002_40@PERMANENT"
+      }]
+    },
+    {
+      "id": "compute_ndwi_variante1",
+      "module": "r.mapcalc",
+      "inputs": [{
+        "param": "expression",
+        "value": "ndwi_1 = (lsat7_2002_20@PERMANENT - lsat7_2002_40@PERMANENT) / float(lsat7_2002_20@PERMANENT + lsat7_2002_40@PERMANENT)"
+        }]
+      },
+      {
+        "id": "set_color_map",
+        "module": "r.colors",
+        "inputs": [
+          {
+            "param": "map",
+            "value": "ndwi_1"
+          },
+          {
+            "param": "color",
+            "value": "ndwi"
+          }
+        ]
+      },
+      {
+        "id": "compute_ndwi_variante2",
+        "module": "i.vi",
+        "inputs": [{
+          "param": "viname",
+          "value": "ndwi"
+        },
+        {
+          "param": "red",
+          "value": "lsat7_2002_30@PERMANENT"
+        },
+        {
+          "param": "nir",
+          "value": "lsat7_2002_40@PERMANENT"
+        },
+        {
+          "param": "green",
+          "value": "lsat7_2002_20@PERMANENT"
+        }
+      ],
+      "outputs": [{
+        "export": {
+          "format": "GTiff",
+          "type": "raster"
+        },
+        "param": "output",
+        "value": "ndwi_2"
+        }]
+      },
+      {
+        "id": "compute_ndwi_variante2",
+        "module": "r.mapcalc",
+        "inputs": [{
+          "param": "expression",
+          "value": "water_bodies = if( ndwi_2 > 0.35, 1, null() )"
+          }]
+        },
+        {
+          "id": "exporter_1",
+          "module": "exporter",
+          "comment": "Export lakes",
+          "outputs": [{
+            "export": {
+              "type": "raster",
+              "format": "COG"
+            },
+            "param": "map",
+            "value": "lakes"
+          },
+          {
+            "export": {
+              "type": "raster",
+              "format": "GTiff"
+            },
+            "param": "map",
+            "value": "ndwi_1"
+          },
+          {
+            "export": {
+              "type": "raster",
+              "format": "GTiff"
+            },
+            "param": "map",
+            "value": "water_bodies"
+          }
+        ]
+      }
+    ],
+    "version": "1"
+  }

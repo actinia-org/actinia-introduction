@@ -1,0 +1,48 @@
+{
+  "list": [
+    {
+      "id": "copy_countries",
+      "module": "g.copy",
+      "inputs": [
+        {
+          "param": "vector",
+          "value": "zipcodes_wake@PERMANENT,zipcodes_wake"
+        }
+      ]
+    },
+    {
+      "id": "Count_hospitals",
+      "module": "v.vect.stats",
+      "inputs": [
+        {
+          "param": "points",
+          "value": "hospitals@PERMANENT"
+        },
+        {
+          "param": "areas",
+          "value": "zipcodes_wake"
+        },
+        {
+          "param": "count_column",
+          "value": "number_hospitals"
+        }
+      ]
+    },
+    {
+      "id": "Select_number_hospitals",
+      "module": "v.db.select",
+      "inputs": [
+        {
+          "param": "map",
+          "value": "zipcodes_wake"
+        },
+        {
+          "param": "columns",
+          "value": "ZIPCODE,number_hospitals"
+        }
+      ],
+      "stdout": {"id": "number_hospitals", "format": "table", "delimiter": "\n"}
+    }
+  ],
+  "version": "1"
+}
